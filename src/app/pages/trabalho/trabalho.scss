@@ -1,0 +1,176 @@
+@use 'tokens' as *;
+
+/* Section kickers and card labels sit tight against what follows them; the
+   global type roles keep their browser margins so they can also stand alone. */
+.conditions__heading,
+.fields__eyebrow,
+.leadership__eyebrow,
+.leadership__label,
+.practice__eyebrow {
+  margin: 0;
+}
+
+/* -- Conditions ------------------------------------------------------------ */
+
+.conditions {
+  padding-block: 100px 80px;
+
+  &__grid {
+    @include auto-grid(320px, 20px);
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 22px;
+  }
+
+  &__title {
+    font-size: 16.5px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  &__text {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 6px 0 0;
+    text-wrap: pretty;
+  }
+}
+
+.conditions .card {
+  padding: 36px 32px;
+}
+
+/* -- Fields ---------------------------------------------------------------- */
+
+.fields {
+  padding: 0 $shell-pad 100px;
+
+  &__intro {
+    font-size: 16px;
+    line-height: 1.75;
+    max-width: 60ch;
+    margin: 18px 0 30px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}
+
+/* -- Leadership ------------------------------------------------------------ */
+
+.leadership {
+  &__title {
+    max-width: 26ch;
+  }
+
+  &__body {
+    @include auto-grid(300px, 40px);
+    margin-top: 36px;
+  }
+
+  &__grid {
+    @include auto-grid(240px, 14px);
+    margin-top: 44px;
+  }
+
+  &__text {
+    margin-top: 14px;
+  }
+}
+
+.leadership .card {
+  padding: 30px 26px;
+}
+
+/* -- Practice -------------------------------------------------------------- */
+
+.practice {
+  padding-block: 100px 110px;
+
+  &__heading {
+    max-width: 24ch;
+    margin: 20px 0 36px;
+  }
+
+  /* Hairline gaps between rows: the shared background shows through as rules. */
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--line);
+    border: var(--hair);
+    border-radius: $radius;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__row {
+    background: var(--bg);
+    padding: 30px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  &__n {
+    @include serif(34px, 1);
+    color: var(--accent);
+  }
+
+  &__row-title {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--fg);
+    margin: 0;
+  }
+
+  &__row-text {
+    max-width: 70ch;
+    line-height: 1.75;
+    margin: 8px 0 0;
+  }
+}
+
+/* `.section` and `.shell` each add a 28px gutter, so a 360px screen leaves
+   roughly 248px of content — under every minmax() floor used above. Past that
+   point auto-grid can no longer collapse: the floor wins and the track pushes
+   out of the viewport, so the tracks are pinned to one column by hand. Each
+   grid is already single-column by 560px, so nothing above here moves. */
+@include below($bp-sm) {
+  .conditions__grid,
+  .leadership__body,
+  .leadership__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .conditions .card {
+    padding: 28px 22px;
+  }
+
+  .leadership .card {
+    padding: 24px 20px;
+  }
+
+  .practice__row {
+    grid-template-columns: 46px 1fr;
+    gap: 16px;
+    padding: 26px 20px;
+  }
+}

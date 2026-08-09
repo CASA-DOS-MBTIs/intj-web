@@ -1,0 +1,9 @@
+<header class="masthead">
+  <div class="masthead__bloom" [style]="bloom()" aria-hidden="true"></div>
+
+  <div class="masthead__inner">
+    <p class="masthead__eyebrow">{{ header().eyebrow }}</p>
+    <h1 class="masthead__title">{{ header().title }}</h1>
+    <p class="lede masthead__lede" [innerHTML]="header().lede"></p>
+  </div>
+</header>

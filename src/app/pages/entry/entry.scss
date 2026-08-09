@@ -1,0 +1,92 @@
+@use 'tokens' as *;
+
+.entry {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // The door is briefly visible before the redirect lands, so it fills the
+  // viewport rather than sitting as a short strip under the header.
+  min-height: calc(100dvh - var(--nav-h) - 120px);
+  padding: 70px $shell-pad 90px;
+
+  &__inner {
+    width: 100%;
+    max-width: 780px;
+    text-align: center;
+  }
+
+  &__mark {
+    display: block;
+    width: 210px;
+    max-width: 60%;
+    margin: 0 auto;
+  }
+
+  &__stack {
+    @include mono-label(11px, 0.3em);
+    color: var(--mut);
+    margin: 18px 0 0;
+  }
+
+  &__doors {
+    list-style: none;
+    margin: 46px 0 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+
+  &__door {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: 100%;
+    padding: 30px 26px;
+    border: var(--hair);
+    border-radius: $radius;
+    background: var(--bg2);
+    color: var(--fg);
+    text-align: left;
+    transition:
+      border-color 0.2s,
+      transform 0.2s;
+
+    &:hover {
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__name {
+    @include mono-label(10.5px, 0.16em);
+    color: var(--accent);
+  }
+
+  &__title {
+    @include serif(23px, 1.25);
+  }
+
+  &__text {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--mut);
+    text-wrap: pretty;
+  }
+}
+
+@include below($bp-sm) {
+  .entry {
+    padding: 48px 20px 64px;
+  }
+
+  // Two doors side by side leave about 130px of card each at 360px.
+  .entry__doors {
+    grid-template-columns: 1fr;
+    margin-top: 34px;
+  }
+
+  .entry__door {
+    padding: 22px 20px;
+  }
+}

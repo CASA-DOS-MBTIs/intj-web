@@ -1,0 +1,159 @@
+@use 'tokens' as *;
+
+.focus {
+  background: var(--bg);
+  border: var(--hair);
+  border-top: 2px solid var(--accent);
+  border-radius: $radius;
+  padding: 42px 38px;
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  // The two serif headings are spelled as the `font` shorthand rather than
+  // `@include serif(...)`. Same computed style — weight, size, line-height and
+  // family are all stated, and every sub-property the shorthand additionally
+  // resets is already sitting at its initial value — for half the bytes.
+  &__title {
+    font: 400 clamp(30px, 4vw, 46px)/1.1 $font-serif;
+    margin: 12px 0 0;
+  }
+
+  &__subtitle {
+    margin: 10px 0 0;
+  }
+
+  &__back {
+    flex-shrink: 0;
+  }
+
+  &__note {
+    font-family: $font-mono;
+    font-size: 10.5px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 20px 0 0;
+    max-width: 80ch;
+  }
+
+  // Not shorthand-able: the lede takes its weight by inheritance from the body
+  // rule, and `font` would reset that to 400.
+  &__lede {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: clamp(19px, 2.2vw, 24px);
+    line-height: 1.5;
+    color: var(--fg);
+    margin: 28px 0 0;
+    max-width: 72ch;
+    text-wrap: pretty;
+  }
+
+  // Every top-level division of the article — each prose section and each of
+  // the two-column pairs — is separated by the same ruled gap. `&__contrast`
+  // below is the one that opts out, and it still follows this rule in source
+  // order, so its `border-top: none` keeps winning.
+  &__section,
+  &__pair {
+    margin-top: 44px;
+    padding-top: 30px;
+    border-top: var(--hair);
+  }
+
+  &__section-title {
+    font: 400 27px/1.15 $font-serif;
+    margin: 16px 0 20px;
+    max-width: 30ch;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 78ch;
+  }
+
+  &__points {
+    margin-top: 22px;
+    max-width: 78ch;
+  }
+
+  &__pair {
+    @include auto-grid(300px, 34px);
+  }
+
+  &__list .label {
+    margin: 0 0 18px;
+  }
+
+  &__item {
+    margin-bottom: 18px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__item-title {
+    font-size: 16px;
+    color: var(--fg);
+    margin: 0 0 8px;
+    font-weight: 400;
+  }
+
+  &__stress {
+    margin-top: 34px;
+    border-left: 2px solid var(--accent);
+  }
+
+  &__growth {
+    margin-top: 34px;
+  }
+
+  &__growth-grid {
+    @include auto-grid(240px, 16px);
+  }
+
+  &__contrast {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  // Both of these are cards rather than list columns, so their label sits
+  // tighter to the text than the `&__list .label` above.
+  &__stress .label,
+  &__contrast .label {
+    margin: 0 0 12px;
+  }
+}
+
+@include below($bp-sm) {
+  .focus {
+    padding: 30px 22px;
+  }
+
+  // Both grids kept a `minmax()` floor wider than the shell leaves them once the
+  // page gutter and the card's own padding are taken out (~200px at 360px), and
+  // an auto-fit floor still applies when the container cannot honour it.
+  .focus__pair,
+  .focus__growth-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .focus__pair {
+    gap: 26px;
+  }
+
+  // Cards nested inside an already-padded card: the default 28px inline padding
+  // costs a quarter of the remaining line length here.
+  .focus__stress,
+  .focus__growth-grid .card,
+  .focus__contrast .card {
+    padding: 22px 20px;
+  }
+}

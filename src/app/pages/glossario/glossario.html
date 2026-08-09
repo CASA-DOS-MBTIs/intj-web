@@ -1,0 +1,56 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered terms">
+  <div class="shell">
+    <div class="terms__filters" role="group">
+      <button
+        type="button"
+        class="terms__chip"
+        [class.is-on]="system() === all"
+        [attr.aria-pressed]="system() === all"
+        (click)="filter(all)"
+      >
+        {{ c.allLabel }}
+      </button>
+      @for (name of c.systems; track name) {
+        <button
+          type="button"
+          class="terms__chip"
+          [class.is-on]="system() === name"
+          [attr.aria-pressed]="system() === name"
+          (click)="filter(name)"
+        >
+          {{ name }}
+        </button>
+      }
+    </div>
+
+    <dl class="terms__list">
+      @for (entry of entries(); track entry.term) {
+        <div class="term">
+          <dt class="term__head">
+            <span class="term__name">{{ entry.term }}</span>
+            <span class="label term__system">{{ entry.system }}</span>
+          </dt>
+          <dd class="term__body">
+            <p class="term__short">{{ entry.short }}</p>
+            <p class="card-text term__long" [innerHTML]="entry.long"></p>
+          </dd>
+        </div>
+      }
+    </dl>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

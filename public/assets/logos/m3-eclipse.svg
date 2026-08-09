@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 108" role="img" aria-labelledby="m3-eclipse-t">
+  <title id="m3-eclipse-t">INTJ — Eclipse</title>
+  <circle cx="52" cy="52" r="52" fill="var(--accent, #a78bfa)"/>
+  <text x="52" y="53" text-anchor="middle" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="34" font-weight="400" fill="var(--on-accent, #191a20)" style="letter-spacing:1.4px">IN</text>
+  <circle cx="91" cy="89" r="17" fill="var(--bg2, #14151c)" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <text x="91" y="90" text-anchor="middle" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="14" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:0px">TJ</text>
+</svg>

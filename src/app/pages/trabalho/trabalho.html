@@ -1,0 +1,95 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section conditions">
+  <div class="shell conditions__grid">
+    <article class="card card--accent" appReveal>
+      <h2 class="label label--accent conditions__heading">{{ c.conditions.thriveTitle }}</h2>
+      <div class="conditions__list">
+        @for (item of c.conditions.thrive; track item.title) {
+          <div>
+            <h3 class="conditions__title">{{ item.title }}</h3>
+            <p class="conditions__text">{{ item.text }}</p>
+          </div>
+        }
+      </div>
+    </article>
+
+    <article class="card" appReveal>
+      <h2 class="label conditions__heading">{{ c.conditions.drainTitle }}</h2>
+      <div class="conditions__list">
+        @for (item of c.conditions.drain; track item.title) {
+          <div>
+            <h3 class="conditions__title">{{ item.title }}</h3>
+            <p class="conditions__text">{{ item.text }}</p>
+          </div>
+        }
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="fields">
+  <div class="shell">
+    <h2 class="eyebrow fields__eyebrow" appReveal>{{ c.fields.eyebrow }}</h2>
+    <p class="prose fields__intro" appReveal>{{ c.fields.intro }}</p>
+
+    <ul class="fields__list" appReveal>
+      @for (field of c.fields.items; track field) {
+        <li class="tag">{{ field }}</li>
+      }
+    </ul>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered leadership">
+  <div class="shell">
+    <p class="eyebrow leadership__eyebrow" appReveal>{{ c.leadership.eyebrow }}</p>
+    <h2 class="section-title leadership__title" appReveal>{{ c.leadership.title }}</h2>
+
+    <div class="leadership__body">
+      @for (paragraph of c.leadership.paragraphs; track $index) {
+        <p class="prose" appReveal>{{ paragraph }}</p>
+      }
+    </div>
+
+    <div class="leadership__grid">
+      @for (item of c.leadership.dos; track item) {
+        <article class="card" appReveal>
+          <p class="label label--accent leadership__label">{{ c.leadership.doLabel }}</p>
+          <p class="card-text leadership__text">{{ item }}</p>
+        </article>
+      }
+      @for (item of c.leadership.avoids; track item) {
+        <article class="card" appReveal>
+          <p class="label leadership__label">{{ c.leadership.avoidLabel }}</p>
+          <p class="card-text leadership__text">{{ item }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section practice">
+  <div class="shell">
+    <p class="eyebrow practice__eyebrow" appReveal>{{ c.practice.eyebrow }}</p>
+    <h2 class="section-title practice__heading" appReveal>{{ c.practice.title }}</h2>
+
+    <ol class="practice__list">
+      @for (item of c.practice.items; track item.n) {
+        <li class="practice__row" appReveal>
+          <span class="practice__n" aria-hidden="true">{{ item.n }}</span>
+          <div>
+            <h3 class="practice__row-title">{{ item.title }}</h3>
+            <p class="card-text practice__row-text">{{ item.text }}</p>
+          </div>
+        </li>
+      }
+    </ol>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

@@ -1,0 +1,81 @@
+@let c = page();
+@let p = phase();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="timeline">
+  <div class="shell">
+    <p class="eyebrow timeline__hint">{{ c.timelineHint }}</p>
+
+    <div class="timeline__track">
+      <div class="timeline__rule" aria-hidden="true"></div>
+
+      <div class="timeline__phases">
+        @for (ph of c.phases; track ph.range; let i = $index) {
+          <button
+            type="button"
+            class="phase"
+            [class.phase--on]="selected() === i"
+            [attr.aria-pressed]="selected() === i"
+            (click)="select(i)"
+          >
+            <span class="phase__dot-row"><span class="phase__dot"></span></span>
+            <span class="phase__range">{{ ph.range }}</span>
+            <span class="phase__title">{{ ph.title }}</span>
+          </button>
+        }
+      </div>
+    </div>
+
+    <article class="detail">
+      <div class="detail__head">
+        <h2 class="detail__heading">
+          <span class="detail__range">{{ p.range }}</span>
+          <span class="detail__title">{{ p.title }}</span>
+        </h2>
+        <p class="label detail__focus">{{ c.focusLabel }} {{ p.focus }}</p>
+      </div>
+
+      <p class="prose detail__body">{{ p.body }}</p>
+
+      <div class="detail__grid">
+        <div class="card card--plain detail__cell">
+          <p class="label">{{ c.painLabel }}</p>
+          <p class="card-text detail__cell-text">{{ p.pain }}</p>
+        </div>
+        <div class="card card--plain detail__cell">
+          <p class="label">{{ c.gainLabel }}</p>
+          <p class="card-text detail__cell-text">{{ p.gain }}</p>
+        </div>
+        <div class="card card--plain card--accent detail__cell">
+          <p class="label label--accent">{{ c.taskLabel }}</p>
+          <p class="card-text detail__cell-text">{{ p.task }}</p>
+        </div>
+      </div>
+    </article>
+
+    <p class="timeline__note">{{ c.timelineNote }}</p>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered growth">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.growth.eyebrow }}</p>
+    <h2 class="section-title growth__title" appReveal>{{ c.growth.title }}</h2>
+    <p class="prose growth__intro" appReveal>{{ c.growth.intro }}</p>
+
+    <div class="growth__grid">
+      @for (item of c.growth.items; track item.n) {
+        <article class="card" appReveal>
+          <p class="growth__n">{{ item.n }}</p>
+          <h3 class="growth__card-title">{{ item.title }}</h3>
+          <p class="card-text">{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

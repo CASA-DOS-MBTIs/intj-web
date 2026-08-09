@@ -1,0 +1,47 @@
+@let c = content();
+
+<app-page-header [header]="c.header" [bloom]="bloom()" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat" appReveal>
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+  </div>
+</section>
+
+@for (section of c.sections; track section.title) {
+  <section class="section section--bordered" [class.section--tinted]="$even">
+    <div class="shell">
+      <p class="eyebrow" appReveal>{{ section.eyebrow }}</p>
+      <h2 class="section-title block__title" appReveal>{{ section.title }}</h2>
+
+      <div class="block__body" appReveal>
+        @for (paragraph of section.paragraphs; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+
+      @if (section.points; as points) {
+        <ul class="bullets block__points" appReveal>
+          @for (point of points; track $index) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+      }
+    </div>
+  </section>
+}
+
+<section class="section verdict">
+  <div class="shell">
+    <div class="card card--accent verdict__card" appReveal>
+      <h2 class="verdict__title">{{ c.verdict.title }}</h2>
+      <p class="prose verdict__text">{{ c.verdict.text }}</p>
+      <p class="label verdict__weight">{{ c.verdict.weight }}</p>
+    </div>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

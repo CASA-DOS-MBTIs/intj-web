@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 118 118" role="img" aria-labelledby="x3-nevoa-t">
+  <title id="x3-nevoa-t">INTJ — Névoa</title>
+  <defs>
+  <radialGradient id="x3-nevoa-haze" cx="0.5" cy="0.42" r="0.58">
+  <stop offset="0%" stop-color="var(--accent, #a78bfa)" stop-opacity="0.6"/>
+  <stop offset="100%" stop-color="var(--accent, #a78bfa)" stop-opacity="0"/>
+  </radialGradient>
+  <clipPath id="x3-nevoa-disc"><circle cx="59" cy="59" r="58.5"/></clipPath>
+  </defs>
+  <g clip-path="url(#x3-nevoa-disc)"><rect width="118" height="118" fill="url(#x3-nevoa-haze)"/></g>
+  <circle cx="59" cy="59" r="58.5" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <text x="59" y="98" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="9" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:2.7px">INTJ</text>
+</svg>

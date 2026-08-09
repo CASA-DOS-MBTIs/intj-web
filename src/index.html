@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <!--
+    Placeholders. Every route is prerendered, and the render writes its own
+    title, description, canonical, hreflang set, social tags and structured
+    data over these (see src/app/core/seo.ts) — so what ships in each document
+    is that page's, not this one's. These are what a route would fall back to
+    if it somehow rendered without them.
+  -->
+  <title>INTJ — o retrato completo</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Um retrato honesto do tipo INTJ: pilha cognitiva, forças e sombras, trabalho, vínculos e crescimento.">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#1a1b22">
+
+  <!--
+    Stated rather than left to the browser default. Following a link out to the
+    author's portfolio or to the community page hands over the origin and
+    nothing more — never the path, so which page of this site somebody was
+    reading when they left is not something the other end gets told.
+
+    The Content-Security-Policy is not here: it is assembled per document by
+    scripts/postbuild-pages.mjs, because it carries the hash of each inline
+    script in that document.
+  -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <!--
+    The mark alone — the four bars, no wordmark. The full lockup is 210×62 and
+    letterboxes into nothing at 16 px; the bars survive the shrink.
+
+    Declared .ico first and .svg second on purpose: browsers that understand SVG
+    icons prefer the later declaration and get the vector, which follows the
+    reader's colour scheme; everything else, Safari included, stops at the .ico.
+    The bitmap carries a plate because it cannot adapt.
+  -->
+  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <!-- Webfonts are self-hosted and bundled through styles.scss. The page makes
+       no third-party requests, so there is nothing to preconnect to. -->
+</head>
+<body>
+  <app-root></app-root>
+</body>
+</html>

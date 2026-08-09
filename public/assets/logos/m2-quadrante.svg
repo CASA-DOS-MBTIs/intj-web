@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="m2-quadrante-t">
+  <title id="m2-quadrante-t">INTJ — Quadrante</title>
+  <rect x="0.5" y="0.5" width="95" height="95" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <line x1="48" y1="0" x2="48" y2="96" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <line x1="0" y1="48" x2="96" y2="48" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <text x="24" y="24" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="400" fill="var(--accent, #a78bfa)" style="letter-spacing:0px">I</text>
+  <text x="72" y="24" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:0px">N</text>
+  <text x="24" y="72" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:0px">T</text>
+  <text x="72" y="72" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="17" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:0px">J</text>
+</svg>

@@ -1,0 +1,13 @@
+<div class="grain" aria-hidden="true"></div>
+
+<div class="progress" aria-hidden="true">
+  <div class="progress__bar" [style.transform]="'scaleX(' + progress() + ')'"></div>
+</div>
+
+<app-site-nav />
+
+<main id="content" tabindex="-1">
+  <router-outlet />
+</main>
+
+<app-site-foot />

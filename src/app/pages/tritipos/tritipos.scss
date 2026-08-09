@@ -1,0 +1,234 @@
+@use 'tokens' as *;
+
+/* `.intro__text` and `.intro__caveat` are part of the shared page vocabulary in
+   styles.scss. This page wants exactly the shared measures, so it says nothing
+   about them rather than restating them. */
+
+.intro {
+  padding-block: 80px 60px;
+
+  &__order {
+    font-size: 11px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 22px 0 0;
+    max-width: 80ch;
+  }
+
+  &__lens {
+    margin-top: 32px;
+    max-width: 80ch;
+  }
+}
+
+.picker {
+  padding-block: 60px 110px;
+
+  &__filter {
+    cursor: pointer;
+    background: none;
+    color: var(--mut);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 9px 14px;
+    margin-bottom: 20px;
+
+    &:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+  }
+
+  &__grid {
+    gap: 7px;
+  }
+
+  &__chip {
+    cursor: pointer;
+    background: var(--bg);
+    color: var(--fg);
+    font-size: 12.5px;
+    letter-spacing: 0.08em;
+    padding: 11px 13px;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+
+    &:hover {
+      border-color: var(--accent);
+    }
+
+    // The reader's own tritype stays marked even when another is being read.
+    &.is-mine::after {
+      content: '·';
+      color: var(--accent);
+      margin-left: 5px;
+    }
+
+    &.is-on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+
+      &.is-mine::after {
+        color: var(--on-accent);
+      }
+    }
+  }
+}
+
+.detail {
+  margin-top: 28px;
+  background: var(--bg);
+  border: var(--hair);
+  border-radius: $radius;
+  padding: 40px 36px;
+
+  &__head {
+    align-items: baseline;
+    gap: 20px;
+  }
+
+  &__code {
+    /* Full 52px from ~580px up, so desktop is untouched. */
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 0.9;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+  }
+
+  &__name {
+    font-size: 28px;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  &__archetype {
+    margin: 8px 0 0;
+  }
+
+  &__text {
+    margin-top: 26px;
+    max-width: 82ch;
+  }
+
+  &__applied {
+    margin-top: 28px;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    max-width: 82ch;
+
+    .label {
+      margin: 0 0 10px;
+    }
+  }
+}
+
+.centres {
+  gap: 10px;
+  margin-top: 24px;
+
+  &__item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    background: var(--bg2);
+    padding: 10px 14px;
+  }
+
+  &__digit {
+    font-size: 20px;
+    line-height: 1;
+    color: var(--accent);
+  }
+}
+
+/* -- Shared values ----------------------------------------------------------
+
+   Three wrapping rows, three mono controls, three bordered boxes and three
+   serif numerals — the page repeats a small number of values across a lot of
+   rules, and a font stack alone is ~60 bytes of compiled CSS each time it is
+   written out. Declared once here instead of once per rule.
+
+   Everything below is either uncontested or outranked on specificity by the
+   state rules above it (`.picker__chip.is-on`, `:hover`), so collecting them
+   after their owners changes nothing about what wins. The one rule that does
+   depend on order — `.picker__grid` turning into a grid — lives in the media
+   query below, which still comes last.
+   -------------------------------------------------------------------------- */
+
+.picker__grid,
+.detail__head,
+.centres {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.intro__order,
+.picker__filter,
+.picker__chip {
+  font-family: $font-mono;
+}
+
+.picker__filter,
+.picker__chip,
+.centres__item {
+  border: var(--hair);
+  border-radius: 2px;
+}
+
+.detail__code,
+.detail__name,
+.centres__digit {
+  font-family: $font-serif;
+  font-weight: 400;
+}
+
+/* -- Narrow screens --------------------------------------------------------
+
+   Kept last in the file: a media query adds no specificity, so these overrides
+   only win if they are declared after the rules they relax.
+   -------------------------------------------------------------------------- */
+
+@include below($bp-md) {
+  /* Both controls fell just under 40px tall on their text metrics alone, which
+     is below a comfortable tap target on the widths that have no pointer. */
+  .picker__filter {
+    min-height: 40px;
+    padding: 11px 16px;
+  }
+
+  .picker__chip {
+    min-height: 42px;
+  }
+}
+
+@include below($bp-sm) {
+  .detail {
+    padding: 28px 20px;
+  }
+
+  /* Twenty-seven chips of identical width, wrapped by flex, come out as a
+     dense block with a ragged right edge — the "is-mine" dot widens exactly
+     one of them and knocks the rest out of column. A grid resolves the same
+     chips into an even matrix (four across at 360px) that reads as a keypad. */
+  .picker__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(56px, 1fr));
+  }
+
+  .picker__chip {
+    padding: 11px 4px;
+    text-align: center;
+  }
+
+  .detail__applied {
+    padding-left: 14px;
+  }
+
+  .centres__item {
+    padding: 10px 12px;
+  }
+}

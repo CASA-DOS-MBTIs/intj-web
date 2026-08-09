@@ -1,0 +1,27 @@
+version: 2
+
+# Pinning every action to a commit (see deploy.yml) removes the tag-hijack risk
+# and creates a new one: pinned hashes never move, so a patched action is never
+# picked up. Dependabot is the other half of that decision — it opens a pull
+# request when a pinned action or a dependency has a newer release, and the hash
+# changes under review instead of silently under the workflow's feet.
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: deps
+    groups:
+      # Angular ships its packages in lockstep; splitting them across pull
+      # requests produces combinations that were never tested together.
+      angular:
+        patterns:
+          - '@angular/*'

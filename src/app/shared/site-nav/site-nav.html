@@ -1,0 +1,97 @@
+@let n = nav();
+
+<a class="skip" href="#content">{{ n.skipToContent }}</a>
+
+<nav class="nav">
+  <div class="nav__bar">
+    <a
+      class="nav__brand"
+      [routerLink]="path()['home']"
+      [attr.aria-label]="n.brandLabel"
+      (click)="closeAll()"
+    >
+      <app-site-logo />
+    </a>
+
+    <div class="nav__tools">
+      <!--
+        Real links rather than buttons. A crawler that cannot press a button can
+        still follow an href, which is how the other language tree gets found and
+        how `hreflang` ends up describing pages that are actually reachable.
+      -->
+      <div class="nav__lang" [attr.aria-label]="n.languageLabel">
+        @for (option of langs; track option) {
+          <a
+            class="nav__lang-btn"
+            [class.is-active]="lang() === option"
+            [attr.aria-current]="lang() === option ? 'true' : null"
+            [routerLink]="alternates()[option]"
+            [attr.hreflang]="htmlLang[option]"
+            (click)="select(option)"
+          >
+            {{ option }}
+          </a>
+        }
+      </div>
+
+      <!-- Shown only below the breakpoint; above it the links are always out. -->
+      <button
+        type="button"
+        class="nav__burger"
+        [class.is-open]="drawerOpen()"
+        [attr.aria-expanded]="drawerOpen()"
+        [attr.aria-label]="n.menuLabel"
+        aria-controls="nav-links"
+        (click)="toggleDrawer()"
+      >
+        <span class="nav__burger-box" aria-hidden="true">
+          <span class="nav__burger-line"></span>
+          <span class="nav__burger-line"></span>
+          <span class="nav__burger-line"></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__links" id="nav-links" [class.is-open]="drawerOpen()">
+    @for (item of n.items; track item.key) {
+      <a
+        class="nav__link"
+        [routerLink]="path()[item.key]"
+        routerLinkActive="is-active"
+        #rla="routerLinkActive"
+        [attr.aria-current]="rla.isActive ? 'page' : null"
+        (click)="closeAll()"
+        >{{ item.label }}</a
+      >
+    }
+
+    @for (menu of n.menus; track menu.key) {
+      <div class="nav__menu">
+        <button
+          type="button"
+          class="nav__link nav__trigger"
+          [class.is-open]="openMenu() === menu.key"
+          [attr.aria-expanded]="openMenu() === menu.key"
+          (click)="toggleMenu(menu.key)"
+        >
+          {{ menu.label }}<span class="nav__caret" aria-hidden="true">▾</span>
+        </button>
+
+        @if (openMenu() === menu.key) {
+          <div class="nav__dropdown" (click)="closeAll()">
+            @for (item of menu.items; track item.key) {
+              <a
+                class="nav__drop-link"
+                [routerLink]="path()[item.key]"
+                routerLinkActive="is-active"
+                [routerLinkActiveOptions]="{ exact: true }"
+                >{{ item.label }}</a
+              >
+            }
+          </div>
+        }
+      </div>
+    }
+  </div>
+</nav>

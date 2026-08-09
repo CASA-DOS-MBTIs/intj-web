@@ -1,0 +1,164 @@
+@let c = page();
+@let t = current();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="enneagram">
+  <div class="shell">
+    <p class="eyebrow flush">{{ c.enneagram.eyebrow }}</p>
+    <h2 class="section-title enneagram__title">{{ c.enneagram.title }}</h2>
+    <p class="prose enneagram__intro">{{ c.enneagram.intro }}</p>
+
+    <div class="chips" role="group" [attr.aria-label]="c.enneagram.eyebrow">
+      @for (type of c.enneagram.types; track type.tag) {
+        <button
+          type="button"
+          class="tag chip"
+          [class.chip--on]="selected() === $index"
+          [attr.aria-pressed]="selected() === $index"
+          (click)="select($index)"
+        >
+          {{ c.enneagram.chipPrefix }} {{ type.tag }}
+        </button>
+      }
+    </div>
+
+    <article class="detail">
+      <div class="detail__head">
+        <span class="detail__num" aria-hidden="true">{{ t.num }}</span>
+        <div>
+          <h3 class="detail__name">{{ c.enneagram.chipPrefix }} {{ t.tag }} — {{ t.name }}</h3>
+          <p class="label detail__freq">{{ t.freq }}</p>
+        </div>
+      </div>
+
+      <p class="detail__motto">{{ t.motto }}</p>
+      <p class="prose detail__body">{{ t.body }}</p>
+
+      <div class="detail__grid">
+        <div class="card card--plain detail__cell">
+          <h4 class="label flush">{{ c.enneagram.wantLabel }}</h4>
+          <p class="card-text detail__text">{{ t.want }}</p>
+        </div>
+        <div class="card card--plain detail__cell">
+          <h4 class="label flush">{{ c.enneagram.fearLabel }}</h4>
+          <p class="card-text detail__text">{{ t.fear }}</p>
+        </div>
+        <div class="card card--plain detail__cell">
+          <h4 class="label flush">{{ c.enneagram.lookLabel }}</h4>
+          <p class="card-text detail__text">{{ t.look }}</p>
+        </div>
+        <div class="card card--plain card--accent detail__cell">
+          <h4 class="label label--accent flush">{{ c.enneagram.growLabel }}</h4>
+          <p class="card-text detail__text">{{ t.grow }}</p>
+        </div>
+      </div>
+    </article>
+
+    <a class="btn btn--ghost more" [routerLink]="path()['eneagrama']">
+      {{ c.more.enneagram }}<span aria-hidden="true"> →</span>
+    </a>
+  </div>
+</section>
+
+<section class="instincts">
+  <div class="shell">
+    <p class="eyebrow flush" appReveal>{{ c.instincts.eyebrow }}</p>
+    <h2 class="instincts__title" appReveal>{{ c.instincts.title }}</h2>
+
+    <div class="instincts__grid">
+      @for (card of c.instincts.cards; track card.kicker) {
+        <article class="card" appReveal>
+          <p class="label label--accent instincts__kicker">{{ card.kicker }}</p>
+          <h3 class="instincts__card-title">{{ card.title }}</h3>
+          <p class="card-text">{{ card.text }}</p>
+        </article>
+      }
+    </div>
+
+    <a class="btn btn--ghost more" [routerLink]="path()['subtipos']" appReveal>
+      {{ c.more.instincts }}<span aria-hidden="true"> →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered temperaments">
+  <div class="shell">
+    <p class="eyebrow flush" appReveal>{{ c.temperaments.eyebrow }}</p>
+    <h2 class="temperaments__title" appReveal>{{ c.temperaments.title }}</h2>
+    <p class="prose temperaments__intro" appReveal>{{ c.temperaments.intro }}</p>
+
+    <div class="temperaments__grid">
+      @for (card of c.temperaments.cards; track card.kicker) {
+        <article class="card card--plain" [class.card--accent]="card.accent" appReveal>
+          <p class="label temperaments__kicker" [class.label--accent]="card.accent">
+            {{ card.kicker }}
+          </p>
+          <h3 class="temperaments__card-title">{{ card.title }}</h3>
+          <p class="card-text">{{ card.text }}</p>
+        </article>
+      }
+    </div>
+
+    <!-- Three of twelve. The overview shows the shape; the page carries the set. -->
+    <a class="btn btn--ghost more" [routerLink]="path()['temperamentos']" appReveal>
+      {{ c.more.temperaments }}<span aria-hidden="true"> →</span>
+    </a>
+  </div>
+</section>
+
+<section class="section big-five">
+  <div class="shell">
+    <p class="eyebrow flush" appReveal>{{ c.bigFive.eyebrow }}</p>
+    <h2 class="big-five__title" appReveal>{{ c.bigFive.title }}</h2>
+    <p class="prose big-five__intro" appReveal>{{ c.bigFive.intro }}</p>
+
+    <div class="rows">
+      @for (row of c.bigFive.rows; track row.name) {
+        <div class="row" appReveal>
+          <h3 class="row__name">{{ row.name }}</h3>
+          <div>
+            <div class="meter">
+              <div class="meter__fill" [style.width]="row.width"></div>
+            </div>
+            <p class="row__level">{{ row.level }}</p>
+          </div>
+          <p class="card-text">{{ row.text }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="extras" appReveal>
+      @for (extra of c.bigFive.extras; track extra.title) {
+        <article class="card" [class.card--accent]="extra.accent">
+          <h3 class="label extras__title" [class.label--accent]="extra.accent">
+            {{ extra.title }}
+          </h3>
+          <p class="card-text extras__text">{{ extra.text }}</p>
+        </article>
+      }
+    </div>
+
+    <a class="btn btn--ghost more" [routerLink]="path()['big-five']" appReveal>
+      {{ c.more.bigFive }}<span aria-hidden="true"> →</span>
+    </a>
+  </div>
+</section>
+
+<section class="deeper">
+  <div class="shell">
+    <p class="eyebrow eyebrow--accent" appReveal>{{ deepMenuLabel() }}</p>
+    <div class="deeper__grid">
+      @for (item of deepLinks(); track item.key) {
+        <a class="deeper__card" [routerLink]="path()[item.key]" appReveal>
+          <span class="deeper__name">{{ item.label }}</span>
+          <span class="deeper__arrow" aria-hidden="true">→</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

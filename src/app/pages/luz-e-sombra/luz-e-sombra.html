@@ -1,0 +1,111 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section light">
+  <div class="shell">
+    <h2 class="eyebrow eyebrow--accent light__eyebrow" appReveal>{{ c.strengths.eyebrow }}</h2>
+
+    <div class="light__grid">
+      @for (item of c.strengths.items; track item.n) {
+        <article class="card" appReveal>
+          <p class="light__n">{{ item.n }}</p>
+          <h3 class="card-title light__title">{{ item.title }}</h3>
+          <p class="card-text">{{ item.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section shadow">
+  <div class="shell">
+    <h2 class="eyebrow shadow__eyebrow" appReveal>{{ c.weaknesses.eyebrow }}</h2>
+
+    <div class="shadow__list">
+      @for (item of c.weaknesses.items; track item.title) {
+        <div class="card shadow__row" appReveal>
+          <div>
+            <h3 class="shadow__title">{{ item.title }}</h3>
+            <p class="card-text shadow__text">{{ item.text }}</p>
+          </div>
+          <div class="shadow__antidote">
+            <p class="label label--accent shadow__label">{{ c.weaknesses.antidoteLabel }}</p>
+            <p class="card-text shadow__cure">{{ item.antidote }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered failure">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.failure.eyebrow }}</p>
+    <h2 class="section-title failure__title" appReveal>{{ c.failure.title }}</h2>
+
+    <div class="failure__grid">
+      @for (mode of c.failure.modes; track mode.kicker) {
+        <article class="card card--plain failure__panel" appReveal>
+          <p class="failure__kicker">{{ mode.kicker }}</p>
+          <h3 class="failure__name">{{ mode.title }}</h3>
+          <p class="failure__text">{{ mode.text }}</p>
+
+          <p class="label failure__label">{{ c.failure.signsLabel }}</p>
+          <ul class="bullets failure__signs">
+            @for (sign of mode.signs; track $index) {
+              <li>{{ sign }}</li>
+            }
+          </ul>
+
+          <div class="failure__exit">
+            <p class="label label--accent failure__label">{{ c.failure.exitLabel }}</p>
+            <p class="card-text failure__exit-text">{{ mode.exit }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section burnout">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.burnout.eyebrow }}</p>
+    <h2 class="section-title burnout__title" appReveal>{{ c.burnout.title }}</h2>
+
+    <div class="burnout__lead">
+      @for (paragraph of c.burnout.paragraphs; track $index) {
+        <p class="prose" appReveal>{{ paragraph }}</p>
+      }
+    </div>
+
+    <div class="burnout__grid">
+      <div class="card burnout__panel" appReveal>
+        <h3 class="label burnout__panel-title">{{ c.burnout.warningsTitle }}</h3>
+        <ul class="bullets burnout__list">
+          @for (warning of c.burnout.warnings; track $index) {
+            <li>{{ warning }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="card burnout__panel" appReveal>
+        <h3 class="label burnout__panel-title">{{ c.burnout.helpsTitle }}</h3>
+        <ul class="bullets burnout__list">
+          @for (help of c.burnout.helps; track $index) {
+            <li>{{ help }}</li>
+          }
+        </ul>
+      </div>
+
+      <div class="card card--accent burnout__panel" appReveal>
+        <h3 class="label label--accent burnout__panel-title">{{ c.burnout.directTitle }}</h3>
+        <p class="burnout__direct">{{ c.burnout.direct }}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

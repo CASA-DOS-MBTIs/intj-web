@@ -1,0 +1,157 @@
+@use 'tokens' as *;
+
+/* Each eyebrow sits directly above the heading it introduces, so the default
+   block margins would double the gap the design asks for. */
+.affection__eyebrow,
+.love__eyebrow,
+.compatibility__eyebrow {
+  margin: 0;
+}
+
+/* -- Affective language ---------------------------------------------------- */
+
+.affection {
+  padding-block: 96px 80px;
+
+  &__title {
+    max-width: 26ch;
+    margin: 20px 0 40px;
+  }
+
+  &__grid {
+    @include auto-grid(250px, 14px);
+  }
+
+  &__card-title {
+    margin: 0;
+  }
+
+  &__card-text {
+    margin-top: 12px;
+  }
+
+  &__translation {
+    margin-top: 20px;
+    padding: 30px 32px;
+  }
+
+  &__translation-title {
+    margin: 0;
+  }
+
+  &__translation-text {
+    font-size: 16px;
+    max-width: 80ch;
+    margin-top: 14px;
+  }
+}
+
+/* -- Romantic relationship ------------------------------------------------- */
+
+.love {
+  padding-block: 96px;
+
+  &__title {
+    font-size: clamp(30px, 3.6vw, 48px);
+    line-height: 1.1;
+    max-width: 28ch;
+    margin: 20px 0 34px;
+  }
+
+  &__grid {
+    @include auto-grid(300px, 36px);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  &__panel {
+    align-self: start;
+    padding: 30px 28px;
+  }
+
+  &__panel-title {
+    margin: 0;
+
+    &--gap {
+      margin-top: 24px;
+    }
+  }
+
+  &__list {
+    font-size: 15px;
+    margin-top: 16px;
+  }
+}
+
+/* -- Friendship and family ------------------------------------------------- */
+
+.bonds {
+  padding-block: 96px 40px;
+
+  &__grid {
+    @include auto-grid(320px, 20px);
+  }
+
+  &__panel {
+    padding: 36px 32px;
+  }
+
+  &__kicker {
+    margin: 0;
+  }
+
+  &__title {
+    @include serif(29px, 1.2);
+    margin: 14px 0;
+  }
+
+  &__text {
+    font-size: 15.5px;
+    line-height: 1.78;
+    color: var(--mut);
+    margin: 0 0 16px;
+    text-wrap: pretty;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* -- Compatibility --------------------------------------------------------- */
+
+.compatibility {
+  padding-block: 60px 110px;
+
+  &__grid {
+    @include auto-grid(300px, 36px);
+    margin-top: 22px;
+  }
+}
+
+/* `.section` and `.shell` each add a 28px gutter, so a 360px screen leaves
+   roughly 248px of content — under every minmax() floor used above. Past that
+   point auto-grid can no longer collapse: the floor wins and the track pushes
+   out of the viewport, so the tracks are pinned to one column by hand. Each
+   grid is already single-column by 560px, so nothing above here moves. */
+@include below($bp-sm) {
+  .affection__grid,
+  .love__grid,
+  .bonds__grid,
+  .compatibility__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .affection__translation,
+  .love__panel {
+    padding: 26px 22px;
+  }
+
+  .bonds__panel {
+    padding: 28px 22px;
+  }
+}

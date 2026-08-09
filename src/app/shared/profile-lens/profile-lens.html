@@ -1,0 +1,29 @@
+@let c = copy();
+
+<div class="lens" [class.is-open]="open()">
+  <div class="lens__bar">
+    <div class="lens__text">
+      <p class="label label--accent lens__label">{{ c.applyLabel }}</p>
+      @if (!isSet()) {
+        <p class="lens__hint">{{ c.emptyHint }}</p>
+      }
+    </div>
+
+    <button
+      type="button"
+      class="btn"
+      [class.btn--solid]="!isSet()"
+      [class.btn--ghost]="isSet()"
+      [attr.aria-expanded]="open()"
+      (click)="toggle()"
+    >
+      {{ open() ? c.closeLabel : c.openLabel }}
+    </button>
+  </div>
+
+  @if (open()) {
+    <div class="lens__panel">
+      <app-profile-panel [facets]="facets()" (closed)="close()" />
+    </div>
+  }
+</div>

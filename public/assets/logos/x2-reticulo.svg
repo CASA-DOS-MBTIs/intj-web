@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" role="img" aria-labelledby="x2-reticulo-t">
+  <title id="x2-reticulo-t">INTJ — Retículo</title>
+  <line x1="56" y1="0" x2="56" y2="112" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <line x1="0" y1="56" x2="112" y2="56" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <polygon points="56,13.6 98.4,56 56,98.4 13.6,56" fill="none" stroke="var(--accent, #a78bfa)" stroke-width="1" opacity="0.7"/>
+  <circle cx="56" cy="56" r="2.5" fill="var(--accent, #a78bfa)"/>
+</svg>

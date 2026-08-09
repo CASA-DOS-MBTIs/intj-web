@@ -1,0 +1,95 @@
+@use 'tokens' as *;
+
+.refs {
+  border-top: var(--hair);
+  background: var(--bg2);
+  padding: 72px $shell-pad 84px;
+
+  &__title {
+    margin: 0;
+    font-weight: inherit;
+  }
+
+  &__note {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 14px 0 0;
+    max-width: 68ch;
+    text-wrap: pretty;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 30px 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--line);
+    border: var(--hair);
+    border-radius: $radius;
+    overflow: hidden;
+  }
+
+  &__item {
+    background: var(--bg);
+    padding: 20px 22px;
+    display: grid;
+    grid-template-columns: minmax(140px, 180px) 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+
+  &__kind {
+    @include mono-label(9.5px, 0.16em);
+    color: var(--mut);
+    border: var(--hair);
+    border-radius: 2px;
+    padding: 5px 9px;
+    justify-self: start;
+    white-space: nowrap;
+
+    // Jung and peer-reviewed work carry more weight than a commercial model,
+    // and the tag should say so at a glance.
+    &[data-kind='jung'],
+    &[data-kind='academic'] {
+      color: var(--accent);
+      border-color: color-mix(in oklab, var(--accent) 45%, transparent);
+    }
+
+    &[data-kind='critique'] {
+      color: var(--fg);
+    }
+  }
+
+  &__cite {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--mut);
+    text-wrap: pretty;
+  }
+
+  &__work {
+    color: var(--fg);
+    font-style: italic;
+  }
+
+  &__detail {
+    color: var(--mut);
+  }
+}
+
+@include below($bp-sm) {
+  .refs {
+    padding-block: 56px 64px;
+  }
+
+  .refs__item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    // The kind badge stays on one line by design; trimming the inline padding is
+    // what keeps the longest label ("Methodological critique") inside the row.
+    padding: 18px 16px;
+  }
+}

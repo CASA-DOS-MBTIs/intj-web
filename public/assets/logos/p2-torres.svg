@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 100" role="img" aria-labelledby="p2-torres-t">
+  <title id="p2-torres-t">INTJ — Torres</title>
+  <rect x="42" y="8" width="9" height="56" fill="var(--accent, #a78bfa)"/>
+  <rect x="57" y="24" width="9" height="40" fill="var(--fg, #eeeff5)" opacity="0.7"/>
+  <rect x="72" y="39" width="9" height="25" fill="var(--fg, #eeeff5)" opacity="0.42"/>
+  <rect x="87" y="51" width="9" height="13" fill="var(--fg, #eeeff5)" opacity="0.22"/>
+  <text x="62" y="87" text-anchor="middle" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="26" font-weight="500" fill="var(--fg, #eeeff5)" style="letter-spacing:5.7px">INTJ</text>
+</svg>

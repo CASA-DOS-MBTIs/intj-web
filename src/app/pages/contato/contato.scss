@@ -1,0 +1,84 @@
+@use 'tokens' as *;
+
+.kicker {
+  @include mono-label(10.5px, 0.16em);
+  color: var(--accent);
+  margin: 0 0 12px;
+}
+
+.mail {
+  border-color: var(--accent);
+  padding: 34px 32px;
+
+  &__address {
+    @include serif(clamp(23px, 4.4vw, 34px), 1.2);
+    color: var(--fg);
+    // The address is the point of the page, so it gets an underline that says
+    // "this is a link" without waiting for a hover.
+    text-decoration: underline;
+    text-underline-offset: 6px;
+    text-decoration-color: color-mix(in oklab, var(--accent) 55%, transparent);
+    word-break: break-word;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  &__note {
+    font-size: 14.5px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 16px 0 0;
+  }
+}
+
+.reasons {
+  margin-top: 20px;
+  @include auto-grid(290px, 20px);
+}
+
+.reason {
+  &__title {
+    @include serif(23px, 1.25);
+    margin: 0 0 14px;
+  }
+}
+
+.author,
+.community {
+  margin-top: 20px;
+  max-width: 78ch;
+}
+
+.author__link {
+  margin-top: 26px;
+}
+
+.closing {
+  font-family: $font-serif;
+  font-style: italic;
+  font-size: clamp(19px, 2.6vw, 25px);
+  line-height: 1.5;
+  color: var(--mut);
+  text-align: center;
+  margin: 60px auto 0;
+  max-width: 46ch;
+  text-wrap: pretty;
+}
+
+@include below($bp-sm) {
+  .mail {
+    padding: 24px 20px;
+  }
+
+  // auto-fit still honours the 290px floor, and three nested gutters leave less
+  // than that at 360px — so the column count is set outright.
+  .reasons {
+    grid-template-columns: 1fr;
+  }
+
+  .closing {
+    margin-top: 44px;
+  }
+}

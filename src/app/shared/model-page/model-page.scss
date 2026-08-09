@@ -1,0 +1,74 @@
+@use 'tokens' as *;
+
+.intro {
+  padding-block: 80px 60px;
+
+  &__text {
+    font-size: 17.5px;
+    max-width: 68ch;
+  }
+
+  &__caveat {
+    margin-top: 30px;
+    max-width: 78ch;
+  }
+}
+
+.block {
+  &__title {
+    max-width: 26ch;
+    margin-bottom: 30px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 76ch;
+  }
+
+  &__points {
+    margin-top: 26px;
+    max-width: 76ch;
+  }
+}
+
+.verdict {
+  padding-block: 90px 120px;
+
+  &__card {
+    padding: 38px 34px;
+    max-width: 82ch;
+  }
+
+  &__title {
+    @include serif(27px, 1.2);
+    margin: 0 0 16px;
+  }
+
+  &__text {
+    font-size: 16.5px;
+  }
+
+  &__weight {
+    margin: 22px 0 0;
+    color: var(--accent);
+  }
+}
+
+// `.section` and `.shell` each contribute a 28px gutter, so a card at 34px of its
+// own inline padding is reading against ~180px of line at 360px.
+@include below($bp-sm) {
+  .intro {
+    padding-block: 52px 40px;
+  }
+
+  .intro__caveat,
+  .verdict__card {
+    padding: 22px 20px;
+  }
+
+  .verdict {
+    padding-block: 60px 80px;
+  }
+}

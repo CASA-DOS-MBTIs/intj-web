@@ -1,0 +1,106 @@
+@let c = page();
+@let fn = current();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="stack">
+  <div class="shell">
+    <p class="eyebrow">{{ c.selectorHint }}</p>
+
+    <div class="stack__grid">
+      <div class="stack__picker">
+        @for (f of c.functions; track f.abbr) {
+          <button
+            type="button"
+            class="fn"
+            [class.fn--active]="$index === selected()"
+            [attr.aria-pressed]="$index === selected()"
+            (click)="selected.set($index)"
+          >
+            <span class="fn__head">
+              <span class="fn__ident">
+                <span class="fn__abbr">{{ f.abbr }}</span>
+                <span class="fn__name">{{ f.name }}</span>
+              </span>
+              <span class="label fn__pos">{{ f.pos }}</span>
+            </span>
+
+            <span class="meter fn__meter">
+              <span class="meter__fill" [style.width]="f.strength"></span>
+            </span>
+
+            <span class="fn__one">{{ f.oneLine }}</span>
+          </button>
+        }
+
+        <p class="stack__note">{{ c.meterNote }}</p>
+      </div>
+
+      <article class="detail">
+        <div class="detail__head">
+          <span class="detail__abbr">{{ fn.abbr }}</span>
+          <div>
+            <h2 class="detail__name">{{ fn.name }}</h2>
+            <p class="label detail__meta">{{ fn.pos }} · {{ fn.age }}</p>
+          </div>
+        </div>
+
+        <p class="detail__motto">{{ fn.motto }}</p>
+        <p class="prose detail__desc">{{ fn.desc }}</p>
+        <p class="prose detail__desc">{{ fn.desc2 }}</p>
+
+        <div class="detail__signs">
+          <h3 class="label label--accent detail__label">{{ c.signsLabel }}</h3>
+          <ul class="detail__list">
+            @for (sign of fn.signs; track $index) {
+              <li class="detail__sign">{{ sign }}</li>
+            }
+          </ul>
+        </div>
+
+        <div class="detail__pair">
+          <div class="card card--plain detail__box">
+            <h3 class="label detail__label">{{ c.shadowLabel }}</h3>
+            <p class="card-text detail__box-text">{{ fn.shadow }}</p>
+          </div>
+          <div class="card card--plain card--accent detail__box">
+            <h3 class="label label--accent detail__label">{{ c.growLabel }}</h3>
+            <p class="card-text detail__box-text">{{ fn.grow }}</p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered axis">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.axis.eyebrow }}</p>
+    <h2 class="section-title axis__title" appReveal>{{ c.axis.title }}</h2>
+
+    <div class="axis__grid">
+      @for (paragraph of c.axis.paragraphs; track $index) {
+        <p class="prose" [innerHTML]="paragraph" appReveal></p>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section inside">
+  <div class="shell">
+    <h2 class="eyebrow inside__eyebrow" appReveal>{{ c.inside.eyebrow }}</h2>
+
+    <div class="inside__grid">
+      @for (card of c.inside.cards; track card.title) {
+        <article class="card inside__card" appReveal>
+          <h3 class="inside__title">{{ card.title }}</h3>
+          <p class="card-text inside__text">{{ card.text }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

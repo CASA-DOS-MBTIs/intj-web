@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 190 42" role="img" aria-labelledby="a1-vetor-t">
+  <title id="a1-vetor-t">INTJ — Vetor</title>
+  <polygon points="0,5 26,21 0,37" fill="var(--accent, #a78bfa)"/>
+  <text x="40" y="21" text-anchor="start" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="34" font-weight="500" fill="var(--fg, #eeeff5)" style="letter-spacing:5.4px">INTJ</text>
+</svg>

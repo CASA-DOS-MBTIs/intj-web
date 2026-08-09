@@ -1,0 +1,111 @@
+@let c = page();
+@let f = focus();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+    <div class="intro__lens">
+      <app-profile-lens [facets]="facets" />
+    </div>
+  </div>
+</section>
+
+@if (f) {
+  <section class="section section--tinted section--bordered">
+    <div class="shell">
+      <app-variant-focus
+        [deep]="f.deep"
+        [labels]="c.focus"
+        [title]="f.title"
+        (widened)="widen()"
+      />
+    </div>
+  </section>
+}
+
+<section class="section section--tinted section--bordered singles">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.labels.singles }}</p>
+    <div class="singles__grid">
+      @for (key of singleKeys; track key) {
+        <div class="card singles__card" appReveal>
+          <h2 class="singles__name">{{ c.singles[key].name }}</h2>
+          <p class="card-text">{{ c.singles[key].text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section--bordered history">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.history.eyebrow }}</p>
+    <h2 class="section-title history__title" appReveal>{{ c.history.title }}</h2>
+    <div class="history__body" appReveal>
+      @for (paragraph of c.history.paragraphs; track $index) {
+        <p class="prose" [innerHTML]="paragraph"></p>
+      }
+    </div>
+    @if (c.history.points; as points) {
+      <ul class="bullets history__points" appReveal>
+        @for (point of points; track $index) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+@if (!f) { @let d = detail();
+
+<section class="section section--tinted section--bordered blends">
+  <div class="shell">
+    <p class="eyebrow">{{ c.labels.blends }}</p>
+
+    <div class="blends__chips" role="group">
+      @for (key of blendKeys; track key) {
+        <button
+          type="button"
+          class="blends__chip"
+          [class.is-on]="selected() === key"
+          [class.is-mine]="isMine(key)"
+          [attr.aria-pressed]="selected() === key"
+          (click)="choose(key)"
+        >
+          {{ c.blends[key].name }}
+        </button>
+      }
+    </div>
+
+    <article class="detail">
+      <h2 class="detail__name">{{ d.name }}</h2>
+      <p class="detail__summary">{{ d.summary }}</p>
+
+      <div class="detail__applied">
+        <p class="label label--accent">{{ c.labels.asIntj }}</p>
+        @for (paragraph of d.asIntj; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+
+      <div class="detail__grid">
+        <div class="card card--plain">
+          <p class="label">{{ c.labels.atWork }}</p>
+          <p class="card-text">{{ d.atWork }}</p>
+        </div>
+        <div class="card card--plain card--accent">
+          <p class="label label--accent">{{ c.labels.risk }}</p>
+          <p class="card-text">{{ d.risk }}</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+}
+
+<app-references [sources]="c.sources" />

@@ -1,0 +1,91 @@
+// Design tokens shared by every component stylesheet.
+//
+// This partial must stay free of CSS output: it is @use-d from ~15 component
+// stylesheets, and anything that emits rules here would be duplicated into
+// each one. The runtime custom properties live in src/styles.scss, which is
+// loaded exactly once.
+
+// -- Type families -----------------------------------------------------------
+//
+// Pointers, not the lists themselves. The lists live in the `:root` block of
+// src/styles.scss; substituting them here would inline the whole fallback stack
+// into every rule that asks for a family. Keeping the Sass names means no call
+// site had to change.
+$font-serif: var(--font-serif);
+$font-mono: var(--font-mono);
+$font-sans: var(--font-sans);
+
+// -- Layout ------------------------------------------------------------------
+$shell-max: 1200px;
+$shell-pad: 28px;
+$radius: 3px;
+
+/// Desktop height of the header bar. For sticky offsets use `var(--nav-h)`
+/// instead — it tracks the bar's real height, which shrinks on small screens.
+$nav-height: 62px;
+
+// -- Breakpoints -------------------------------------------------------------
+$bp-sm: 560px;
+$bp-md: 860px;
+
+@mixin below($width) {
+  @media (max-width: $width) {
+    @content;
+  }
+}
+
+// -- Type roles --------------------------------------------------------------
+
+/// Small monospaced label: section numbers, eyebrows, metadata.
+@mixin mono-label($size: 10.5px, $tracking: 0.18em) {
+  font-family: $font-mono;
+  font-size: $size;
+  letter-spacing: $tracking;
+  text-transform: uppercase;
+}
+
+/// Editorial serif used for every heading and numeral.
+@mixin serif($size, $line: 1.15) {
+  font-family: $font-serif;
+  font-weight: 400;
+  font-size: $size;
+  line-height: $line;
+}
+
+// -- Surfaces ----------------------------------------------------------------
+
+/// The bordered panel that carries most of the site's content.
+@mixin card($bg: var(--bg2), $pad: 32px 28px) {
+  background: $bg;
+  border: var(--hair);
+  border-radius: $radius;
+  padding: $pad;
+}
+
+/// Centred content column with the site's gutter.
+@mixin shell {
+  max-width: $shell-max;
+  margin: 0 auto;
+  padding-inline: $shell-pad;
+}
+
+/// Auto-fitting card grid. `$min` is the point a column stops shrinking.
+@mixin auto-grid($min, $gap: 14px) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax($min, 1fr));
+  gap: $gap;
+}
+
+/// Soft radial bloom used behind page headers.
+@mixin bloom($strength: 18%) {
+  position: absolute;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    color-mix(in oklab, var(--accent) #{$strength}, transparent) 0%,
+    transparent 65%
+  );
+  filter: blur(26px);
+  pointer-events: none;
+}

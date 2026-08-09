@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 152 152" role="img" aria-labelledby="c3-losango-duplo-t">
+  <title id="c3-losango-duplo-t">INTJ — Losango duplo</title>
+  <polygon points="76,0.7 151.3,76 76,151.3 0.7,76" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <polygon points="76,31 121,76 76,121 31,76" fill="none" stroke="var(--accent, #a78bfa)" stroke-width="1" opacity="0.6"/>
+  <text x="77" y="76" text-anchor="middle" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="11" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:2.2px">INTJ</text>
+</svg>

@@ -1,0 +1,383 @@
+@use 'sass:list';
+@use 'tokens' as *;
+
+/* Kickers and eyebrows are paragraphs and headings here, so the UA margin has
+   to go before the design's own spacing can show through. */
+.flush {
+  margin: 0;
+}
+
+/* -- Shared shapes ----------------------------------------------------------
+
+   Three kinds of repetition were being written out rule by rule: eight serif
+   headings that differ only in size and leading, three surfaces that draw the
+   identical hairline and radius, and five auto-fit grids that differ only in
+   where a column stops shrinking. Collapsed below. Nothing here is a new
+   value — every rule that uses these already declared them verbatim.
+   -------------------------------------------------------------------------- */
+
+/// Same call signature as tokens' `serif()`, collapsed into the `font`
+/// shorthand so family, weight, size and leading cost one declaration instead
+/// of four. Exactly equivalent on these elements: the longhands left style,
+/// stretch and variant at their initial values, which is what `font` resets
+/// them to. `.detail__motto` and `.deeper__name` stay out of it — both inherit
+/// the body's 300 weight, and `font` would reset that to 400.
+@mixin serif-font($size, $line: 1.15) {
+  font: 400 list.slash($size, $line) $font-serif;
+}
+
+%bordered {
+  border: var(--hair);
+  border-radius: $radius;
+}
+
+/// The five auto-fit grids differ only in the width at which a column stops
+/// shrinking, so the track expression is written once and each grid passes its
+/// own floor in `--col`. It substitutes to exactly the value the per-grid
+/// `repeat(auto-fit, minmax(Npx, 1fr))` produced before.
+%auto-fit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--col), 1fr));
+}
+
+/* -- Enneagram ------------------------------------------------------------- */
+
+.enneagram {
+  padding: 88px $shell-pad 40px;
+
+  &__title {
+    max-width: 28ch;
+    margin: 18px 0 12px;
+  }
+
+  &__intro {
+    max-width: 64ch;
+    margin: 0 0 32px;
+  }
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  cursor: pointer;
+  padding: 13px 18px;
+  letter-spacing: 0.1em;
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+
+  &:hover {
+    border-color: var(--accent);
+  }
+}
+
+/* Doubled class so the selected state outranks .tag whatever order the
+   global and component sheets land in. */
+.chip.chip--on {
+  color: var(--on-accent);
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.detail {
+  @extend %bordered;
+  background: var(--bg2);
+  padding: 40px 36px;
+  margin-top: 28px;
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__num {
+    /* Reaches its full 56px from ~620px up, so desktop is untouched; below that
+       it steps down rather than eating the head row's whole first line. */
+    @include serif-font(clamp(38px, 9vw, 56px), 0.9);
+    color: var(--accent);
+  }
+
+  &__name {
+    @include serif-font(29px, 1.15);
+    margin: 0;
+  }
+
+  &__freq {
+    margin: 8px 0 0;
+  }
+
+  &__motto {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 26px 0 0;
+    text-wrap: pretty;
+  }
+
+  &__body {
+    max-width: 82ch;
+    margin: 20px 0 0;
+  }
+
+  &__grid {
+    @extend %auto-fit;
+    --col: 215px;
+    gap: 18px;
+    margin-top: 32px;
+  }
+
+  &__cell {
+    padding: 22px;
+  }
+}
+
+/* -- Instinctual subtypes -------------------------------------------------- */
+
+.instincts {
+  padding: 70px $shell-pad 100px;
+
+  &__title {
+    @include serif-font(clamp(28px, 3.4vw, 44px), 1.1);
+    max-width: 30ch;
+    margin: 18px 0 30px;
+  }
+
+  &__grid {
+    @extend %auto-fit;
+    --col: 260px;
+    gap: 14px;
+  }
+
+  &__kicker {
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    margin: 0;
+  }
+
+  &__card-title {
+    @include serif-font(23px, 1.2);
+    margin: 12px 0 10px;
+  }
+}
+
+/* -- Classical temperaments ------------------------------------------------ */
+
+.temperaments {
+  &__title {
+    @include serif-font(clamp(32px, 4vw, 52px), 1.08);
+    max-width: 30ch;
+    margin: 18px 0 14px;
+  }
+
+  &__intro {
+    max-width: 66ch;
+    margin: 0 0 40px;
+  }
+
+  &__grid {
+    @extend %auto-fit;
+    --col: 280px;
+    gap: 18px;
+  }
+
+  &__kicker {
+    letter-spacing: 0.16em;
+    margin: 0;
+  }
+
+  &__card-title {
+    @include serif-font(25px, 1.2);
+    margin: 14px 0 10px;
+  }
+}
+
+/* Both sections dress the shared .card at the same size, so they say it once. */
+.instincts .card,
+.temperaments .card {
+  padding: 30px 26px;
+}
+
+/* -- Big Five -------------------------------------------------------------- */
+
+.big-five {
+  &__title {
+    @include serif-font(clamp(30px, 3.6vw, 48px), 1.1);
+    max-width: 26ch;
+    margin: 18px 0 14px;
+  }
+
+  &__intro {
+    max-width: 64ch;
+    margin: 0 0 36px;
+  }
+}
+
+/* The hairline gaps between rows are the container's own background showing
+   through, which keeps every divider exactly 1px on any zoom level. */
+.rows {
+  @extend %bordered;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--line);
+  overflow: hidden;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(140px, 180px) minmax(240px, 2fr);
+  gap: 22px;
+  align-items: center;
+  background: var(--bg);
+  padding: 26px 28px;
+
+  &__name {
+    @include serif-font(22px, 1.2);
+    margin: 0;
+  }
+
+  &__level {
+    @include mono-label(10px, 0.16em);
+    color: var(--mut);
+    margin: 8px 0 0;
+  }
+}
+
+.extras {
+  @extend %auto-fit;
+  --col: 240px;
+  gap: 18px;
+  margin-top: 32px;
+
+  &__title {
+    margin: 0;
+  }
+}
+
+.extras .card {
+  padding: 26px;
+}
+
+/* Same lift under the label in both card shapes. */
+.detail__text,
+.extras__text {
+  margin-top: 12px;
+}
+
+/* -- Pointers to the unabridged pages -------------------------------------- */
+
+.deeper {
+  padding: 90px 28px 40px;
+  border-top: var(--hair);
+
+  &__grid {
+    @extend %auto-fit;
+    --col: 230px;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  &__card {
+    @extend %bordered;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    background: var(--bg2);
+    padding: 22px 24px;
+    color: var(--fg);
+    transition:
+      border-color 0.25s,
+      background 0.25s;
+
+    /* No colour here: the rule above already pins this anchor to --fg, and it
+       outranks the global a:hover, which resolves to --fg anyway. */
+    &:hover {
+      border-color: var(--accent);
+      background: var(--panel);
+    }
+  }
+
+  &__name {
+    font-family: 'Bodoni Moda', Georgia, serif;
+    font-size: 21px;
+    line-height: 1.2;
+  }
+
+  &__arrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    color: var(--accent);
+  }
+}
+
+/* -- Narrow screens --------------------------------------------------------
+
+   Kept last in the file: a media query adds no specificity, so these overrides
+   only win if they are declared after the rules they relax.
+   -------------------------------------------------------------------------- */
+
+@include below($bp-md) {
+  /* The three tracks need 660px before gaps and padding; the shell hands the
+     page ~750px at this breakpoint, so this is the last width that still fits. */
+  .row {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+}
+
+@include below($bp-sm) {
+  /* An auto-fit track never shrinks below its minmax() floor — it overflows
+     instead. A 260-280px floor is wider than the ~248px that the section and
+     shell gutters leave at 360px, and body { overflow-x: hidden } was hiding
+     the result. Each of these grids is already one column by this width, so
+     pinning the track to 1fr changes nothing except removing the floor. */
+  .detail__grid,
+  .instincts__grid,
+  .temperaments__grid,
+  .extras,
+  .deeper__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail {
+    padding: 30px 22px;
+  }
+
+  /* These cards sit inside .detail, so their padding stacks on top of its own. */
+  .detail__cell {
+    padding: 20px;
+  }
+
+  /* The global .card drops to 24px 20px here on its own, but the section rules
+     above outrank it, so the small-screen size has to be restated. */
+  .instincts .card,
+  .temperaments .card,
+  .extras .card {
+    padding: 24px 20px;
+  }
+
+  .row {
+    padding: 22px 20px;
+  }
+
+  .deeper__card {
+    padding: 20px;
+  }
+}
+
+/* -- Hand-off ---------------------------------------------------------------
+   Each summary section closes with the page that carries it in full. This page
+   is a map: it shows the shape of a system and then gets out of the way. */
+
+.more {
+  margin-top: 32px;
+}

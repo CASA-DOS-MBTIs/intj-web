@@ -1,0 +1,9 @@
+<section class="next-section">
+  <a class="next" [routerLink]="path()[next().key]" appReveal>
+    <span>
+      <span class="label next__label">{{ next().label }}</span>
+      <span class="next__title">{{ next().title }}</span>
+    </span>
+    <span class="next__index">{{ next().index }}</span>
+  </a>
+</section>

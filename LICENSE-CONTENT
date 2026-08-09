@@ -1,0 +1,72 @@
+Content licence — the writing on intj.net.br
+============================================
+
+Copyright (c) 2026 Alessandro Lima.
+
+The text of this site — the page copy under src/app/content/, and the research,
+structure and argument it carries — is licensed under
+
+    Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+    Summary:   https://creativecommons.org/licenses/by/4.0/
+    Full text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+The authoritative terms are the ones at that URI. They are not reproduced here,
+because a licence retyped by hand is a licence with a typo in it.
+
+
+What that means in practice
+---------------------------
+
+You may quote it, translate it, correct it, teach from it, print it, put it in a
+presentation, argue with it in public, copy whole pages onto a blog or a forum
+or a wiki, build something new on top of it — **including your own site about
+the INTJ, and including commercially.** No permission needed and none to ask
+for.
+
+One condition, and only one:
+
+    BY — say where it came from. Name the site and link to it.
+
+That is the whole deal. It is the loosest of the standard licences that still
+asks for a name, and the name is the part that matters: being built on is the
+point, being passed off as somebody else's is the one thing worth objecting to.
+
+
+Attribution
+-----------
+
+Anything of this form does the job:
+
+    "INTJ — o retrato completo" by Alessandro Lima, https://intj.net.br,
+    licensed under CC BY 4.0.
+
+If you translated or adapted it, say so, so nobody attributes your words to me
+or mine to you.
+
+
+One honest note on what is being licensed
+-----------------------------------------
+
+This text draws on 83 cited works, and none of it would exist without them. That
+does not make it unowned: copyright covers expression, not facts or ideas.
+Anybody may write that Jung proposed the functions, that Grant, Thompson and
+Clarke fixed the four-function convention, or that Kong (2010) found no
+significant difference across 62 couples — those are facts and belong to nobody.
+The sentences here are an original way of saying them, and that is what this
+licence gives away.
+
+What it cannot give away is the quoted material itself. Passages belonging to
+the cited authors are used here as citation; no licence of mine grants anyone
+rights over them.
+
+
+Also not covered
+----------------
+
+  - The code, which is under the GNU Affero General Public License v3 — see
+    LICENSE, and NOTICE for what that means in practice.
+  - The trademarks named in the text. They belong to their owners and are used
+    descriptively.
+  - The fonts, which are SIL Open Font License 1.1; their texts ship in
+    public/assets/fonts/licenses/.

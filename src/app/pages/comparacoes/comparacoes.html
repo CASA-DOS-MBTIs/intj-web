@@ -1,0 +1,135 @@
+@let c = page();
+@let cmp = comparison();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="comparator">
+  <div class="shell">
+    <p class="eyebrow" id="comparator-hint">{{ c.comparator.hint }}</p>
+
+    <div class="comparator__tabs" role="group" aria-labelledby="comparator-hint">
+      @for (item of c.comparator.items; track item.code) {
+        <button
+          type="button"
+          class="comparator__tab"
+          [attr.aria-pressed]="selected() === $index"
+          (click)="selected.set($index)"
+        >
+          {{ item.code }}
+        </button>
+      }
+    </div>
+
+    <div class="comparator__frame">
+      <div class="comparator__scroll" tabindex="0">
+        <table class="cmp">
+          <thead>
+            <tr>
+              <th scope="col" class="cmp__dimension-head">{{ c.comparator.dimensionLabel }}</th>
+              <th scope="col">
+                <span class="cmp__code cmp__code--intj">INTJ</span>
+                <span class="cmp__stack">{{ c.comparator.intjStack }}</span>
+              </th>
+              <th scope="col">
+                <span class="cmp__code">{{ cmp.code }}</span>
+                <span class="cmp__stack">{{ cmp.stack }}</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of cmp.rows; track row.label) {
+              <tr>
+                <th scope="row" class="cmp__dimension">{{ row.label }}</th>
+                <td class="cmp__a">{{ row.a }}</td>
+                <td class="cmp__b">{{ row.b }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      <div class="comparator__foot">
+        <div>
+          <p class="label label--accent">{{ c.comparator.sameLabel }}</p>
+          <p class="card-text comparator__note">{{ cmp.same }}</p>
+        </div>
+        <div>
+          <p class="label">{{ c.comparator.frictionLabel }}</p>
+          <p class="card-text comparator__note">{{ cmp.friction }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered identity">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.identity.eyebrow }}</p>
+    <h2 class="section-title identity__title" appReveal>{{ c.identity.title }}</h2>
+    <p class="prose identity__intro" appReveal>{{ c.identity.intro }}</p>
+
+    <div class="identity__grid">
+      @for (variant of c.identity.variants; track variant.kicker) {
+        <article class="card card--plain card--accent identity__card" appReveal>
+          <p class="label label--accent identity__kicker">{{ variant.kicker }}</p>
+          <h3 class="identity__card-title">{{ variant.title }}</h3>
+          <ul class="bullets identity__points">
+            @for (point of variant.points; track $index) {
+              <li>{{ point }}</li>
+            }
+          </ul>
+        </article>
+      }
+    </div>
+
+    <p class="identity__note" appReveal>{{ c.identity.note }}</p>
+  </div>
+</section>
+
+<section class="section myths">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.myths.eyebrow }}</p>
+    <h2 class="section-title myths__title" appReveal>{{ c.myths.title }}</h2>
+
+    <div class="myths__list">
+      @for (item of c.myths.items; track item.myth) {
+        <article class="myths__item" appReveal>
+          <div>
+            <p class="label">{{ c.myths.mythLabel }}</p>
+            <h3 class="myths__myth">{{ item.myth }}</h3>
+          </div>
+          <div>
+            <p class="label label--accent">{{ c.myths.realityLabel }}</p>
+            <p class="card-text myths__reality">{{ item.reality }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="culture">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.culture.eyebrow }}</p>
+    <h2 class="culture__title" appReveal>{{ c.culture.title }}</h2>
+    <p class="prose culture__intro" appReveal>{{ c.culture.intro }}</p>
+
+    <div class="culture__grid">
+      @for (group of c.culture.groups; track group.title) {
+        <article class="card culture__card" appReveal>
+          <h3 class="label culture__group-title">{{ group.title }}</h3>
+          <div class="culture__names">
+            @for (name of group.names; track name) {
+              <span class="tag culture__name">{{ name }}</span>
+            }
+          </div>
+          <p class="card-text culture__note">{{ group.note }}</p>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

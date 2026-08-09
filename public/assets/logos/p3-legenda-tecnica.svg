@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 74" role="img" aria-labelledby="p3-legenda-tecnica-t">
+  <title id="p3-legenda-tecnica-t">INTJ — Legenda técnica</title>
+  <text x="0" y="8" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" font-weight="400" fill="var(--accent, #a78bfa)" style="letter-spacing:2.5px">Ni</text>
+  <rect x="32" y="7.5" width="74" height="1" fill="var(--accent, #a78bfa)"/>
+  <text x="0" y="28" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:2.5px">Te</text>
+  <rect x="32" y="27.5" width="54" height="1" fill="var(--line, #3c3d4b)"/>
+  <text x="0" y="48" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:2.5px">Fi</text>
+  <rect x="32" y="47.5" width="34" height="1" fill="var(--line, #3c3d4b)"/>
+  <text x="0" y="68" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="12.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:2.5px">Se</text>
+  <rect x="32" y="67.5" width="16" height="1" fill="var(--line, #3c3d4b)"/>
+</svg>

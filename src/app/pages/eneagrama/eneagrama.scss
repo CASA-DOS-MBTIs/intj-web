@@ -1,0 +1,219 @@
+@use 'tokens' as *;
+
+/* -- Shared fragments -------------------------------------------------------
+
+   Three headings on this page take the same face at the same weight, and two
+   elements are the same bordered surface. Declaring each fragment once and
+   @extend-ing it emits one grouped selector instead of repeating the same
+   declarations two or three times; nothing about the computed styles changes.
+   -------------------------------------------------------------------------- */
+
+/* Headings and numerals: the editorial serif at the regular weight rather than
+   the 300 the body inherits. Sizes still differ, so they stay local. */
+%serif-head {
+  font-family: $font-serif;
+  font-weight: 400;
+}
+
+/* A bordered box on the page background: the type chips and the detail panel. */
+%boxed {
+  background: var(--bg);
+  border: var(--hair);
+}
+
+.intro {
+  padding-block: 80px 60px;
+
+  /* &__text and &__caveat are the shared page vocabulary now — see the
+     "Page vocabulary" block in src/styles.scss, which declares them at exactly
+     these values for all ten deep pages. */
+
+  &__lens {
+    margin-top: 32px;
+    max-width: 80ch;
+  }
+}
+
+.picker {
+  padding-block: 70px 110px;
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  &__chip {
+    @extend %boxed;
+    cursor: pointer;
+    width: 52px;
+    height: 52px;
+    border-radius: 2px;
+    color: var(--fg);
+    font-family: $font-serif;
+    font-size: 22px;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+
+    &.is-on {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+  }
+}
+
+.detail {
+  @extend %boxed;
+  margin-top: 26px;
+  border-radius: $radius;
+  padding: 40px 36px;
+
+  &__head {
+    display: flex;
+    align-items: baseline;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  &__num {
+    @extend %serif-head;
+    /* Full 56px from ~620px up, so desktop is untouched; below that it steps
+       down instead of claiming the head row's whole first line. */
+    font-size: clamp(38px, 9vw, 56px);
+    line-height: 0.9;
+    color: var(--accent);
+  }
+
+  &__name {
+    @extend %serif-head;
+    font-size: 29px;
+    line-height: 1.15;
+    margin: 0;
+  }
+
+  &__centre {
+    margin: 8px 0 0;
+  }
+
+  &__motto {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 26px 0 0;
+    text-wrap: pretty;
+  }
+
+  &__engine {
+    margin-top: 26px;
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+
+    /* The quoted block opens with its own label; naming the class costs less
+       than `p:first-child` and matches the same single element. */
+    .label {
+      margin: 0 0 8px;
+    }
+  }
+
+  &__body {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 82ch;
+
+    .label {
+      margin: 0;
+    }
+  }
+
+  &__grid {
+    margin-top: 32px;
+    @include auto-grid(215px, 18px);
+
+    .label {
+      margin: 0 0 12px;
+    }
+  }
+}
+
+.wings {
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: var(--hair);
+
+  &__title {
+    margin: 0 0 18px;
+  }
+
+  &__grid {
+    @include auto-grid(300px, 18px);
+  }
+
+  /* The card only overrides itself when it is the reader's own wing: its
+     resting background is already the --bg2 that .card paints, so only the
+     lift to --panel is local. The accent edge is stated further down. */
+  &__card.is-mine {
+    background: var(--panel);
+  }
+
+  &__code {
+    font-family: $font-mono;
+    font-size: 12px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  &__name {
+    @extend %serif-head;
+    font-size: 23px;
+    line-height: 1.2;
+    margin: 12px 0 10px;
+  }
+}
+
+/* An accent edge is what "this one" looks like on this page, whether it is the
+   chip under the cursor, the chip you picked, or the wing you actually are. */
+.picker__chip:hover,
+.picker__chip.is-on,
+.wings__card.is-mine {
+  border-color: var(--accent);
+}
+
+/* -- Narrow screens --------------------------------------------------------
+
+   Kept last in the file: a media query adds no specificity, so these overrides
+   only win if they are declared after the rules they relax.
+   -------------------------------------------------------------------------- */
+
+@include below($bp-sm) {
+  /* 36px of card padding inside the section and shell gutters left about 176px
+     of usable width at 360px — narrower than the grid floors just below. */
+  .detail {
+    padding: 28px 20px;
+  }
+
+  /* An auto-fit track holds its minmax() floor rather than shrinking, so the
+     215px and 300px minimums pushed past the viewport (the wings grid by more
+     than 120px) while body { overflow-x: hidden } swallowed the evidence. Both
+     grids are already single-column at this width. */
+  .detail__grid,
+  .wings__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Nested surfaces: these cards live inside .detail, so the two paddings add
+     up on each side. */
+  .detail__grid .card,
+  .wings__card {
+    padding: 22px 20px;
+  }
+
+  .detail__engine {
+    padding-left: 14px;
+  }
+}

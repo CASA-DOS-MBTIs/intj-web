@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 76" role="img" aria-labelledby="a4-bloco-pesado-t">
+  <title id="a4-bloco-pesado-t">INTJ — Bloco pesado</title>
+  <text x="6" y="32" text-anchor="start" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="52" font-weight="700" fill="var(--fg, #eeeff5)" style="letter-spacing:-1px">I</text>
+  <text x="22" y="32" text-anchor="start" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="52" font-weight="700" fill="var(--accent, #a78bfa)" style="letter-spacing:-1px">N</text>
+  <text x="62" y="32" text-anchor="start" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="52" font-weight="700" fill="var(--fg, #eeeff5)" style="letter-spacing:-1px">T</text>
+  <text x="97" y="32" text-anchor="start" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="52" font-weight="700" fill="var(--fg, #eeeff5)" style="letter-spacing:-1px">J</text>
+  <rect x="97" y="60" width="28" height="4" fill="var(--accent, #a78bfa)"/>
+</svg>

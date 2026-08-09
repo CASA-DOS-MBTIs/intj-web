@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 58" role="img" aria-labelledby="s3-etiqueta-t">
+  <title id="s3-etiqueta-t">INTJ — Etiqueta</title>
+  <rect x="0" y="0" width="104" height="58" fill="var(--accent, #a78bfa)"/>
+  <text x="52" y="30" text-anchor="middle" dominant-baseline="central" font-family="'Space Grotesk', 'IBM Plex Sans', sans-serif" font-size="30" font-weight="700" fill="var(--on-accent, #191a20)" style="letter-spacing:1.2px">INTJ</text>
+  <rect x="104.5" y="0.5" width="135" height="57" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <text x="120" y="21" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:1.7px">TIPO 2%</text>
+  <text x="120" y="38" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:1.7px">Ni · Te · Fi · Se</text>
+</svg>

@@ -1,0 +1,73 @@
+intj.net.br — what is licensed how
+==================================
+
+Copyright (c) 2026 Alessandro Lima.
+
+This repository holds two different kinds of work, and they travel on different
+terms. The intent, said plainly so the terms are read the right way:
+
+  **Go and build your own site about the INTJ.** Use what is written here, quote
+  it, translate it, argue with it. The writing is licensed for exactly that, and
+  the reason it was published is that more of this should exist and be accurate.
+
+  **Read the code, run it, learn from it.** That is welcome too. What is not
+  welcome is somebody lifting it wholesale into their own project and closing
+  the result — which is the one thing the code licence is chosen to prevent.
+
+
+THE CODE — GNU AGPL v3
+----------------------
+
+Everything that makes the site run: the TypeScript, the SCSS, the HTML
+templates, the build and asset scripts, the workflows and the configuration.
+
+Full terms in LICENSE. In practice:
+
+  - Read it, run it, study it, modify it privately. No conditions at all.
+  - Publish anything built from it — including running it on a public server —
+    and you must release your version's full source under this same licence,
+    with the copyright notices kept intact.
+
+That second condition is the whole point. It does not forbid reuse; it makes
+free-riding unattractive. Somebody who wants to lift this into a closed product
+cannot, and somebody willing to keep their work open and credit the original is
+welcome to.
+
+Want to use a piece of it on other terms? Ask: contact@intj.net.br.
+
+
+THE WRITING — CC BY 4.0
+-----------------------
+
+Everything the site says: the page copy under src/app/content/, and the
+research, structure and argument it carries.
+
+Full terms in LICENSE-CONTENT. In practice: do anything with it, commercially or
+not, on one condition — say where it came from.
+
+Deliberately the looser of the two, because the point of writing it was that it
+should spread.
+
+
+NEITHER LICENCE COVERS
+----------------------
+
+  - The webfonts under src/assets/fonts/ — Bodoni Moda, IBM Plex Mono and IBM
+    Plex Sans — each under the SIL Open Font License 1.1. Their licence texts
+    ship in public/assets/fonts/licenses/.
+  - The 83 cited works. Quoted passages belong to their authors and are used
+    here as citation; nothing here grants anyone rights over them.
+  - MBTI, Myers-Briggs Type Indicator, Keirsey Temperament Sorter and
+    16Personalities, which are other people's trademarks, named descriptively.
+
+
+ATTRIBUTION
+-----------
+
+For the writing, anything of this form does the job:
+
+    "INTJ — o retrato completo" by Alessandro Lima, https://intj.net.br,
+    licensed under CC BY 4.0.
+
+For the code, keep the copyright notice and the licence, which is what the AGPL
+requires anyway.

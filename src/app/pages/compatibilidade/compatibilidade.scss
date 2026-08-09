@@ -1,0 +1,544 @@
+@use 'tokens' as *;
+
+/* -- Shared shapes ----------------------------------------------------------
+   This is the widest page in the site — sixteen ranked rows, two tables, three
+   auto-grids — and the same handful of declarations was being emitted once per
+   BEM block. Each placeholder below collects one of those repeats into a single
+   grouped rule. Same declarations, same elements, one copy of the bytes.
+
+   None of these properties is set again anywhere below, so the grouped rules
+   are free to sit up here: nothing depends on their position in the cascade. */
+
+/* The site mono stack: every code, figure, sign and metadata run on the page. */
+%mono {
+  font-family: $font-mono;
+}
+
+/* Two controls ask for the short stack instead. Left exactly as written — it is
+   a different value, not a shorter spelling of $font-mono. */
+%mono-short {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+/* Stacked column. */
+%col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Row that wraps. */
+%wrap {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* The hairline-bordered container behind every list, table and card frame. */
+%framed {
+  border: var(--hair);
+  border-radius: $radius;
+}
+
+/* The two three-column tables differ only in their tracks, their padding and
+   which edge carries the rule; everything else was written twice. */
+%table-row {
+  display: grid;
+  gap: 14px;
+  align-items: baseline;
+  background: var(--bg);
+}
+
+/* The large accent numerals — the score figures and the tradition picks. */
+%numeral {
+  font-family: 'Bodoni Moda', Georgia, serif;
+  color: var(--accent);
+}
+
+.intro {
+  padding-block: 80px 60px;
+
+  /* __text and __caveat held exactly the shared page-vocabulary values, so they
+     now come from the .intro__text / .intro__caveat rules in styles.scss. */
+}
+
+.evidence {
+  padding-block: 80px;
+
+  &__title {
+    max-width: 28ch;
+    margin-bottom: 28px;
+  }
+
+  &__body {
+    @extend %col;
+    gap: 18px;
+    max-width: 76ch;
+  }
+
+  &__points {
+    margin-top: 24px;
+    max-width: 76ch;
+  }
+}
+
+/* -- The index ------------------------------------------------------------- */
+
+.ranking {
+  padding-block: 80px 100px;
+
+  &__list {
+    @extend %col;
+    @extend %framed;
+    gap: 1px;
+    background: var(--line);
+    overflow: hidden;
+    margin-top: 22px;
+  }
+}
+
+.rank {
+  display: grid;
+  grid-template-columns: 26px 62px 1fr 78px;
+  gap: 16px;
+  align-items: center;
+  background: var(--bg);
+  border: none;
+  padding: 14px 18px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+
+  &:hover {
+    background: var(--bg2);
+  }
+
+  &.is-on {
+    background: var(--panel);
+  }
+
+  &__pos {
+    @extend %mono;
+    font-size: 11px;
+    color: var(--mut);
+    text-align: right;
+  }
+
+  &__code {
+    @extend %mono;
+    font-size: 12.5px;
+    letter-spacing: 0.12em;
+    color: var(--fg);
+  }
+
+  /* &__meter had `height: 4px`, which is the height the global .meter class —
+     carried by every one of these spans in the template — already sets. It was
+     restating a value the element had anyway, so the rule is gone. */
+
+  &__score {
+    @extend %col;
+    align-items: flex-end;
+    gap: 2px;
+    text-align: right;
+  }
+
+  // The combined figure is what the list is sorted by, so it carries the weight;
+  // the two it was built from sit under it at label size.
+  &__combined {
+    @extend %mono;
+    font-size: 15px;
+    color: var(--fg);
+  }
+
+  &__parts {
+    @extend %mono;
+    font-size: 10.5px;
+    color: var(--mut);
+    white-space: nowrap;
+  }
+
+  &.is-on &__combined,
+  &.is-on &__code,
+  &.is-on &__pos {
+    color: var(--accent);
+  }
+}
+
+.detail {
+  @extend %framed;
+  margin-top: 26px;
+  background: var(--bg2);
+  padding: 38px 34px;
+
+  &__head {
+    @extend %wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  &__title {
+    // serif(30px, 1.15) spelled as the `font` shorthand: same family, weight,
+    // size and line-height in one property. Every other longhand the shorthand
+    // resets — style, variant, stretch — is already at its initial value on an
+    // h2, so the computed result is identical.
+    font: 400 30px/1.15 $font-serif;
+    margin: 0;
+  }
+
+  &__stack {
+    margin: 8px 0 0;
+  }
+
+  &__grid {
+    margin-top: 28px;
+    @include auto-grid(240px, 16px);
+
+    .label {
+      margin: 0 0 12px;
+    }
+  }
+
+  &__failure {
+    margin-top: 26px;
+    border-left: 2px solid var(--accent);
+    padding-left: 20px;
+    max-width: 82ch;
+
+    .label {
+      margin: 0 0 10px;
+    }
+  }
+}
+
+.breakdown {
+  @extend %framed;
+  margin-top: 26px;
+  overflow: hidden;
+
+  &__title {
+    margin: 0;
+    padding: 14px 18px;
+    background: var(--panel);
+  }
+
+  &__row {
+    @extend %table-row;
+    grid-template-columns: minmax(160px, 240px) 26px 1fr;
+    padding: 13px 18px;
+    border-top: var(--hair);
+  }
+
+  &__pair {
+    @extend %mono;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--fg);
+  }
+
+  &__sign {
+    @extend %mono;
+    font-size: 14px;
+    text-align: center;
+    color: var(--mut);
+
+    &[data-sign='+'] {
+      color: var(--accent);
+    }
+  }
+
+  &__note {
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--mut);
+  }
+}
+
+/* -- The published rule ---------------------------------------------------- */
+
+.formula {
+  padding-block: 90px 110px;
+
+  &__title {
+    max-width: 26ch;
+    margin-bottom: 22px;
+  }
+
+  &__intro {
+    max-width: 72ch;
+  }
+
+  &__rules {
+    @extend %framed;
+    margin-top: 28px;
+    overflow: hidden;
+    max-width: 86ch;
+  }
+
+  &__row {
+    @extend %table-row;
+    grid-template-columns: minmax(180px, 280px) 60px 1fr;
+    padding: 15px 18px;
+    border-bottom: var(--hair);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__label {
+    font-size: 14.5px;
+    color: var(--fg);
+  }
+
+  &__delta {
+    @extend %mono;
+    font-size: 13px;
+    color: var(--accent);
+  }
+
+  &__note {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--mut);
+  }
+
+  &__disclaimer {
+    @extend %mono;
+    font-size: 10.5px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 22px 0 0;
+    max-width: 82ch;
+  }
+}
+
+/* -- One ranking, built from two axes that stay visible --------------------- */
+
+.axes {
+  @extend %wrap;
+  gap: 8px;
+  margin-top: 20px;
+
+  &__btn {
+    @extend %mono-short;
+    cursor: pointer;
+    background: var(--bg);
+    border: var(--hair);
+    border-radius: 2px;
+    color: var(--fg);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 10px 14px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+
+    &:hover { border-color: var(--accent); }
+
+    &.is-on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+  }
+
+  &__note {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 16px 0 0;
+    max-width: 76ch;
+    text-wrap: pretty;
+  }
+}
+
+.rank__bars {
+  @extend %col;
+  gap: 4px;
+}
+
+// Three tracks, one per axis, in descending emphasis: recognition keeps the
+// accent, complement is muted, livability is quieter still. The order matches
+// the three figures printed to their right.
+.rank__meter--alt .meter__fill {
+  background: color-mix(in oklab, var(--accent) 45%, var(--line));
+}
+
+.rank__meter--live .meter__fill {
+  background: color-mix(in oklab, var(--fg) 30%, var(--line));
+}
+
+// The recognition a function pair earned, computed rather than written into the
+// copy. Hatched when it came from an inverted attitude, which is credited at a
+// third — the reader can see which rows are the partial ones.
+.breakdown__earned {
+  @extend %mono;
+  display: inline-block;
+  min-width: 34px;
+  margin-right: 8px;
+  font-size: 11px;
+  color: var(--accent);
+
+  &.is-inverted {
+    color: var(--mut);
+  }
+}
+
+.detail__scores {
+  @extend %wrap;
+  gap: 26px;
+}
+
+.detail__score {
+  @extend %col;
+  gap: 4px;
+
+  /* The .label spans in here had `margin: 0`, which is what a span already
+     computes to — nothing in the global sheet gives .label a margin. */
+}
+
+.detail__num {
+  @extend %numeral;
+  font-size: 44px;
+  line-height: 0.9;
+}
+
+// The two figures the combined score was built from. Present so the arithmetic
+// can be checked, sized so they do not compete with the number that ranks it.
+.detail__score--part .detail__num {
+  font-size: 26px;
+  color: var(--fg);
+}
+
+/* -- The rival traditions -------------------------------------------------- */
+
+.traditions {
+  padding-block: 90px;
+
+  &__title { max-width: 30ch; margin-bottom: 22px; }
+  &__intro { max-width: 74ch; }
+
+  &__grid {
+    margin-top: 30px;
+    @include auto-grid(260px, 16px);
+  }
+
+  &__verdict {
+    margin-top: 26px;
+    padding: 30px 28px;
+    max-width: 82ch;
+  }
+}
+
+.tradition {
+  &__pick {
+    @extend %numeral;
+    font-size: 30px;
+    line-height: 1.1;
+    margin: 12px 0 14px;
+  }
+
+  &__note {
+    @extend %mono-short;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.7;
+  }
+}
+
+/* -- Narrow screens --------------------------------------------------------
+   This is the densest page on the site: a sixteen-row index carrying two
+   meters per row, a detail head with two 44px numerals opposite a title, and
+   three auto-grids whose minmax() floors are wider than a 360px column.
+
+   Both $bp-md blocks are merged here, at the end, because .axes__btn's override
+   has to land after the base rule that declares its padding. */
+
+@include below($bp-md) {
+  .breakdown__row,
+  .formula__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .breakdown__sign {
+    text-align: left;
+  }
+
+  // At the desktop size these buttons come out around 35px tall, which is
+  // below a comfortable thumb target once the page is being tapped.
+  .axes__btn {
+    padding: 13px 16px;
+  }
+}
+
+@include below($bp-sm) {
+  .rank {
+    // The fixed tracks plus their gaps leave the meter column around 40px wide
+    // at 360px, which reads as no meter at all. Position, code and score keep
+    // the top line; both bars take a full-width row beneath.
+    grid-template-columns: auto auto 1fr;
+    gap: 9px 10px;
+    padding: 13px 14px;
+
+    &__pos {
+      grid-area: 1 / 1;
+    }
+
+    &__code {
+      grid-area: 1 / 2;
+    }
+
+    &__score {
+      grid-area: 1 / 3;
+    }
+
+    &__bars {
+      grid-area: 2 / 1 / 3 / 4;
+    }
+  }
+
+  // Same padding, so the two say it once.
+  .detail,
+  .traditions__verdict {
+    padding: 24px 20px;
+  }
+
+  // auto-grid()'s minmax() floor is a hard minimum, not a preference: a 240px
+  // (or 260px) track inside a card barely 180px wide pushes the page sideways.
+  .detail__grid,
+  .traditions__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail {
+    &__head {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    // The stack line is one long uppercase mono string; the desktop tracking
+    // is what pushes it past the column.
+    &__stack {
+      letter-spacing: 0.12em;
+    }
+
+    &__scores {
+      gap: 20px;
+    }
+
+    &__num {
+      // Reaches the 44px base exactly at $bp-sm, so nothing jumps at the edge.
+      font-size: clamp(30px, 8vw, 44px);
+    }
+
+    // Same specificity as the rule above, or the component figures would take
+    // the lead figure's size back down here.
+    &__score--part &__num {
+      font-size: clamp(20px, 5.5vw, 26px);
+    }
+
+    &__failure {
+      padding-left: 14px;
+    }
+  }
+}

@@ -1,0 +1,76 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege. `contents: read` because nothing here writes to the repo;
+# `pages`/`id-token` are the minimum the Pages deployment needs. Set at the top
+# level rather than per job so a job added later starts locked down instead of
+# inheriting the runner default.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Every action is pinned to a commit, not a tag.
+      #
+      # A tag is a moving pointer that the action's owner can repoint at any
+      # time, and this workflow holds a token that can publish to the live site
+      # — so whoever controls the tag controls what intj.net.br serves. Tag
+      # hijacking is not hypothetical; it is how the tj-actions/changed-files
+      # compromise reached tens of thousands of repositories in March 2025.
+      #
+      # The trailing comment records which release each hash was, so upgrading
+      # stays legible. Re-resolve with:
+      #   gh api repos/<owner>/<repo>/git/ref/tags/<tag> --jq .object.sha
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          # The job never pushes, so leaving the credential in .git/config
+          # afterwards only widens what a later step could reach.
+          persist-credentials: false
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 26.3.0
+          cache: npm
+
+      # `ci`, never `install`: it installs exactly the lockfile and fails if
+      # package.json and the lock have drifted, so the build cannot silently
+      # pick up a version nobody reviewed.
+      - run: npm ci
+
+      - run: npm test
+
+      # Prerenders every route to its own HTML document, then writes the
+      # per-document Content-Security-Policy, font preloads, sitemap.xml,
+      # llms.txt, robots.txt, 404.html and .nojekyll over the top. baseHref is
+      # "/" because the site is served from the apex of intj.net.br — the domain
+      # itself comes from public/CNAME, which ships as an asset.
+      - run: npm run build:pages
+
+      - uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5
+
+      - uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: dist/intj-web/browser
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4

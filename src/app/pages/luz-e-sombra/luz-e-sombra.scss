@@ -1,0 +1,216 @@
+@use 'tokens' as *;
+
+/* This page is four sections assembled from the same few parts, so whatever
+   two of them declare identically is written once here against a selector
+   list. Anything that differs between sections stays with its own block. */
+
+/* Eyebrows, labels and panel titles: all this stylesheet owes them is the
+   flattened UA margin. */
+.light__eyebrow,
+.shadow__eyebrow,
+.shadow__title,
+.shadow__label,
+.failure__label,
+.burnout__panel-title {
+  margin: 0;
+}
+
+/* The two mono kickers. Deliberately not `mono-label`: the failure kicker
+   keeps the mixed case of "Ni–Fi", which `text-transform: uppercase` would
+   flatten, and the strength numeral wants no tracking at all. */
+.light__n,
+.failure__kicker {
+  font-family: $font-mono;
+  font-size: 11px;
+}
+
+/* Both card headings are the editorial serif at the same leading; only the
+   size parts, and `.failure__name` resets it below. */
+.shadow__title,
+.failure__name {
+  @include serif(25px, 1.2);
+}
+
+/* Two paragraphs that carry no `.prose` or `.card-text` class of their own,
+   so they have to state the muted body role themselves. */
+.failure__text,
+.burnout__direct {
+  line-height: 1.78;
+  color: var(--mut);
+  text-wrap: pretty;
+}
+
+/* The antidote and the exit are the same idea: an aside ruled off the left. */
+.shadow__antidote,
+.failure__exit {
+  border-left: 2px solid var(--accent);
+}
+
+/* Body copy sitting under a heading, and body copy sitting under a label. */
+.shadow__text,
+.failure__signs {
+  margin-top: 12px;
+}
+
+.shadow__cure,
+.failure__exit-text {
+  margin-top: 10px;
+}
+
+/* Both floor a column at 300px; the burnout lead widens the gutter below. */
+.light__grid,
+.burnout__lead {
+  @include auto-grid(300px, 14px);
+}
+
+/* Both open the same distance below their eyebrow. */
+.light__grid,
+.shadow__list {
+  margin-top: 26px;
+}
+
+/* -- Light: the six strengths ---------------------------------------------- */
+
+.light {
+  padding-block: 100px 60px;
+
+  &__n {
+    color: var(--mut);
+    margin: 0;
+  }
+
+  &__title {
+    margin: 12px 0 10px;
+  }
+}
+
+/* -- Shadow: weakness beside its antidote ---------------------------------- */
+
+.shadow {
+  padding-block: 60px 110px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  /* The row is a card whose two halves sit side by side until they cannot.
+     Its padding is set on the row itself rather than through `.shadow .card`,
+     which keeps the small-screen rule at the bottom of this file outranking
+     it on selector weight alone. */
+  &__row {
+    @include auto-grid(280px, 26px);
+    padding: 28px 30px;
+  }
+
+  &__antidote {
+    padding-left: 20px;
+  }
+}
+
+/* -- The two failure modes, and burnout, share a rhythm -------------------- */
+
+.failure,
+.burnout {
+  padding-block: 110px;
+}
+
+.failure {
+  &__title {
+    margin-bottom: 44px;
+    max-width: 24ch;
+  }
+
+  &__grid {
+    @include auto-grid(320px, 20px);
+  }
+
+  &__kicker {
+    letter-spacing: 0.18em;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  &__name {
+    font-size: 29px;
+    margin: 14px 0 12px;
+  }
+
+  &__text {
+    font-size: 15.5px;
+    margin: 0 0 20px;
+  }
+
+  &__exit {
+    margin-top: 22px;
+    padding-left: 18px;
+  }
+}
+
+.failure .card {
+  padding: 34px 30px;
+}
+
+/* -- Burnout --------------------------------------------------------------- */
+
+.burnout {
+  &__title {
+    max-width: 28ch;
+  }
+
+  &__lead {
+    gap: 40px;
+    margin-top: 38px;
+  }
+
+  &__grid {
+    @include auto-grid(260px, 18px);
+    margin-top: 46px;
+  }
+
+  &__list {
+    margin-top: 16px;
+  }
+
+  &__direct {
+    font-size: 15px;
+    margin: 16px 0 0;
+  }
+}
+
+.burnout .card {
+  padding: 30px 26px;
+}
+
+@include below($bp-sm) {
+  /* `.section` and `.shell` each add a 28px gutter and the cards add their own,
+     so a 360px screen leaves under 200px of column — narrower than every
+     minimum on this page. A lone auto-fit track holds that floor instead of
+     shrinking to fit, so the grid, not the viewport, sets the width and the
+     page scrolls sideways. Naming a single track is what releases the floor. */
+  .light__grid,
+  .shadow__row,
+  .failure__grid,
+  .burnout__lead,
+  .burnout__grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* A 40px gutter separates two columns of prose; stacked it just breaks the
+     paragraph rhythm. */
+  .burnout__lead {
+    gap: 22px;
+  }
+
+  /* Every card on this page sits inside one of the four `.section`s, so a
+     single rule reaches the same set the four per-section rules above do, at
+     the weight needed to outrank them. */
+  .section .card {
+    padding: 26px 20px;
+  }
+
+  .shadow__antidote {
+    padding-left: 16px;
+  }
+}

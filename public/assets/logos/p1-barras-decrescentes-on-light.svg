@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 62" role="img" aria-labelledby="p1-on-light-t">
+  <title id="p1-on-light-t">INTJ — Barras decrescentes (para fundo claro)</title>
+  <!--
+    The chosen logo, inked for light backgrounds.
+
+    The site is dark, so the original uses a light wordmark and the #a78bfa
+    accent — both of which disappear on white. This cut keeps the geometry
+    identical and swaps the palette: near-black ink, and a darkened sibling of
+    the accent that still reads as the same violet at small sizes.
+
+    Use this on light surfaces (print, a light-themed page, a README). On the
+    site itself use the inline component, which takes its colours from the
+    theme tokens.
+  -->
+  <rect x="0" y="17" width="26" height="2" fill="#5b41c9"/>
+  <rect x="0" y="24" width="19" height="2" fill="#1b1c24" opacity="0.75"/>
+  <rect x="0" y="31" width="12" height="2" fill="#1b1c24" opacity="0.45"/>
+  <rect x="0" y="38" width="6" height="2" fill="#1b1c24" opacity="0.25"/>
+  <text x="42" y="24" text-anchor="start" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="42" font-weight="400" fill="#1b1c24" style="letter-spacing:7.6px">INTJ</text>
+  <text x="43" y="48" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="400" fill="#5a5b68" style="letter-spacing:2.2px">NI · TE · FI · SE</text>
+</svg>

@@ -1,0 +1,87 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section affection">
+  <div class="shell">
+    <p class="eyebrow affection__eyebrow" appReveal>{{ c.affection.eyebrow }}</p>
+    <h2 class="section-title affection__title" appReveal>{{ c.affection.title }}</h2>
+
+    <div class="affection__grid">
+      @for (card of c.affection.cards; track card.title) {
+        <article class="card" appReveal>
+          <h3 class="card-title affection__card-title">{{ card.title }}</h3>
+          <p class="card-text affection__card-text">{{ card.text }}</p>
+        </article>
+      }
+    </div>
+
+    <div class="card card--accent affection__translation" appReveal>
+      <h3 class="label label--accent affection__translation-title">
+        {{ c.affection.translationTitle }}
+      </h3>
+      <p class="prose affection__translation-text">{{ c.affection.translation }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered love">
+  <div class="shell">
+    <p class="eyebrow love__eyebrow" appReveal>{{ c.love.eyebrow }}</p>
+    <h2 class="section-title love__title" appReveal>{{ c.love.title }}</h2>
+
+    <div class="love__grid">
+      <div class="love__body" appReveal>
+        @for (paragraph of c.love.paragraphs; track $index) {
+          <p class="prose">{{ paragraph }}</p>
+        }
+      </div>
+
+      <div class="card card--plain love__panel" appReveal>
+        <h3 class="label label--accent love__panel-title">{{ c.love.needsTitle }}</h3>
+        <ul class="bullets love__list">
+          @for (need of c.love.needs; track $index) {
+            <li>{{ need }}</li>
+          }
+        </ul>
+
+        <h3 class="label love__panel-title love__panel-title--gap">{{ c.love.partnerTitle }}</h3>
+        <ul class="bullets love__list">
+          @for (need of c.love.partnerNeeds; track $index) {
+            <li>{{ need }}</li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section bonds">
+  <div class="shell bonds__grid">
+    @for (bond of c.bonds; track bond.kicker) {
+      <article class="card bonds__panel" appReveal>
+        <p class="label bonds__kicker">{{ bond.kicker }}</p>
+        <h2 class="bonds__title">{{ bond.title }}</h2>
+        @for (paragraph of bond.paragraphs; track $index) {
+          <p class="bonds__text">{{ paragraph }}</p>
+        }
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section compatibility">
+  <div class="shell">
+    <h2 class="eyebrow compatibility__eyebrow" appReveal>{{ c.compatibility.eyebrow }}</h2>
+
+    <div class="compatibility__grid">
+      @for (paragraph of c.compatibility.paragraphs; track $index) {
+        <p class="prose" appReveal>{{ paragraph }}</p>
+      }
+    </div>
+  </div>
+</section>
+
+<app-next-page [next]="c.next" />
+
+<app-references [sources]="c.sources" />

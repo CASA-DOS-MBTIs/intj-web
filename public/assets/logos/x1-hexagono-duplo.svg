@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 112" role="img" aria-labelledby="x1-hexagono-duplo-t">
+  <title id="x1-hexagono-duplo-t">INTJ — Hexágono duplo</title>
+  <polygon points="50.00,0.50 99.50,29.36 99.50,82.64 50.00,111.50 0.50,82.64 0.50,29.36" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <polygon points="50.00,14.50 85.50,36.08 85.50,75.92 50.00,97.50 14.50,75.92 14.50,36.08" fill="none" stroke="var(--accent, #a78bfa)" stroke-width="1" opacity="0.55"/>
+  <text x="50" y="57" text-anchor="middle" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="26" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:0px">NJ</text>
+</svg>

@@ -1,0 +1,61 @@
+<footer class="foot">
+  <div class="foot__grid">
+    <div>
+      <app-site-logo class="foot__brand" />
+      <p class="foot__tagline">{{ foot().tagline }}</p>
+    </div>
+
+    <nav [attr.aria-label]="foot().pagesTitle">
+      <h2 class="label foot__heading">{{ foot().pagesTitle }}</h2>
+      <div class="foot__links">
+        @for (item of foot().pages; track item.key) {
+          <a [routerLink]="path()[item.key]">{{ item.label }}</a>
+        }
+      </div>
+    </nav>
+
+    <nav [attr.aria-label]="foot().deeperTitle">
+      <h2 class="label foot__heading">{{ foot().deeperTitle }}</h2>
+      <div class="foot__links">
+        @for (item of foot().deeper; track item.key) {
+          <a [routerLink]="path()[item.key]">{{ item.label }}</a>
+        }
+      </div>
+    </nav>
+
+    <div>
+      <h2 class="label foot__heading">{{ foot().noteTitle }}</h2>
+      <p class="foot__note">{{ foot().note }}</p>
+    </div>
+  </div>
+
+  <!-- Sits above the fine print, on every page: a link only the contact page
+       carried is a link most readers never meet. Held back until the community's
+       administrator has agreed to it — see SHOW_COMMUNITY in content/author.ts. -->
+  @if (showCommunity) {
+    <a class="foot__community" [href]="community.url" rel="noopener" target="_blank">
+      <span class="foot__community-text">
+        <span class="label label--accent foot__community-kicker">{{ foot().community.kicker }}</span>
+        <strong class="foot__community-name">{{ community.name }}</strong>
+        <span class="foot__community-note">{{ foot().community.text }}</span>
+      </span>
+      <span class="foot__community-cta">
+        {{ foot().community.cta }}<span aria-hidden="true"> ↗</span>
+      </span>
+    </a>
+  }
+
+  <div class="foot__rule">
+    <span>{{ foot().stack }}</span>
+    <span class="foot__legal">
+      @for (item of foot().legal; track item.key) {
+        <a [routerLink]="path()[item.key]">{{ item.label }}</a>
+      }
+    </span>
+    <span>{{ foot().madeFor }}</span>
+  </div>
+
+  <!-- Descriptive use, stated as such. The models discussed here carry other
+       people's marks, and saying so costs a line. -->
+  <p class="foot__trademarks">{{ foot().trademarks }}</p>
+</footer>

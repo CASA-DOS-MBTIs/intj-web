@@ -1,0 +1,24 @@
+<section class="entry" id="content">
+  <div class="entry__inner">
+    <app-site-logo class="entry__mark" />
+    <p class="entry__stack">Ni · Te · Fi · Se</p>
+
+    <ul class="entry__doors">
+      @for (door of doors; track door.lang) {
+        <li class="entry__item">
+          <a
+            class="entry__door"
+            [routerLink]="door.href"
+            [attr.lang]="htmlLang[door.lang]"
+            [attr.hreflang]="htmlLang[door.lang]"
+            (click)="remember(door.lang)"
+          >
+            <span class="entry__name">{{ door.name }}</span>
+            <span class="entry__title">{{ door.title }}</span>
+            <span class="entry__text">{{ door.text }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </div>
+</section>

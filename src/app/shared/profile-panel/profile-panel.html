@@ -1,0 +1,109 @@
+@let c = copy();
+@let p = profile();
+
+<div class="panel" role="dialog" [attr.aria-label]="c.title">
+  <header class="panel__head">
+    <div>
+      <h2 class="panel__title">{{ c.title }}</h2>
+      <p class="panel__intro">{{ c.intro }}</p>
+    </div>
+    <button type="button" class="panel__close" (click)="close()" [attr.aria-label]="c.closeLabel">
+      ×
+    </button>
+  </header>
+
+  <div class="panel__body">
+    @if (shows('identity')) {
+      <fieldset class="facet">
+        <legend class="label facet__title">{{ c.identity.title }}</legend>
+        <p class="facet__hint">{{ c.identity.hint }}</p>
+        <div class="facet__chips">
+          @for (key of identityKeys; track key) {
+            <button
+              type="button"
+              class="chip"
+              [class.is-on]="p.identity === key"
+              [attr.aria-pressed]="p.identity === key"
+              (click)="set('identity', key)"
+            >
+              {{ c.identity.options[key] }}
+            </button>
+          }
+        </div>
+      </fieldset>
+    }
+
+    @if (shows('wing')) {
+      <div class="facet">
+        <label class="label facet__title" for="facet-wing">{{ c.wing.title }}</label>
+        <p class="facet__hint">{{ c.wing.hint }}</p>
+        <select id="facet-wing" class="facet__select" (change)="choose('wing', $event)">
+          <option value="" [selected]="p.wing === null">{{ c.unsetLabel }}</option>
+          @for (key of wingKeys; track key) {
+            <option [value]="key" [selected]="p.wing === key">{{ c.wing.options[key] }}</option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (shows('tritype')) {
+      <div class="facet">
+        <label class="label facet__title" for="facet-tritype">{{ c.tritype.title }}</label>
+        <p class="facet__hint">{{ c.tritype.hint }}</p>
+        <select id="facet-tritype" class="facet__select" (change)="choose('tritype', $event)">
+          <option value="" [selected]="p.tritype === null">{{ c.unsetLabel }}</option>
+          @for (key of tritypeKeys; track key) {
+            <option [value]="key" [selected]="p.tritype === key">
+              {{ c.tritype.options[key] }}
+            </option>
+          }
+        </select>
+      </div>
+    }
+
+    @if (shows('instinct')) {
+      <fieldset class="facet">
+        <legend class="label facet__title">{{ c.instinct.title }}</legend>
+        <p class="facet__hint">{{ c.instinct.hint }}</p>
+        <div class="facet__chips">
+          @for (key of instinctKeys; track key) {
+            <button
+              type="button"
+              class="chip"
+              [class.is-on]="p.instinct === key"
+              [attr.aria-pressed]="p.instinct === key"
+              (click)="set('instinct', key)"
+            >
+              {{ c.instinct.options[key] }}
+            </button>
+          }
+        </div>
+      </fieldset>
+    }
+
+    @if (shows('temperament')) {
+      <div class="facet">
+        <label class="label facet__title" for="facet-temperament">{{ c.temperament.title }}</label>
+        <p class="facet__hint">{{ c.temperament.hint }}</p>
+        <select
+          id="facet-temperament"
+          class="facet__select"
+          (change)="choose('temperament', $event)"
+        >
+          <option value="" [selected]="p.temperament === null">{{ c.unsetLabel }}</option>
+          @for (key of temperamentKeys; track key) {
+            <option [value]="key" [selected]="p.temperament === key">
+              {{ c.temperament.options[key] }}
+            </option>
+          }
+        </select>
+      </div>
+    }
+  </div>
+
+  @if (hasRelevant()) {
+    <footer class="panel__foot">
+      <button type="button" class="panel__clear" (click)="clear()">{{ c.clearLabel }}</button>
+    </footer>
+  }
+</div>

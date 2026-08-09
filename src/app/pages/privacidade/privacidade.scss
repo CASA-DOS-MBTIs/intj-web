@@ -1,0 +1,85 @@
+@use 'tokens' as *;
+
+.summary {
+  max-width: 82ch;
+  padding: 30px 28px;
+}
+
+.block {
+  margin-top: 54px;
+}
+
+.store {
+  margin-top: 22px;
+  border: var(--hair);
+  border-radius: $radius;
+  overflow: hidden;
+  max-width: 88ch;
+
+  &__intro {
+    max-width: 76ch;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(150px, 190px) minmax(0, 1fr) minmax(0, 1fr);
+    gap: 16px;
+    align-items: baseline;
+    padding: 15px 18px;
+    border-bottom: var(--hair);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__key {
+    font-family: $font-mono;
+    font-size: 12px;
+    color: var(--accent);
+    word-break: break-all;
+  }
+
+  &__what {
+    font-size: 14.5px;
+    color: var(--fg);
+  }
+
+  &__why {
+    font-size: 14px;
+    color: var(--mut);
+  }
+
+  &__note {
+    font-family: $font-mono;
+    font-size: 11px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 18px 0 0;
+    max-width: 78ch;
+  }
+}
+
+// `code` inside the prose: the storage keys are named in running text too.
+.prose code {
+  font-family: $font-mono;
+  font-size: 0.88em;
+  color: var(--fg);
+}
+
+@include below($bp-sm) {
+  .summary {
+    padding: 22px 20px;
+  }
+
+  .block {
+    margin-top: 40px;
+  }
+
+  // Three columns inside a card inside a shell is under 100px a column at 360px.
+  .store__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 14px 16px;
+  }
+}

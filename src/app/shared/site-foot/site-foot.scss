@@ -1,0 +1,171 @@
+@use 'tokens' as *;
+
+.foot {
+  border-top: var(--hair);
+  background: var(--bg2);
+  padding: 64px $shell-pad 54px;
+
+  &__grid {
+    @include shell;
+    padding-inline: 0;
+    @include auto-grid(230px, 44px);
+  }
+
+  &__brand {
+    display: block;
+    width: 200px;
+    max-width: 100%;
+  }
+
+  &__tagline {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--mut);
+    margin: 14px 0 0;
+    max-width: 30ch;
+  }
+
+  &__heading {
+    margin: 0 0 16px;
+    font-weight: inherit;
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    font-size: 14.5px;
+
+    a {
+      color: var(--fg);
+
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+
+  &__note {
+    font-size: 13.5px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 0;
+    max-width: 36ch;
+    text-wrap: pretty;
+  }
+
+  // The one outbound link in the footer, so it is allowed to look like a
+  // destination rather than another entry in a list of links.
+  &__community {
+    @include shell;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 46px;
+    padding: 20px 24px;
+    border: 1px solid color-mix(in oklab, var(--accent) 40%, var(--line));
+    border-radius: $radius;
+    background: color-mix(in oklab, var(--accent) 7%, transparent);
+    color: var(--fg);
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+
+    &:hover {
+      border-color: var(--accent);
+      background: color-mix(in oklab, var(--accent) 12%, transparent);
+    }
+  }
+
+  &__community-text {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 4px 12px;
+  }
+
+  &__community-kicker {
+    margin: 0;
+  }
+
+  &__community-name {
+    font-family: $font-serif;
+    font-weight: 400;
+    font-size: 20px;
+  }
+
+  &__community-note {
+    font-size: 14px;
+    color: var(--mut);
+  }
+
+  &__community-cta {
+    @include mono-label(10.5px, 0.14em);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  &__legal a {
+    color: var(--mut);
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  // Sits below the rule at the smallest size the page uses: it is a statement
+  // of fact that has to be present, not something a reader needs to read.
+  &__trademarks {
+    @include shell;
+    padding-inline: 0;
+    margin: 18px 0 0;
+    font-size: 11.5px;
+    line-height: 1.7;
+    color: color-mix(in oklab, var(--mut) 72%, transparent);
+    max-width: 92ch;
+    text-wrap: pretty;
+  }
+
+  &__rule {
+    @include shell;
+    padding-inline: 0;
+    margin-top: 40px;
+    padding-top: 22px;
+    border-top: var(--hair);
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    @include mono-label(10.5px, 0.14em);
+    color: var(--mut);
+  }
+}
+
+// The four columns have already collapsed to one by this width, so the 44px gap
+// is pure vertical dead space rather than the column rhythm it was chosen for.
+@include below($bp-sm) {
+  .foot {
+    padding-block: 48px 40px;
+  }
+
+  .foot__grid {
+    gap: 32px;
+  }
+
+  .foot__rule {
+    margin-top: 32px;
+    gap: 10px;
+  }
+
+  // The call to action drops under the text rather than being squeezed beside
+  // it, and the band keeps its own gutter now that .shell has narrowed.
+  .foot__community {
+    margin-top: 34px;
+    padding: 18px 18px 20px;
+    gap: 12px;
+  }
+}

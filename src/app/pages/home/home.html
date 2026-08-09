@@ -1,0 +1,103 @@
+@let c = page();
+
+<header class="hero">
+  <div class="hero__glow" aria-hidden="true"></div>
+  <div class="hero__ring hero__ring--solid" aria-hidden="true"></div>
+  <div class="hero__ring hero__ring--dashed" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <p class="hero__eyebrow">{{ c.hero.eyebrow }}</p>
+    <h1 class="hero__title">{{ c.hero.title }}</h1>
+
+    <div class="hero__subtitle-row">
+      <p class="hero__subtitle">{{ c.hero.subtitle }}</p>
+      <p class="hero__stack">{{ c.hero.stack }}</p>
+    </div>
+
+    <p class="hero__lede" [innerHTML]="c.hero.lede"></p>
+
+    <div class="hero__actions">
+      <a class="btn btn--solid" [routerLink]="path()['mente']">{{ c.hero.ctaPrimary }}</a>
+      <a class="btn btn--ghost" [routerLink]="path()['espelho']">{{ c.hero.ctaSecondary }}</a>
+    </div>
+  </div>
+</header>
+
+<section class="stats">
+  <div class="stats__grid">
+    @for (stat of c.stats; track stat.label) {
+      <div class="stats__cell">
+        <div class="stats__value">{{ stat.value }}</div>
+        <div class="label stats__label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section portrait">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.portrait.eyebrow }}</p>
+    <div class="portrait__grid">
+      <div appReveal>
+        <h2 class="portrait__title">{{ c.portrait.title }}</h2>
+      </div>
+      <div class="portrait__body" appReveal>
+        @for (paragraph of c.portrait.paragraphs; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="traits">
+  <div class="shell traits__grid">
+    @for (trait of c.traits; track trait.kicker) {
+      <article class="card" appReveal>
+        <p class="label label--accent traits__kicker">{{ trait.kicker }}</p>
+        <h3 class="traits__title">{{ trait.title }}</h3>
+        <p class="card-text">{{ trait.text }}</p>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered map">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.map.eyebrow }}</p>
+    <h2 class="section-title map__title" appReveal>{{ c.map.title }}</h2>
+    <p class="prose map__intro" appReveal>{{ c.map.intro }}</p>
+
+    <div class="map__grid">
+      @for (card of c.map.cards; track card.key) {
+        <a class="map__card" [routerLink]="path()[card.key]" appReveal>
+          <span class="label">{{ card.kicker }}</span>
+          <span class="map__card-title">{{ card.title }}</span>
+          <span class="card-text">{{ card.text }}</span>
+        </a>
+      }
+    </div>
+  </div>
+</section>
+
+<section class="section section--bordered quote">
+  <div class="quote__inner" appReveal>
+    <p class="eyebrow eyebrow--accent">{{ c.quote.eyebrow }}</p>
+    <blockquote class="quote__text">{{ c.quote.quote }}</blockquote>
+    <p class="quote__note">{{ c.quote.text }}</p>
+  </div>
+</section>
+
+<section class="disclaimer">
+  <div class="shell disclaimer__card" appReveal>
+    <div>
+      <p class="label">{{ c.disclaimer.eyebrow }}</p>
+      <h2 class="disclaimer__title">{{ c.disclaimer.title }}</h2>
+    </div>
+    @for (paragraph of c.disclaimer.paragraphs; track $index) {
+      <p class="disclaimer__text">{{ paragraph }}</p>
+    }
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

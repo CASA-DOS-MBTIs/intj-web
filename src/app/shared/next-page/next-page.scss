@@ -1,0 +1,60 @@
+@use 'tokens' as *;
+
+.next-section {
+  padding: 0 $shell-pad 120px;
+}
+
+.next {
+  display: flex;
+  @include shell;
+  padding-inline: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  border: var(--hair);
+  border-radius: $radius;
+  padding: 34px 32px;
+  color: var(--fg);
+  background: var(--bg2);
+  transition: border-color 0.25s;
+
+  &:hover {
+    border-color: var(--accent);
+    color: var(--fg);
+  }
+
+  &__label {
+    display: block;
+  }
+
+  &__title {
+    display: block;
+    @include serif(31px, 1.2);
+    margin-top: 10px;
+  }
+
+  &__index {
+    font-family: $font-mono;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+}
+
+@include below($bp-sm) {
+  .next-section {
+    padding-bottom: 80px;
+  }
+
+  .next {
+    padding: 26px 20px;
+    gap: 16px;
+  }
+
+  // Next-page titles are full sentences, so 31px ran to five or six lines in the
+  // ~260px the card leaves at 360px.
+  .next__title {
+    font-size: 24px;
+  }
+}

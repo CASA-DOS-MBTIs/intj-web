@@ -1,0 +1,39 @@
+@use 'tokens' as *;
+
+.missing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100dvh - var(--nav-h) - 160px);
+  padding: 80px $shell-pad 100px;
+
+  &__inner {
+    max-width: 60ch;
+    text-align: center;
+  }
+
+  &__code {
+    @include mono-label(11px, 0.3em);
+    color: var(--accent);
+    margin: 0 0 18px;
+  }
+
+  &__title {
+    @include serif(clamp(30px, 6vw, 44px), 1.15);
+    margin: 0;
+  }
+
+  &__text {
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 20px 0 34px;
+    text-wrap: pretty;
+  }
+}
+
+@include below($bp-sm) {
+  .missing {
+    padding: 56px 20px 72px;
+  }
+}

@@ -1,0 +1,90 @@
+@let d = deep();
+@let l = labels();
+
+<article class="focus">
+  <header class="focus__head">
+    <div>
+      <p class="label label--accent">{{ l.title }}</p>
+      <h2 class="focus__title">{{ title() }}</h2>
+      @if (subtitle()) {
+        <p class="label focus__subtitle">{{ subtitle() }}</p>
+      }
+    </div>
+    <button type="button" class="btn btn--ghost focus__back" (click)="widened.emit()">
+      {{ l.backLabel }}
+    </button>
+  </header>
+
+  <p class="focus__note">{{ l.note }}</p>
+
+  <p class="focus__lede" [innerHTML]="d.lede"></p>
+
+  @for (section of d.sections; track section.title) {
+    <section class="focus__section" appReveal>
+      <p class="eyebrow">{{ section.eyebrow }}</p>
+      <h3 class="focus__section-title">{{ section.title }}</h3>
+      <div class="focus__body">
+        @for (paragraph of section.paragraphs; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+      @if (section.points; as points) {
+        <ul class="bullets focus__points">
+          @for (point of points; track $index) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+      }
+    </section>
+  }
+
+  <div class="focus__pair">
+    <div class="focus__list">
+      <p class="label label--accent">{{ l.strengths }}</p>
+      @for (item of d.strengths; track item.title) {
+        <div class="focus__item">
+          <h4 class="focus__item-title">{{ item.title }}</h4>
+          <p class="card-text">{{ item.text }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="focus__list">
+      <p class="label">{{ l.traps }}</p>
+      @for (item of d.traps; track item.title) {
+        <div class="focus__item">
+          <h4 class="focus__item-title">{{ item.title }}</h4>
+          <p class="card-text">{{ item.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="card card--plain focus__stress">
+    <p class="label">{{ l.stress }}</p>
+    <p class="prose" [innerHTML]="d.stress"></p>
+  </div>
+
+  <div class="focus__list focus__growth">
+    <p class="label label--accent">{{ l.growth }}</p>
+    <div class="focus__growth-grid">
+      @for (item of d.growth; track item.title) {
+        <div class="card card--plain">
+          <h4 class="focus__item-title">{{ item.title }}</h4>
+          <p class="card-text">{{ item.text }}</p>
+        </div>
+      }
+    </div>
+  </div>
+
+  <div class="focus__pair focus__contrast">
+    <div class="card card--plain">
+      <p class="label">{{ l.misread }}</p>
+      <p class="card-text">{{ d.misread }}</p>
+    </div>
+    <div class="card card--plain card--accent">
+      <p class="label label--accent">{{ l.versus }}</p>
+      <p class="card-text">{{ d.versus }}</p>
+    </div>
+  </div>
+</article>

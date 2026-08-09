@@ -1,0 +1,207 @@
+@let c = page();
+@let d = detail();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+  </div>
+</section>
+
+<!-- The evidence comes before the table on purpose: a reader who only scrolls
+     past the numbers should still have met the finding that undermines them. -->
+<section class="section section--tinted section--bordered evidence">
+  <div class="shell">
+    <p class="eyebrow eyebrow--accent" appReveal>{{ c.evidence.eyebrow }}</p>
+    <h2 class="section-title evidence__title" appReveal>{{ c.evidence.title }}</h2>
+    <div class="evidence__body" appReveal>
+      @for (paragraph of c.evidence.paragraphs; track $index) {
+        <p class="prose" [innerHTML]="paragraph"></p>
+      }
+    </div>
+    @if (c.evidence.points; as points) {
+      <ul class="bullets evidence__points" appReveal>
+        @for (point of points; track $index) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+<section class="section section--bordered ranking">
+  <div class="shell">
+    <p class="eyebrow">{{ c.labels.index }}</p>
+
+    <div class="axes">
+      @for (axis of axisOptions; track axis) {
+        <button
+          type="button"
+          class="axes__btn"
+          [class.is-on]="sortBy() === axis"
+          [attr.aria-pressed]="sortBy() === axis"
+          (click)="sortByAxis(axis)"
+        >
+          {{ c.axes[axis].label }}
+        </button>
+      }
+    </div>
+
+    <p class="axes__note" [innerHTML]="axisNote()"></p>
+
+    <div class="ranking__list">
+      @for (row of ranked(); track row.code) {
+        <button
+          type="button"
+          class="rank"
+          [class.is-on]="selected() === row.code"
+          [attr.aria-pressed]="selected() === row.code"
+          (click)="choose(row.code)"
+        >
+          <span class="rank__pos">{{ $index + 1 }}</span>
+          <span class="rank__code">{{ row.code }}</span>
+          <span class="rank__bars">
+            <span class="meter rank__meter">
+              <span class="meter__fill" [style.width]="row.axes.recognition + '%'"></span>
+            </span>
+            <span class="meter rank__meter rank__meter--alt">
+              <span class="meter__fill" [style.width]="row.axes.complement + '%'"></span>
+            </span>
+            <span class="meter rank__meter rank__meter--live">
+              <span class="meter__fill" [style.width]="row.axes.livability + '%'"></span>
+            </span>
+          </span>
+          <span class="rank__score">
+            <span class="rank__combined">{{ row.combined }}</span>
+            <!-- The three figures the score was built from stay on the row, so
+                 the arithmetic is checkable without opening the pairing. -->
+            <span class="rank__parts">
+              {{ row.axes.recognition }} · {{ row.axes.complement }} · {{ row.axes.livability }}
+            </span>
+          </span>
+        </button>
+      }
+    </div>
+
+    <article class="detail">
+      <header class="detail__head">
+        <div>
+          <h2 class="detail__title">INTJ × {{ selected() }}</h2>
+          <p class="label detail__stack">{{ c.labels.stack }}: {{ d.stack }}</p>
+        </div>
+        <div class="detail__scores">
+          <div class="detail__score detail__score--lead">
+            <span class="detail__num">{{ selectedScore() }}</span>
+            <span class="label">{{ c.axes.combined.label }}</span>
+          </div>
+          <div class="detail__score detail__score--part">
+            <span class="detail__num">{{ selectedAxes().recognition }}</span>
+            <span class="label">{{ c.axes.recognition.label }}</span>
+          </div>
+          <div class="detail__score detail__score--part">
+            <span class="detail__num">{{ selectedAxes().complement }}</span>
+            <span class="label">{{ c.axes.complement.label }}</span>
+          </div>
+          <div class="detail__score detail__score--part">
+            <span class="detail__num">{{ selectedAxes().livability }}</span>
+            <span class="label">{{ c.axes.livability.label }}</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="breakdown">
+        <p class="label breakdown__title">{{ c.labels.breakdown }}</p>
+        @for (line of breakdownRows(); track line.pair) {
+          <div class="breakdown__row">
+            <span class="breakdown__pair">{{ line.pair }}</span>
+            <span class="breakdown__sign" [attr.data-sign]="line.sign">{{ line.sign }}</span>
+            <span class="breakdown__note">
+              <!-- Computed, never written into the copy: the figure and the
+                   sentence beside it cannot drift apart if only one of them is
+                   ever typed by hand. -->
+              @if (line.working; as w) {
+                <span class="breakdown__earned" [class.is-inverted]="w.inverted">
+                  +{{ w.recognition }}
+                </span>
+              }
+              {{ line.note }}
+            </span>
+          </div>
+        }
+      </div>
+
+      <div class="detail__grid">
+        <div class="card card--plain">
+          <p class="label">{{ c.labels.attracts }}</p>
+          <p class="card-text">{{ d.attracts }}</p>
+        </div>
+        <div class="card card--plain">
+          <p class="label">{{ c.labels.friction }}</p>
+          <p class="card-text">{{ d.friction }}</p>
+        </div>
+        <div class="card card--plain">
+          <p class="label">{{ c.labels.theyNeed }}</p>
+          <p class="card-text">{{ d.theyNeed }}</p>
+        </div>
+        <div class="card card--plain">
+          <p class="label">{{ c.labels.youNeed }}</p>
+          <p class="card-text">{{ d.youNeed }}</p>
+        </div>
+      </div>
+
+      <div class="detail__failure">
+        <p class="label label--accent">{{ c.labels.failure }}</p>
+        <p class="prose">{{ d.failure }}</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="section section--bordered traditions">
+  <div class="shell">
+    <p class="eyebrow eyebrow--accent" appReveal>{{ c.traditions.eyebrow }}</p>
+    <h2 class="section-title traditions__title" appReveal>{{ c.traditions.title }}</h2>
+    <p class="prose traditions__intro" [innerHTML]="c.traditions.intro" appReveal></p>
+
+    <div class="traditions__grid" appReveal>
+      @for (item of c.traditions.items; track item.name) {
+        <div class="card card--plain tradition">
+          <p class="label">{{ item.name }}</p>
+          <p class="tradition__pick">{{ item.pick }}</p>
+          <p class="card-text">{{ item.claim }}</p>
+          <p class="card-text tradition__note">{{ item.note }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="card card--accent traditions__verdict" appReveal>
+      <p class="prose">{{ c.traditions.verdict }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered formula">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.formula.eyebrow }}</p>
+    <h2 class="section-title formula__title" appReveal>{{ c.formula.title }}</h2>
+    <p class="prose formula__intro" [innerHTML]="c.formula.intro" appReveal></p>
+
+    <div class="formula__rules" appReveal>
+      @for (rule of c.formula.rules; track rule.label) {
+        <div class="formula__row">
+          <span class="formula__label">{{ rule.label }}</span>
+          <span class="formula__delta">{{ rule.delta }}</span>
+          <span class="formula__note">{{ rule.note }}</span>
+        </div>
+      }
+    </div>
+
+    <p class="formula__disclaimer" appReveal>{{ c.formula.disclaimer }}</p>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

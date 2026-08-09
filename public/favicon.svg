@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="INTJ">
+  <!--
+    The P1 mark without its wordmark. A 210×62 lockup is unreadable at 16 px,
+    but the four decreasing bars survive the shrink and still carry the idea:
+    the dominant function long and lit, the inferior one a stub.
+
+    No background plate — the icon inks itself for whichever chrome it lands on.
+    A favicon renders with no page context, so the switch has to live inside the
+    file, in this embedded stylesheet. Light chrome gets dark ink and a darkened
+    accent that holds contrast on white; dark chrome gets the site palette.
+
+    favicon.ico beside this one is the same mark for browsers that will not take
+    an SVG. It carries a plate instead, because a bitmap cannot adapt.
+  -->
+  <style>
+    .ink { fill: #1b1c24; }
+    .lead { fill: #5b41c9; }
+
+    @media (prefers-color-scheme: dark) {
+      .ink { fill: #eeeff5; }
+      .lead { fill: #a78bfa; }
+    }
+  </style>
+
+  <rect class="lead" x="6" y="5.5" width="20" height="3"/>
+  <rect class="ink" x="6" y="11.5" width="14" height="3" opacity="0.75"/>
+  <rect class="ink" x="6" y="17.5" width="9" height="3" opacity="0.45"/>
+  <rect class="ink" x="6" y="23.5" width="4" height="3" opacity="0.25"/>
+</svg>

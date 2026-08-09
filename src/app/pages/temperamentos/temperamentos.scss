@@ -1,0 +1,154 @@
+@use 'tokens' as *;
+
+// `.intro__text` and `.intro__caveat` are the shared deep-page opening shape and
+// now live in the global stylesheet at exactly these values; only the section's
+// own padding is particular to this page.
+.intro {
+  padding-block: 80px 60px;
+}
+
+.singles {
+  padding-block: 80px;
+
+  &__grid {
+    @include auto-grid(240px, 14px);
+    margin-top: 26px;
+  }
+
+  &__name {
+    @include serif(24px, 1.2);
+    margin: 0 0 12px;
+  }
+}
+
+.history {
+  padding-block: 90px;
+
+  &__title {
+    max-width: 28ch;
+    margin-bottom: 30px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 76ch;
+  }
+
+  &__points {
+    margin-top: 26px;
+    max-width: 76ch;
+  }
+}
+
+.blends {
+  padding-block: 80px 110px;
+
+  &__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+  }
+
+  &__chip {
+    cursor: pointer;
+    background: var(--bg);
+    border: var(--hair);
+    border-radius: 2px;
+    color: var(--fg);
+    font-family: $font-mono;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    padding: 11px 14px;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+
+    &:hover {
+      border-color: var(--accent);
+    }
+
+    &.is-mine {
+      border-color: color-mix(in oklab, var(--accent) 55%, transparent);
+    }
+
+    &.is-on {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--on-accent);
+    }
+  }
+}
+
+.detail {
+  margin-top: 28px;
+  background: var(--bg);
+  border: var(--hair);
+  border-radius: $radius;
+  padding: 40px 36px;
+
+  &__name {
+    @include serif(30px, 1.15);
+    margin: 0;
+  }
+
+  &__summary {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--mut);
+    margin: 16px 0 0;
+    max-width: 70ch;
+    text-wrap: pretty;
+  }
+
+  &__applied {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 82ch;
+
+    .label {
+      margin: 0;
+    }
+  }
+
+  &__grid {
+    margin-top: 30px;
+    @include auto-grid(280px, 18px);
+
+    .label {
+      margin: 0 0 12px;
+    }
+  }
+}
+
+.intro__lens {
+  margin-top: 32px;
+  max-width: 80ch;
+}
+
+@include below($bp-md) {
+  // Twelve chips are the only way through this page, and 11px of block padding
+  // leaves them ~37px tall — under a comfortable thumb on a touch screen.
+  .blends__chip {
+    padding: 13px 14px;
+  }
+}
+
+@include below($bp-sm) {
+  .detail {
+    padding: 28px 20px;
+  }
+
+  // auto-fit still floors a track at its minmax minimum: one 280px column in
+  // a ~230px card pushes the pair of panels past the card's right edge.
+  .detail__grid {
+    grid-template-columns: 1fr;
+  }
+}

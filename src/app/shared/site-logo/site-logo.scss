@@ -1,0 +1,59 @@
+@use 'tokens' as *;
+
+:host {
+  display: inline-flex;
+  align-items: center;
+  // Consumers set the width; the viewBox keeps the proportions.
+  width: 210px;
+  max-width: 100%;
+}
+
+.logo {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  // The dominant function carries the accent and the rest fade down the stack,
+  // which is the whole idea of the mark.
+  &__bar {
+    fill: var(--fg);
+
+    &--lead {
+      fill: var(--accent);
+    }
+
+    &--2 {
+      opacity: 0.75;
+    }
+
+    &--3 {
+      opacity: 0.45;
+    }
+
+    &--4 {
+      opacity: 0.25;
+    }
+  }
+
+  &__word {
+    font-family: $font-serif;
+    font-weight: 400;
+    font-size: 42px;
+    letter-spacing: 7.6px;
+    fill: var(--fg);
+    dominant-baseline: central;
+  }
+
+  &__stack {
+    font-family: $font-mono;
+    font-size: 8.5px;
+    letter-spacing: 2.2px;
+    fill: var(--mut);
+    dominant-baseline: central;
+  }
+}
+
+// The brand link tints the whole mark on hover, wordmark included.
+:host-context(a:hover) .logo__word {
+  fill: var(--accent);
+}

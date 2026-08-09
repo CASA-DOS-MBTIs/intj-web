@@ -1,0 +1,130 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="quiz" id="quiz">
+  <div class="quiz__shell">
+    <!-- Before the first statement, not in a footnote after the last. -->
+    <div class="card card--accent quiz__notice">
+      <p class="card-text" [innerHTML]="c.quiz.notice"></p>
+    </div>
+
+    <div class="quiz__bar">
+      <p class="quiz__count">{{ answeredText() }}</p>
+      <div class="meter quiz__meter">
+        <div class="meter__fill" [style.width]="progress()"></div>
+      </div>
+      <button type="button" class="quiz__reset" (click)="reset()">
+        {{ c.quiz.resetLabel }}
+      </button>
+    </div>
+
+    @if (locked()) {
+      <div class="quiz__closed">
+        <p class="quiz__closed-note">{{ c.quiz.lockedNote }}</p>
+        <button type="button" class="btn btn--ghost" (click)="reset()">
+          {{ c.quiz.redoLabel }}
+        </button>
+      </div>
+    } @else {
+      @for (group of groups(); track group.fn) {
+        <section class="group">
+          <header class="group__head">
+            <h2 class="group__title">
+              <span class="group__abbr">{{ group.fn }}</span>
+              {{ group.label }}
+            </h2>
+            <p class="group__hint">{{ group.hint }}</p>
+          </header>
+
+          @for (item of group.items; track item.index) {
+            <div class="q">
+              <div class="q__prompt">
+                <span class="q__n">{{ questionNumber(item.index) }}</span>
+                <p class="q__text">{{ item.text }}</p>
+              </div>
+
+              <div class="q__scale">
+                <span class="q__pole">{{ c.quiz.disagreeLabel }}</span>
+                <div class="q__dots">
+                  @for (rating of ratings; track rating) {
+                    <button
+                      type="button"
+                      class="q__dot"
+                      [class.is-picked]="picks()[item.index] === rating"
+                      [attr.aria-pressed]="picks()[item.index] === rating"
+                      [attr.aria-label]="ratingName(rating)"
+                      (click)="pick(item.index, rating)"
+                    >
+                      {{ rating }}
+                    </button>
+                  }
+                </div>
+                <span class="q__pole">{{ c.quiz.agreeLabel }}</span>
+              </div>
+            </div>
+          }
+        </section>
+      }
+    }
+  </div>
+</section>
+
+<section class="result" id="leitura">
+  <div class="result__shell">
+    @let read = reading();
+
+    @if (read) {
+      <div class="card card--panel result__card">
+        <p class="label label--accent">{{ c.result.eyebrow }}</p>
+
+        <div class="result__score">
+          <span class="result__pct">{{ read.score }}%</span>
+          <span class="result__band">{{ read.band.band }}</span>
+        </div>
+
+        <p class="result__note">{{ c.result.scoreNote }}</p>
+        <p class="prose result__reading">{{ read.band.reading }}</p>
+
+        <div class="bars">
+          @for (bar of bars(); track bar.fn) {
+            <div class="bars__row">
+              <div class="bars__name">
+                <span class="bars__abbr">{{ bar.fn }}</span>
+                <span class="bars__label">{{ bar.name }}</span>
+              </div>
+              <div class="meter" [class.is-inverted]="bar.inverted">
+                <div class="meter__fill" [style.width]="bar.width"></div>
+              </div>
+              <div class="label bars__level">{{ bar.level }}</div>
+            </div>
+          }
+        </div>
+
+        <p class="result__note">{{ c.result.barNote }}</p>
+
+        <p class="result__footnote">
+          {{ c.result.footnote.before }}
+          <a [routerLink]="path()['mente']">{{ c.result.footnote.linkText }}</a>
+          {{ c.result.footnote.after }}
+        </p>
+      </div>
+    } @else {
+      <div class="result__empty">
+        <p class="label">{{ c.result.emptyLabel }}</p>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="closing">
+  <div class="closing__inner" appReveal>
+    <blockquote class="closing__quote">{{ c.closing.quote }}</blockquote>
+    <div class="closing__actions">
+      <a class="btn btn--solid" [routerLink]="path()['home']">{{ c.closing.ctaHome }}</a>
+      <a class="btn btn--ghost" [routerLink]="path()['alem-do-mbti']">{{ c.closing.ctaBeyond }}</a>
+    </div>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

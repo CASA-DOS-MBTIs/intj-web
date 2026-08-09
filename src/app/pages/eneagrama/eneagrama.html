@@ -1,0 +1,108 @@
+@let c = page();
+@let f = focus();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+    <div class="intro__lens">
+      <app-profile-lens [facets]="facets" />
+    </div>
+  </div>
+</section>
+
+@if (f) {
+  <!-- Narrowed to the reader's own wing: the other seventeen are gone on purpose. -->
+  <section class="section section--tinted section--bordered focused">
+    <div class="shell">
+      <app-variant-focus
+        [deep]="f.deep"
+        [labels]="c.focus"
+        [title]="f.title"
+        (widened)="widen()"
+      />
+    </div>
+  </section>
+} @else {
+  @let d = detail();
+
+  <section class="section section--tinted section--bordered picker">
+    <div class="shell">
+      <div class="picker__chips" role="group">
+        @for (key of typeKeys; track key) {
+          <button
+            type="button"
+            class="picker__chip"
+            [class.is-on]="selected() === key"
+            [attr.aria-pressed]="selected() === key"
+            (click)="choose(key)"
+          >
+            {{ key }}
+          </button>
+        }
+      </div>
+
+      <article class="detail">
+        <header class="detail__head">
+          <span class="detail__num">{{ selected() }}</span>
+          <div>
+            <h2 class="detail__name">INTJ {{ selected() }} — {{ d.name }}</h2>
+            <p class="label detail__centre">{{ c.centreLabels[d.centre] }}</p>
+          </div>
+        </header>
+
+        <p class="detail__motto">{{ d.motto }}</p>
+
+        <div class="detail__engine">
+          <p class="label label--accent">{{ c.labels.engine }}</p>
+          <p class="card-text">{{ d.engine }}</p>
+        </div>
+
+        <div class="detail__body">
+          <p class="label">{{ c.labels.asIntj }}</p>
+          @for (paragraph of d.asIntj; track $index) {
+            <p class="prose" [innerHTML]="paragraph"></p>
+          }
+        </div>
+
+        <div class="detail__grid">
+          <div class="card card--plain">
+            <p class="label">{{ c.labels.want }}</p>
+            <p class="card-text">{{ d.want }}</p>
+          </div>
+          <div class="card card--plain">
+            <p class="label">{{ c.labels.fear }}</p>
+            <p class="card-text">{{ d.fear }}</p>
+          </div>
+          <div class="card card--plain">
+            <p class="label">{{ c.labels.look }}</p>
+            <p class="card-text">{{ d.look }}</p>
+          </div>
+          <div class="card card--plain card--accent">
+            <p class="label label--accent">{{ c.labels.grow }}</p>
+            <p class="card-text">{{ d.grow }}</p>
+          </div>
+        </div>
+
+        <div class="wings">
+          <p class="label wings__title">{{ c.labels.wings }}</p>
+          <div class="wings__grid">
+            @for (wing of wings(); track wing.key) {
+              <div class="card wings__card" [class.is-mine]="wing.mine">
+                <p class="wings__code">{{ wing.key }}</p>
+                <h3 class="wings__name">{{ wing.name }}</h3>
+                <p class="card-text">{{ wing.text }}</p>
+              </div>
+            }
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+}
+
+<app-references [sources]="c.sources" />

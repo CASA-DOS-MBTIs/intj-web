@@ -1,0 +1,340 @@
+@use 'tokens' as *;
+
+/* -- Shared shapes ---------------------------------------------------------
+
+   Three groups of declarations were being written out three and two times
+   over. Placeholders emit each group once as a grouped selector, so the rules
+   below only have to say what is different about them. No design decision
+   lives up here.
+
+   The serif headings take the `font` shorthand instead: @include serif()
+   expands to family + weight + size + line-height, which is exactly what the
+   shorthand carries, and every one of them states weight 400 outright.
+
+   The two runs that inherit the body's 300 — .stack__note in mono and
+   .detail__motto in serif — stay longhand. The shorthand would reset their
+   weight to 400, and only an invented `300`, duplicating the body's, could
+   put it back.
+   -------------------------------------------------------------------------- */
+
+/* A row whose children hang off one shared baseline. */
+%baseline-row {
+  display: flex;
+  align-items: baseline;
+}
+
+/* The 10px vertical stack used by the picker column and the sign list. */
+%stack-10 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* A heading demoted to a kicker: no bold, no block margin. */
+%kicker {
+  font-weight: inherit;
+  margin: 0;
+}
+
+/* -- Interactive stack ----------------------------------------------------- */
+
+.stack {
+  padding: 80px $shell-pad 40px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 1fr) minmax(320px, 1.55fr);
+    gap: 26px;
+    margin-top: 24px;
+    align-items: start;
+  }
+
+  &__picker {
+    @extend %stack-10;
+  }
+
+  /* Explains what the strength bars mean; deliberately quiet.
+     Written out rather than @include mono-label(), because the mixin's
+     `text-transform: uppercase` existed only to be switched off again on the
+     next line — two declarations to reach the value the label inherits. */
+  &__note {
+    font-family: $font-mono;
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 10px 0 0;
+  }
+}
+
+/* -- One function button --------------------------------------------------- */
+
+.fn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  color: var(--fg);
+  background: var(--bg2);
+  border: var(--hair);
+  border-radius: $radius;
+  padding: 20px 22px;
+  transition:
+    background 0.25s,
+    border-color 0.25s;
+
+  /* Hovering and being selected light the same edge; only the selected
+     button also lifts its surface. */
+  &:hover,
+  &--active {
+    border-color: var(--accent);
+  }
+
+  &--active {
+    background: var(--panel);
+  }
+
+  &__head {
+    @extend %baseline-row;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  &__ident {
+    @extend %baseline-row;
+    gap: 12px;
+  }
+
+  &__abbr {
+    font: 400 30px/1 $font-serif;
+    color: var(--mut);
+    transition: color 0.25s;
+  }
+
+  &--active &__abbr {
+    color: var(--accent);
+  }
+
+  &__name {
+    font-size: 15.5px;
+    font-weight: 400;
+  }
+
+  /* The template also puts .label on this span, and that already supplies the
+     mono family and the uppercasing. Only the tighter size and tracking are
+     particular to the button, so only those are stated here. */
+  &__pos {
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    white-space: nowrap;
+  }
+
+  &__meter {
+    display: block;
+    height: 3px;
+    margin-top: 14px;
+
+    .meter__fill {
+      display: block;
+      background: var(--mut);
+    }
+  }
+
+  &--active &__meter .meter__fill {
+    background: var(--accent);
+  }
+
+  &__one {
+    display: block;
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--mut);
+    margin-top: 14px;
+  }
+}
+
+/* -- Detail panel ---------------------------------------------------------- */
+
+.detail {
+  @include card(var(--bg2), 38px 34px);
+  min-height: 520px;
+
+  &__head {
+    @extend %baseline-row;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  &__abbr {
+    font: 400 58px/0.9 $font-serif;
+    color: var(--accent);
+  }
+
+  &__name {
+    font: 400 27px/1.15 $font-serif;
+    margin: 0;
+  }
+
+  &__meta {
+    margin: 6px 0 0;
+  }
+
+  /* The motto is the one serif run that keeps the body's light weight, so it
+     takes the family on its own instead of joining %serif-400. Its colour is
+     the inherited --fg and is left unsaid. */
+  &__motto {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: 20px;
+    line-height: 1.5;
+    margin: 26px 0 0;
+    text-wrap: pretty;
+  }
+
+  &__desc {
+    font-size: 16px;
+    margin-top: 20px;
+
+    & + & {
+      margin-top: 16px;
+    }
+  }
+
+  &__signs {
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: var(--hair);
+  }
+
+  /* The panel's kickers are headings, so their weight and margins need resetting. */
+  &__label {
+    @extend %kicker;
+  }
+
+  &__list {
+    @extend %stack-10;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__sign {
+    position: relative;
+    padding-left: 26px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--mut);
+    text-wrap: pretty;
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+  }
+
+  &__pair {
+    margin-top: 28px;
+    @include auto-grid(220px, 18px);
+  }
+
+  &__box {
+    padding: 22px;
+  }
+
+  &__box-text {
+    margin-top: 12px;
+  }
+}
+
+/* -- Ni–Te axis ------------------------------------------------------------ */
+
+.axis {
+  margin-top: 40px;
+
+  &__title {
+    max-width: 26ch;
+  }
+
+  &__grid {
+    @include auto-grid(300px, 40px);
+    margin-top: 40px;
+  }
+}
+
+/* -- From the inside ------------------------------------------------------- */
+
+.inside {
+  padding-block: 110px;
+
+  &__eyebrow {
+    @extend %kicker;
+  }
+
+  &__grid {
+    @include auto-grid(260px, 14px);
+    margin-top: 26px;
+  }
+
+  &__card {
+    padding: 34px 28px;
+  }
+
+  &__title {
+    font: 400 25px/1.15 $font-serif;
+    margin: 0;
+  }
+
+  &__text {
+    margin-top: 14px;
+  }
+}
+
+@include below($bp-md) {
+  .stack__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail {
+    min-height: 0;
+  }
+}
+
+@include below($bp-sm) {
+  .detail {
+    padding: 28px 22px;
+  }
+
+  /* Abbreviation, name and position share one `space-between` line. The
+     position is `nowrap` by design, the names are long ("Intuição
+     introvertida"), and the button leaves them ~200px to share — so the row
+     spills instead of balancing. Stacked, each side gets the full width and
+     the `nowrap` stays harmless. */
+  .fn__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Nested gutters — section, shell, then the card's own padding — leave less
+     room than these auto-fit minimums, and a lone auto-fit track keeps its
+     floor rather than shrinking, pushing the page sideways. */
+  .detail__pair,
+  .axis__grid,
+  .inside__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .axis__grid {
+    gap: 22px;
+  }
+
+  .inside__card {
+    padding: 26px 20px;
+  }
+}

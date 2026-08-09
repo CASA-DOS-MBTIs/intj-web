@@ -1,0 +1,25 @@
+@let list = entries();
+
+@if (list.length > 0) {
+  <section class="refs">
+    <div class="shell">
+      <h2 class="label refs__title">{{ labels().title }}</h2>
+      <p class="refs__note">{{ labels().note }}</p>
+
+      <ol class="refs__list">
+        @for (source of list; track source.id) {
+          <li class="refs__item">
+            <span class="refs__kind" [attr.data-kind]="source.kind">
+              {{ labels().kinds[source.kind] }}
+            </span>
+            <span class="refs__cite">
+              {{ source.author }} ({{ source.year }}).
+              <cite class="refs__work">{{ source.title }}</cite>
+              <span class="refs__detail">{{ source.detail }}.</span>
+            </span>
+          </li>
+        }
+      </ol>
+    </div>
+  </section>
+}

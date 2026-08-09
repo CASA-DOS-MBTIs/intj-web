@@ -1,0 +1,503 @@
+@use 'tokens' as *;
+
+/* -- Shared runs -----------------------------------------------------------
+
+   Every rule in this first block is a run of declarations hoisted out of two
+   or more rules further down that all wanted exactly it. This page is the
+   longest component sheet in the project — a quiz, a reading and a closing in
+   one file — and its size was mostly the same handful of declarations written
+   out thirty-odd times.
+
+   Nothing below re-declares a property set here, and no element on this page
+   carries two of these classes at once, so the hoist is order-safe.
+
+   The type mixins are spelled out by hand in the sections below for the same
+   reason: `mono-label()` and `serif()` re-emit `font-family` at every call
+   site, and thirteen elements here call one or the other. The mono seven are
+   hoisted into the list right below; the serif five use the `font` shorthand
+   instead, which carries the family for free.
+   -------------------------------------------------------------------------- */
+
+// Mono and muted: the counter, the reset, the question numbers, the pole
+// labels, the rating dots and the two runs of small print under the reading.
+.quiz__count,
+.quiz__reset,
+.q__n,
+.q__pole,
+.q__dot,
+.result__note,
+.result__footnote {
+  font-family: $font-mono;
+  color: var(--mut);
+}
+
+// The three of those that are also tracked uppercase labels.
+.quiz__count,
+.quiz__reset,
+.q__pole {
+  text-transform: uppercase;
+}
+
+// Flex rows, split by the alignment they hang from.
+.group__title,
+.q__prompt,
+.result__score,
+.bars__name {
+  display: flex;
+  align-items: baseline;
+}
+
+.quiz__bar,
+.quiz__closed,
+.q__scale {
+  display: flex;
+  align-items: center;
+}
+
+// Hairline surfaces.
+.quiz__reset,
+.q,
+.q__dot {
+  border: var(--hair);
+}
+
+.quiz__bar,
+.group__head {
+  border-bottom: var(--hair);
+}
+
+// The "run is closed" panel and the "no reading yet" panel are the same box.
+.quiz__closed,
+.result__empty {
+  border: 1px dashed var(--line);
+  border-radius: $radius;
+  text-align: center;
+}
+
+// All three sections centre the same measure.
+.quiz__shell,
+.result__shell,
+.closing__inner {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+// Starting a fresh run scrolls to the quiz and completing it scrolls to the
+// reading; both have to clear the header at whatever height it currently is.
+.quiz,
+.result {
+  scroll-margin-top: calc(var(--nav-h) + 20px);
+}
+
+/* -- Questionnaire --------------------------------------------------------- */
+
+.quiz {
+  padding: 70px $shell-pad 40px;
+
+  &__bar {
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    position: sticky;
+    // The live header height, not the desktop constant: the bar is shorter on
+    // small screens, and a hardcoded 62px pinned this strip *underneath* it.
+    top: var(--nav-h);
+    background: var(--bg);
+    padding: 16px 0;
+    z-index: 20;
+  }
+
+  &__count {
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    margin: 0;
+  }
+
+  &__notice {
+    margin-bottom: 26px;
+    max-width: 84ch;
+  }
+
+  &__meter {
+    flex: 1;
+    min-width: 160px;
+    height: 3px;
+  }
+
+  &__reset {
+    cursor: pointer;
+    background: none;
+    border-radius: 2px;
+    font-size: 10.5px;
+    letter-spacing: 0.14em;
+    padding: 10px 16px;
+    transition:
+      color 0.2s,
+      border-color 0.2s;
+
+    &:hover {
+      color: var(--fg);
+      border-color: var(--accent);
+    }
+  }
+
+  &__closed {
+    margin-top: 34px;
+    padding: 40px 34px;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  &__closed-note {
+    font-size: 15.5px;
+    line-height: 1.75;
+    color: var(--mut);
+    margin: 0;
+    max-width: 62ch;
+    text-wrap: pretty;
+  }
+}
+
+/* -- One function's block of statements ------------------------------------ */
+
+.group {
+  margin-top: 40px;
+
+  &__head {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+  }
+
+  // serif() by hand, as a shorthand: the mixin's own 400 is the weight the
+  // shorthand would otherwise reset to, so the two are exactly equivalent.
+  // (.closing__quote is the one heading that keeps the inherited 300, so it
+  // cannot use the shorthand and stays longhand.)
+  &__title {
+    font: 400 23px/1.2 $font-serif;
+    margin: 0;
+    gap: 12px;
+  }
+
+  &__abbr {
+    font-family: $font-mono;
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+  }
+
+  &__hint {
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--mut);
+    margin: 10px 0 0;
+    max-width: 70ch;
+    text-wrap: pretty;
+  }
+}
+
+/* -- A single statement ---------------------------------------------------- */
+
+.q {
+  background: var(--bg2);
+  border-radius: $radius;
+  padding: 24px 26px;
+  margin-bottom: 12px;
+
+  &__prompt {
+    gap: 16px;
+  }
+
+  &__n {
+    font-size: 11px;
+    min-width: 24px;
+  }
+
+  &__text {
+    font-size: 16.5px;
+    line-height: 1.65;
+    color: var(--fg);
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  &__scale {
+    gap: 12px;
+    margin: 20px 0 0;
+    flex-wrap: wrap;
+    padding-left: 40px;
+  }
+
+  &__pole {
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+  }
+
+  &__dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  &__dot {
+    cursor: pointer;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    font-size: 13px;
+    background: transparent;
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+
+    &:hover {
+      border-color: var(--accent);
+    }
+
+    &.is-picked {
+      color: var(--on-accent);
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+  }
+}
+
+/* -- Reading --------------------------------------------------------------- */
+
+.result {
+  padding: 20px $shell-pad 90px;
+
+  &__card {
+    border-color: var(--accent);
+    padding: 42px 36px;
+  }
+
+  &__score {
+    gap: 22px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+
+  &__pct {
+    font: 400 66px/0.9 $font-serif;
+    color: var(--fg);
+  }
+
+  &__band {
+    font: 400 30px/1.2 $font-serif;
+  }
+
+  // Two runs of mono small print that differ only in how far they sit from
+  // whatever is above them.
+  &__note,
+  &__footnote {
+    font-size: 10.5px;
+    line-height: 1.75;
+    max-width: 78ch;
+  }
+
+  &__note {
+    margin: 18px 0 0;
+  }
+
+  &__footnote {
+    margin: 30px 0 0;
+  }
+
+  // The element is <p class="prose result__reading">, and .prose in
+  // styles.scss already sets the 16.5px this used to restate.
+  &__reading {
+    margin: 20px 0 0;
+    max-width: 80ch;
+  }
+
+  &__empty {
+    padding: 36px;
+  }
+}
+
+.bars {
+  margin-top: 34px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: minmax(150px, 240px) 1fr minmax(120px, 190px);
+    gap: 20px;
+    align-items: center;
+  }
+
+  &__name {
+    gap: 10px;
+  }
+
+  &__abbr {
+    font: 400 22px/1 $font-serif;
+    color: var(--accent);
+  }
+
+  &__label {
+    font-size: 14px;
+    color: var(--fg);
+  }
+
+  // .bars__level is a <div class="label bars__level">: a div's margin is
+  // already 0 and .label sets none, so the reset it used to carry was a no-op.
+}
+
+// A full bar here means a bigger blind spot, not a stronger function. The
+// hatching stops it reading as "more is better" at a glance.
+.meter.is-inverted .meter__fill {
+  background: repeating-linear-gradient(
+    135deg,
+    var(--accent) 0 4px,
+    color-mix(in oklab, var(--accent) 45%, transparent) 4px 8px
+  );
+}
+
+/* -- Closing --------------------------------------------------------------- */
+
+.closing {
+  padding: 0 $shell-pad 130px;
+
+  &__inner {
+    text-align: center;
+  }
+
+  &__quote {
+    font-family: $font-serif;
+    font-style: italic;
+    font-size: clamp(24px, 3.2vw, 38px);
+    line-height: 1.4;
+    margin: 0;
+    text-wrap: pretty;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 40px;
+  }
+}
+
+@include below($bp-md) {
+  // Name / meter / level stop being a row and become three stacked lines, so
+  // the gap *between* readings has to grow past the gap inside one of them or
+  // the eight lines read as a single undifferentiated list.
+  .bars {
+    gap: 26px;
+  }
+
+  .bars__row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .q__scale {
+    padding-left: 0;
+  }
+
+  // 10.5px of mono text with 10px of vertical padding is a ~34px target. This
+  // is a touch width, so the button gets the 40px minimum instead.
+  .quiz__reset {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+  }
+}
+
+@include below($bp-sm) {
+  // These three sections set their gutter directly rather than going through
+  // .section, so they miss the narrow-screen 20px in styles.scss.
+  .quiz {
+    padding: 48px 20px 32px;
+  }
+
+  .result {
+    padding: 20px 20px 70px;
+  }
+
+  .closing {
+    padding: 0 20px 90px;
+  }
+
+  // Count, meter and reset wrap into three lines here, and the bar is sticky —
+  // every line it grows is taken off the top of the readable page. Pinning the
+  // meter to its own full-width line fixes the arrangement at two rows: the
+  // labels sit on one, the progress track under them.
+  .quiz__bar {
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .quiz__meter {
+    order: 2;
+    flex-basis: 100%;
+    min-width: 0;
+  }
+
+  .quiz__closed {
+    padding: 30px 22px;
+    gap: 18px;
+  }
+
+  .q {
+    padding: 20px;
+  }
+
+  .q__prompt {
+    gap: 10px;
+  }
+
+  // Five dots flanked by two pole labels cannot share a 360px line. The dots
+  // take the full width and the poles drop underneath, still at the ends, so
+  // they keep labelling the extremes of the scale they sit below.
+  .q__scale,
+  .q__dots {
+    justify-content: space-between;
+  }
+
+  .q__scale {
+    gap: 12px 10px;
+  }
+
+  .q__dots {
+    order: -1;
+    width: 100%;
+  }
+
+  // Basis rather than a fixed width: the row holds five 44px targets at 360px
+  // and shrinks them instead of overflowing on anything narrower.
+  .q__dot {
+    flex: 0 1 44px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .result__card {
+    padding: 26px 22px;
+  }
+
+  .result__empty {
+    padding: 26px 20px;
+  }
+
+  // The percentage and its band wrap onto separate lines down here, where a
+  // 22px row gap reads as two unrelated figures.
+  .result__score {
+    gap: 4px 14px;
+  }
+
+  // Both ceilings are the desktop sizes, so only narrow screens scale.
+  .result__pct {
+    font-size: clamp(44px, 13vw, 66px);
+  }
+
+  .result__band {
+    font-size: clamp(21px, 6vw, 30px);
+  }
+}

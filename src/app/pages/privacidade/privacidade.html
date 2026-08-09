@@ -1,0 +1,44 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section" id="content">
+  <div class="shell">
+    <div class="card card--accent summary" appReveal>
+      <p class="prose" [innerHTML]="c.summary"></p>
+    </div>
+
+    @for (section of c.sections; track section.title) {
+      <section class="block" appReveal>
+        <h2 class="section-title block__title">{{ section.title }}</h2>
+        <div class="block__body">
+          @for (paragraph of section.body; track $index) {
+            <p class="prose" [innerHTML]="paragraph"></p>
+          }
+        </div>
+      </section>
+    }
+
+    <section class="block" appReveal>
+      <h2 class="section-title block__title">{{ c.storage.title }}</h2>
+      <p class="prose store__intro" [innerHTML]="c.storage.intro"></p>
+
+      <div class="store">
+        @for (item of c.storage.items; track item.key) {
+          <div class="store__row">
+            <code class="store__key">{{ item.key }}</code>
+            <span class="store__what">{{ item.what }}</span>
+            <span class="store__why">{{ item.why }}</span>
+          </div>
+        }
+      </div>
+
+      <p class="store__note">{{ c.storage.note }}</p>
+    </section>
+
+    <section class="block" appReveal>
+      <h2 class="section-title block__title">{{ c.contact.title }}</h2>
+      <p class="prose block__body" [innerHTML]="c.contact.text"></p>
+    </section>
+  </div>
+</section>

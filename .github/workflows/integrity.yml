@@ -1,0 +1,31 @@
+name: Live integrity check
+
+# Detection, not prevention. Nothing in this repository can stop somebody who
+# holds the GitHub account or the domain from publishing what they like — but
+# this notices within a few hours and mails whoever owns the repo, instead of
+# the site quietly serving a casino for a fortnight.
+#
+# It will fail until DNS points at Pages, which is correct: an origin that does
+# not resolve is exactly what it is meant to report.
+
+on:
+  schedule:
+    # Every four hours. Cheap, and inside the window where a replaced site is
+    # still recoverable before search engines reindex it.
+    - cron: '17 */4 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      # No npm install: the check uses nothing but the Node standard library,
+      # so a compromised dependency cannot influence whether it passes.
+      - run: node scripts/check-live.mjs

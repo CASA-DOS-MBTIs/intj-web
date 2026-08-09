@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 96" role="img" aria-labelledby="s1-selo-editorial-t">
+  <title id="s1-selo-editorial-t">INTJ — Selo editorial</title>
+  <rect x="1" y="0.5" width="218" height="95" fill="none" stroke="var(--line, #3c3d4b)" stroke-width="1"/>
+  <rect x="0" y="0" width="2" height="96" fill="var(--accent, #a78bfa)"/>
+  <text x="26" y="38" text-anchor="start" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="38" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:11.4px">INTJ</text>
+  <text x="27" y="68" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:1.7px">RETRATO COMPLETO DO TIPO</text>
+</svg>

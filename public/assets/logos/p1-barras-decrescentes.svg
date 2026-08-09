@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 62" role="img" aria-labelledby="p1-barras-decrescentes-t">
+  <title id="p1-barras-decrescentes-t">INTJ — Barras decrescentes</title>
+  <rect x="0" y="17" width="26" height="2" fill="var(--accent, #a78bfa)"/>
+  <rect x="0" y="24" width="19" height="2" fill="var(--fg, #eeeff5)" opacity="0.75"/>
+  <rect x="0" y="31" width="12" height="2" fill="var(--fg, #eeeff5)" opacity="0.45"/>
+  <rect x="0" y="38" width="6" height="2" fill="var(--fg, #eeeff5)" opacity="0.25"/>
+  <text x="42" y="24" text-anchor="start" dominant-baseline="central" font-family="'Bodoni Moda', Georgia, serif" font-size="42" font-weight="400" fill="var(--fg, #eeeff5)" style="letter-spacing:7.6px">INTJ</text>
+  <text x="43" y="48" text-anchor="start" dominant-baseline="central" font-family="'IBM Plex Mono', ui-monospace, monospace" font-size="8.5" font-weight="400" fill="var(--mut, #9a9bab)" style="letter-spacing:2.2px">NI · TE · FI · SE</text>
+</svg>

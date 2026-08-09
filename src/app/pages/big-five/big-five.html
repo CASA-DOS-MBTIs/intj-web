@@ -1,0 +1,69 @@
+@let c = page();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered traits">
+  <div class="shell">
+    <div class="traits__list">
+      @for (trait of c.traits; track trait.name) {
+        <article class="trait" appReveal>
+          <div class="trait__head">
+            <h2 class="trait__name">{{ trait.name }}</h2>
+            <div class="trait__gauge">
+              <div class="meter">
+                <div class="meter__fill" [style.width]="trait.width"></div>
+              </div>
+              <p class="label trait__level">{{ trait.level }}</p>
+            </div>
+          </div>
+          <p class="card-text trait__text">{{ trait.text }}</p>
+          <div class="trait__applied">
+            <p class="card-text">{{ trait.asIntj }}</p>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
+
+@for (section of c.sections; track section.title) {
+  <section class="section section--bordered">
+    <div class="shell">
+      <p class="eyebrow" appReveal>{{ section.eyebrow }}</p>
+      <h2 class="section-title block__title" appReveal>{{ section.title }}</h2>
+      <div class="block__body" appReveal>
+        @for (paragraph of section.paragraphs; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+      @if (section.points; as points) {
+        <ul class="bullets block__points" appReveal>
+          @for (point of points; track $index) {
+            <li>{{ point }}</li>
+          }
+        </ul>
+      }
+    </div>
+  </section>
+}
+
+<section class="section verdict">
+  <div class="shell">
+    <div class="card card--accent verdict__card" appReveal>
+      <h2 class="verdict__title">{{ c.verdict.title }}</h2>
+      <p class="prose verdict__text">{{ c.verdict.text }}</p>
+      <p class="label verdict__weight">{{ c.verdict.weight }}</p>
+    </div>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

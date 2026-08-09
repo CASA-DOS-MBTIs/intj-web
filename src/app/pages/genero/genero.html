@@ -1,0 +1,101 @@
+@let c = page();
+@let d = detail();
+
+<app-page-header [header]="c.header" [bloom]="bloom" />
+
+<section class="section intro">
+  <div class="shell">
+    <p class="prose intro__text" [innerHTML]="c.intro"></p>
+    <div class="card card--accent intro__caveat">
+      <p class="card-text">{{ c.caveat }}</p>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="shell stats__grid">
+    @for (stat of c.stats; track stat.label) {
+      <div class="stats__cell">
+        <div class="stats__value">{{ stat.value }}</div>
+        <div class="label stats__label">{{ stat.label }}</div>
+      </div>
+    }
+  </div>
+</section>
+
+<section class="section section--bordered premise">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.premise.eyebrow }}</p>
+    <h2 class="section-title premise__title" appReveal>{{ c.premise.title }}</h2>
+    <div class="premise__body" appReveal>
+      @for (paragraph of c.premise.paragraphs; track $index) {
+        <p class="prose" [innerHTML]="paragraph"></p>
+      }
+    </div>
+    @if (c.premise.points; as points) {
+      <ul class="bullets premise__points" appReveal>
+        @for (point of points; track $index) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+    }
+  </div>
+</section>
+
+<section class="section section--tinted section--bordered sides">
+  <div class="shell">
+    <div class="sides__tabs" role="group">
+      @for (key of genderKeys; track key) {
+        <button
+          type="button"
+          class="sides__tab"
+          [class.is-on]="selected() === key"
+          [attr.aria-pressed]="selected() === key"
+          (click)="choose(key)"
+        >
+          {{ c.sides[key].title }}
+        </button>
+      }
+    </div>
+
+    <article class="side">
+      <h2 class="side__title">{{ d.title }}</h2>
+      <p class="lede side__lede" [innerHTML]="d.lede"></p>
+
+      <div class="side__body">
+        @for (paragraph of d.paragraphs; track $index) {
+          <p class="prose" [innerHTML]="paragraph"></p>
+        }
+      </div>
+
+      <div class="side__grid">
+        @for (friction of d.frictions; track friction.title) {
+          <div class="card card--plain">
+            <h3 class="side__card-title">{{ friction.title }}</h3>
+            <p class="card-text">{{ friction.text }}</p>
+          </div>
+        }
+      </div>
+
+      <ul class="bullets side__strengths">
+        @for (item of d.strengths; track $index) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </article>
+  </div>
+</section>
+
+<section class="section shared">
+  <div class="shell">
+    <p class="eyebrow" appReveal>{{ c.shared.eyebrow }}</p>
+    <h2 class="section-title shared__title" appReveal>{{ c.shared.title }}</h2>
+    <div class="shared__body" appReveal>
+      @for (paragraph of c.shared.paragraphs; track $index) {
+        <p class="prose" [innerHTML]="paragraph"></p>
+      }
+    </div>
+  </div>
+</section>
+
+<app-references [sources]="c.sources" />

@@ -1,0 +1,121 @@
+@use 'tokens' as *;
+
+.intro {
+  padding-block: 80px 60px;
+
+  &__text {
+    font-size: 17.5px;
+    max-width: 68ch;
+  }
+
+  &__caveat {
+    margin-top: 28px;
+    max-width: 80ch;
+  }
+}
+
+.traits {
+  padding-block: 80px;
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--line);
+    border: var(--hair);
+    border-radius: $radius;
+    overflow: hidden;
+  }
+}
+
+.trait {
+  background: var(--bg);
+  padding: 30px 32px;
+
+  &__head {
+    display: grid;
+    grid-template-columns: minmax(180px, 1fr) minmax(150px, 220px);
+    gap: 24px;
+    align-items: center;
+  }
+
+  &__name {
+    @include serif(24px, 1.2);
+    margin: 0;
+  }
+
+  &__level {
+    margin: 8px 0 0;
+  }
+
+  &__text {
+    margin-top: 18px;
+    max-width: 78ch;
+  }
+
+  &__applied {
+    margin-top: 16px;
+    border-left: 2px solid var(--accent);
+    padding-left: 18px;
+    max-width: 78ch;
+  }
+}
+
+.block {
+  &__title {
+    max-width: 28ch;
+    margin-bottom: 30px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    max-width: 76ch;
+  }
+
+  &__points {
+    margin-top: 26px;
+    max-width: 76ch;
+  }
+}
+
+.verdict {
+  padding-block: 90px 120px;
+
+  &__card {
+    padding: 38px 34px;
+    max-width: 82ch;
+  }
+
+  &__title {
+    @include serif(27px, 1.2);
+    margin: 0 0 16px;
+  }
+
+  &__text {
+    font-size: 16.5px;
+  }
+
+  &__weight {
+    margin: 22px 0 0;
+    color: var(--accent);
+  }
+}
+
+@include below($bp-sm) {
+  // The two tracks need 354px between them; the row runs out of room around
+  // 474px, well inside this breakpoint.
+  .trait__head {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .trait {
+    padding: 24px 20px;
+  }
+
+  .verdict__card {
+    padding: 28px 20px;
+  }
+}
