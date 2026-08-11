@@ -51,6 +51,27 @@
   max-width: 78ch;
 }
 
+.community {
+  &__head {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 16px;
+  }
+
+  &__logo {
+    width: 88px;
+    height: 88px;
+    flex: none;
+  }
+
+  // The kicker above it already spaces the pair; the heading's own top margin
+  // would push the title off the badge's centre line.
+  &__title {
+    margin: 0;
+  }
+}
+
 .author__link {
   margin-top: 26px;
 }

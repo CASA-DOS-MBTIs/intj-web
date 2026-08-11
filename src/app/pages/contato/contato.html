@@ -17,8 +17,21 @@
          until its administrator has agreed — see SHOW_COMMUNITY in author.ts. -->
     @if (showCommunity) {
       <aside class="card card--accent community" appReveal>
-        <p class="kicker">{{ c.community.kicker }}</p>
-        <h2 class="reason__title">{{ c.community.title }}</h2>
+        <div class="community__head">
+          <img
+            class="community__logo"
+            [src]="community.logo"
+            [alt]="community.name"
+            width="88"
+            height="88"
+            loading="lazy"
+            decoding="async"
+          />
+          <div>
+            <p class="kicker">{{ c.community.kicker }}</p>
+            <h2 class="reason__title community__title">{{ c.community.title }}</h2>
+          </div>
+        </div>
         <p class="card-text" [innerHTML]="c.community.text"></p>
         <a
           class="btn btn--solid author__link"

@@ -32,19 +32,23 @@ export const AUTHOR = {
  */
 export const COMMUNITY = {
   name: 'Casa dos MBTIs',
-  url: 'https://casa-dos-mbtis.carrd.co/',
+  url: 'https://casadosmbtis.carrd.co',
+  /**
+   * Their badge, cut out of the white square it was drawn on and shrunk from
+   * 951 kB to 15 kB by scripts/make-community-logo.mjs. Served from this origin
+   * like everything else — the content security policy would refuse it
+   * otherwise, and hotlinking somebody's logo is rude besides.
+   */
+  logo: '/assets/logos/casa-dos-mbtis/logo.webp',
 } as const;
 
 /**
  * Whether the community is linked from the site yet.
  *
- * Off while the community's administrator is asked whether she is happy both
- * with the link and with this site carrying it. Linking somebody's community
- * from a page that makes claims about psychology is her decision as much as
- * ours.
- *
- * A flag rather than commented-out markup on purpose: the copy, the styles and
- * the templates all stay compiled and type-checked, so nothing rots while the
- * answer is pending. Turning it back on is this one word.
+ * The community's administrator was asked whether she was happy both with the
+ * link and with this site carrying it — linking somebody's community from a
+ * page that makes claims about psychology is her decision as much as ours — and
+ * she agreed. The flag survives the answer: it is how this gets switched off in
+ * one word if that ever changes.
  */
-export const SHOW_COMMUNITY = false;
+export const SHOW_COMMUNITY = true;

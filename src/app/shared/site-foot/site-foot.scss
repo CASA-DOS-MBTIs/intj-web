@@ -81,11 +81,23 @@
     }
   }
 
+  &__community-logo {
+    width: 44px;
+    height: 44px;
+    // The badge is a circle on transparency; nothing to clip, and no plate to
+    // draw behind it.
+    flex: none;
+  }
+
   &__community-text {
     display: flex;
     align-items: baseline;
     flex-wrap: wrap;
     gap: 4px 12px;
+    // Takes the space between the badge and the call to action rather than
+    // letting the three items spread apart.
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   &__community-kicker {

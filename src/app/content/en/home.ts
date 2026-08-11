@@ -3,7 +3,7 @@ import type { HomeContent } from '../types';
 
 export const HOME_EN: HomeContent = {
   meta: {
-    title: 'INTJ — The quiet strategist',
+    title: 'INTJ — The mastermind',
     description:
       'An honest portrait of the INTJ type: the cognitive stack, strengths and shadows, work, ' +
       'bonds and growth.',
@@ -24,7 +24,7 @@ export const HOME_EN: HomeContent = {
   hero: {
     eyebrow: 'MBTI · INTJ type · ≈2% of US adults',
     title: 'INTJ',
-    subtitle: 'The quiet strategist',
+    subtitle: 'The mastermind',
     stack: 'Ni → Te → Fi → Se',
     lede:
       'If you came here looking for an honest portrait of yourself, welcome. This site is ' +
