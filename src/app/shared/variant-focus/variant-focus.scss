@@ -15,10 +15,6 @@
     flex-wrap: wrap;
   }
 
-  // The two serif headings are spelled as the `font` shorthand rather than
-  // `@include serif(...)`. Same computed style — weight, size, line-height and
-  // family are all stated, and every sub-property the shorthand additionally
-  // resets is already sitting at its initial value — for half the bytes.
   &__title {
     font: 400 clamp(30px, 4vw, 46px)/1.1 $font-serif;
     margin: 12px 0 0;
@@ -41,8 +37,6 @@
     max-width: 80ch;
   }
 
-  // Not shorthand-able: the lede takes its weight by inheritance from the body
-  // rule, and `font` would reset that to 400.
   &__lede {
     font-family: $font-serif;
     font-style: italic;
@@ -54,10 +48,6 @@
     text-wrap: pretty;
   }
 
-  // Every top-level division of the article — each prose section and each of
-  // the two-column pairs — is separated by the same ruled gap. `&__contrast`
-  // below is the one that opts out, and it still follows this rule in source
-  // order, so its `border-top: none` keeps winning.
   &__section,
   &__pair {
     margin-top: 44px;
@@ -124,8 +114,6 @@
     padding-top: 0;
   }
 
-  // Both of these are cards rather than list columns, so their label sits
-  // tighter to the text than the `&__list .label` above.
   &__stress .label,
   &__contrast .label {
     margin: 0 0 12px;
@@ -137,9 +125,6 @@
     padding: 30px 22px;
   }
 
-  // Both grids kept a `minmax()` floor wider than the shell leaves them once the
-  // page gutter and the card's own padding are taken out (~200px at 360px), and
-  // an auto-fit floor still applies when the container cannot honour it.
   .focus__pair,
   .focus__growth-grid {
     grid-template-columns: 1fr;
@@ -149,8 +134,6 @@
     gap: 26px;
   }
 
-  // Cards nested inside an already-padded card: the default 28px inline padding
-  // costs a quarter of the remaining line length here.
   .focus__stress,
   .focus__growth-grid .card,
   .focus__contrast .card {

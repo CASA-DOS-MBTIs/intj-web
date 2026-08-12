@@ -18,7 +18,6 @@ import { VINCULOS_PT } from '../../content/pt/vinculos';
 export class Vinculos {
   protected readonly page = usePageContent({ pt: VINCULOS_PT, en: VINCULOS_EN });
 
-  /** This page pushes the header bloom higher and further into the right margin. */
   protected readonly bloom = { top: '-45%', right: '8%', width: 'min(660px, 90vw)' };
 
   constructor() {

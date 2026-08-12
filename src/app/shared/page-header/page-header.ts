@@ -2,10 +2,6 @@ import { Component, input } from '@angular/core';
 
 import type { PageHeader } from '../../content/types';
 
-/**
- * CSS placement for the radial bloom behind a page header — each page in the
- * design offsets it differently so the pages do not look stamped from one mould.
- */
 export type BloomPosition = Record<string, string>;
 
 const DEFAULT_BLOOM: BloomPosition = {

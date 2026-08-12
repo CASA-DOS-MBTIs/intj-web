@@ -1,12 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/**
- * Fauvre’s nine archetypes containing the 9 — the family in which the gut
- * centre does not push. That is what unites them, and in an INTJ it changes
- * everything: Te stays competent and loses its reason.
- */
-
 const SRC: SourceId[] = [
   'fauvre-tritype',
   'riso-hudson-1999',
@@ -14,10 +8,6 @@ const SRC: SourceId[] = [
   'hook-2021',
   'grant-1983',
 ];
-
-/* -------------------------------------------------------------------------- */
-/* 259 — The Problem Solver                                                    */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T259_EN: VariantDeep = {
   lede:
@@ -239,10 +229,6 @@ export const DEEP_T259_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 269 — The Good Samaritan                                                    */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T269_EN: VariantDeep = {
   lede:
@@ -468,10 +454,6 @@ export const DEEP_T269_EN: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 279 — The Peacemaker                                                        */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T279_EN: VariantDeep = {
   lede:
     'It is the only one of the nine combinations with a 9 in which neither of the other two ' +
@@ -688,10 +670,6 @@ export const DEEP_T279_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 359 — The Thinker                                                           */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T359_EN: VariantDeep = {
   lede:
@@ -911,10 +889,6 @@ export const DEEP_T359_EN: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 369 — The Mediator                                                          */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T369_EN: VariantDeep = {
   lede:
     'None of the three fixations likes open conflict — and you are an INTJ, which is to say ' +
@@ -1125,10 +1099,6 @@ export const DEEP_T369_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 379 — The Ambassador                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T379_EN: VariantDeep = {
   lede:
@@ -1344,10 +1314,6 @@ export const DEEP_T379_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 459 — The Contemplative                                                     */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T459_EN: VariantDeep = {
   lede:
@@ -1565,10 +1531,6 @@ export const DEEP_T459_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 469 — The Seeker                                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T469_EN: VariantDeep = {
   lede:
@@ -1790,10 +1752,6 @@ export const DEEP_T469_EN: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 479 — The Gentle Spirit                                                     */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T479_EN: VariantDeep = {
   lede:

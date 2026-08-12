@@ -56,8 +56,6 @@
     text-wrap: pretty;
   }
 
-  // The one outbound link in the footer, so it is allowed to look like a
-  // destination rather than another entry in a list of links.
   &__community {
     @include shell;
     display: flex;
@@ -84,8 +82,6 @@
   &__community-logo {
     width: 44px;
     height: 44px;
-    // The badge is a circle on transparency; nothing to clip, and no plate to
-    // draw behind it.
     flex: none;
   }
 
@@ -94,8 +90,6 @@
     align-items: baseline;
     flex-wrap: wrap;
     gap: 4px 12px;
-    // Takes the space between the badge and the call to action rather than
-    // letting the three items spread apart.
     flex: 1 1 auto;
     min-width: 0;
   }
@@ -129,15 +123,13 @@
     }
   }
 
-  // Sits below the rule at the smallest size the page uses: it is a statement
-  // of fact that has to be present, not something a reader needs to read.
   &__trademarks {
     @include shell;
     padding-inline: 0;
     margin: 18px 0 0;
-    font-size: 11.5px;
+    font-size: 12px;
     line-height: 1.7;
-    color: color-mix(in oklab, var(--mut) 72%, transparent);
+    color: color-mix(in oklab, var(--mut) 85%, transparent);
     max-width: 92ch;
     text-wrap: pretty;
   }
@@ -157,8 +149,6 @@
   }
 }
 
-// The four columns have already collapsed to one by this width, so the 44px gap
-// is pure vertical dead space rather than the column rhythm it was chosen for.
 @include below($bp-sm) {
   .foot {
     padding-block: 48px 40px;
@@ -173,8 +163,6 @@
     gap: 10px;
   }
 
-  // The call to action drops under the text rather than being squeezed beside
-  // it, and the band keeps its own gutter now that .shell has narrowed.
   .foot__community {
     margin-top: 34px;
     padding: 18px 18px 20px;

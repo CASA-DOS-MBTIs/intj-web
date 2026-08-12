@@ -50,8 +50,6 @@
     justify-self: start;
     white-space: nowrap;
 
-    // Jung and peer-reviewed work carry more weight than a commercial model,
-    // and the tag should say so at a glance.
     &[data-kind='jung'],
     &[data-kind='academic'] {
       color: var(--accent);
@@ -88,8 +86,6 @@
   .refs__item {
     grid-template-columns: 1fr;
     gap: 10px;
-    // The kind badge stays on one line by design; trimming the inline padding is
-    // what keeps the longest label ("Methodological critique") inside the row.
     padding: 18px 16px;
   }
 }

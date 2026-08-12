@@ -1,7 +1,5 @@
 @use 'tokens' as *;
 
-/* -- Timeline -------------------------------------------------------------- */
-
 .timeline {
   padding: 88px $shell-pad 60px;
 
@@ -14,8 +12,6 @@
     padding-top: 8px;
   }
 
-  /* Runs behind the dots, which sit 26px down inside their 36px row. The
-     `auto` bottom is what keeps it a hairline rather than a full-height bar. */
   &__rule {
     position: absolute;
     inset: 26px 0 auto;
@@ -28,10 +24,6 @@
     @include auto-grid(150px, 10px);
   }
 
-  /* Deliberately not mono-label: the mixin's uppercase would be set here only
-     to be switched straight off again, and a bare <p> already inherits `none`.
-     What is left of it is the family — shared at the foot of this file — and
-     the size, so the mixin is written out rather than included. */
   &__note {
     font-size: 10.5px;
     letter-spacing: 0;
@@ -40,8 +32,6 @@
     margin: 18px 0 0;
   }
 }
-
-/* -- One phase selector ---------------------------------------------------- */
 
 .phase {
   display: block;
@@ -68,9 +58,6 @@
       border-color 0.25s;
   }
 
-  /* Range and title are one two-line label. They share the block layout, the
-     muted rest state and the same lift, and differ only in type — so only the
-     type is declared per element. */
   &__range,
   &__title {
     display: block;
@@ -89,7 +76,6 @@
     margin-top: 8px;
   }
 
-  /* Pointing at a phase and having selected it light the title identically. */
   &:hover &__title,
   &--on &__title {
     color: var(--fg);
@@ -100,8 +86,6 @@
     border-color: var(--accent);
   }
 }
-
-/* -- Detail panel for the selected phase ----------------------------------- */
 
 .detail {
   @include card(var(--bg2), 40px 36px);
@@ -154,8 +138,6 @@
   }
 }
 
-/* -- Growth practices ------------------------------------------------------ */
-
 .growth {
   &__title {
     max-width: 26ch;
@@ -184,17 +166,6 @@
   }
 }
 
-/* -- Shared values ----------------------------------------------------------
-
-   The page uses exactly two families and one accent, spread over nine rules.
-   Each font stack is ~60 bytes of compiled CSS, so restating them per rule was
-   most of this stylesheet. They are declared once here instead.
-
-   Order is safe: nothing below contradicts anything above. `.phase--on
-   .phase__range` outranks the muted `.phase__range` on specificity, not on
-   position, so it wins wherever it sits.
-   -------------------------------------------------------------------------- */
-
 .timeline__note,
 .phase__range,
 .growth__n {
@@ -215,13 +186,6 @@
   color: var(--accent);
 }
 
-/* Five phases cannot share a row on a tablet, let alone a phone, and auto-fit's
-   answer — three or four across with the remainder orphaned underneath — breaks
-   the chronology and strands the rule above a second row it does not touch. The
-   alternative was a horizontally scrolling rail; stacking wins because it keeps
-   all five phases in view and in order, and because the rule is absolutely
-   positioned against the track, so a scroller would size it to the viewport
-   rather than to the content it is supposed to connect. */
 @include below($bp-md) {
   .timeline__phases {
     grid-template-columns: 1fr;
@@ -232,7 +196,6 @@
     display: none;
   }
 
-  /* The 36px row existed only to drop the dots onto the rule. */
   .phase__dot-row {
     height: 22px;
   }
@@ -243,8 +206,6 @@
     padding: 28px 22px;
   }
 
-  /* Shell gutters plus the panel's own padding leave ~200px of column, under
-     the floor these auto-fit tracks refuse to go below. */
   .detail__grid,
   .growth__grid {
     grid-template-columns: 1fr;

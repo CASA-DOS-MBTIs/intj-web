@@ -17,20 +17,11 @@ import { SiteNav } from './shared/site-nav/site-nav';
 export class App {
   private readonly currentUrl = inject(CurrentUrl);
 
-  /** Fraction of the document scrolled, 0–1, driving the top progress bar. */
   protected readonly progress = signal(0);
 
-  /** Set while a measurement is already queued, to coalesce scroll bursts. */
   private ticking = false;
 
   constructor() {
-    /**
-     * `RoutesRecognized` rather than `NavigationEnd`: it carries the final URL
-     * — redirects already resolved — and fires *before* the page component is
-     * created. The language and the canonical URL are both read off this, and
-     * a page that constructs before they update renders the wrong language for
-     * a frame.
-     */
     inject(Router)
       .events.pipe(
         filter((event): event is RoutesRecognized => event instanceof RoutesRecognized),
@@ -40,7 +31,6 @@ export class App {
   }
 
   protected onScroll(): void {
-    // Reading scrollHeight forces layout, so measure at most once per frame.
     if (this.ticking) {
       return;
     }

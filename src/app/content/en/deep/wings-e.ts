@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 9w8 — The armed peacemaker                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_9W8_EN: VariantDeep = {
   lede:
     'You do not have an agenda — you have a perimeter. The 9 erases its own priority before it ' +
@@ -335,10 +331,6 @@ export const DEEP_9W8_EN: VariantDeep = {
     'jung-1921',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 9w1 — The principled peacemaker                                             */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_9W1_EN: VariantDeep = {
   lede:

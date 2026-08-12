@@ -4,21 +4,11 @@
 
 <nav class="nav">
   <div class="nav__bar">
-    <a
-      class="nav__brand"
-      [routerLink]="path()['home']"
-      [attr.aria-label]="n.brandLabel"
-      (click)="closeAll()"
-    >
-      <app-site-logo />
+    <a class="nav__brand" [routerLink]="path()['home']" (click)="closeAll()">
+      <app-site-logo [label]="n.brandLabel" />
     </a>
 
     <div class="nav__tools">
-      <!--
-        Real links rather than buttons. A crawler that cannot press a button can
-        still follow an href, which is how the other language tree gets found and
-        how `hreflang` ends up describing pages that are actually reachable.
-      -->
       <div class="nav__lang" [attr.aria-label]="n.languageLabel">
         @for (option of langs; track option) {
           <a
@@ -34,7 +24,6 @@
         }
       </div>
 
-      <!-- Shown only below the breakpoint; above it the links are always out. -->
       <button
         type="button"
         class="nav__burger"

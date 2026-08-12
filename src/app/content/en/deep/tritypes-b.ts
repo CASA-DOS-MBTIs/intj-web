@@ -1,18 +1,5 @@
-/**
- * The unabridged analysis of the nine tritypes carrying an 8 in the gut centre,
- * read against the Ni · Te · Fi · Se stack.
- *
- * A block only appears once the reader has named that tritype as theirs: the
- * page drops the other twenty-six and renders this instead. Nothing here repeats
- * the general description — this is the material that description summarises.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* 258 — The Strategist                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T258_EN: VariantDeep = {
   lede:
@@ -237,10 +224,6 @@ export const DEEP_T258_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 268 — The Rescuer                                                           */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T268_EN: VariantDeep = {
   lede:
     'There is no 5 here, and the absence changes everything: your intuition is not fed by an ' +
@@ -452,10 +435,6 @@ export const DEEP_T268_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 278 — The Free Spirit                                                       */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T278_EN: VariantDeep = {
   lede:
@@ -670,10 +649,6 @@ export const DEEP_T278_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 358 — The Solution Master                                                   */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T358_EN: VariantDeep = {
   lede:
@@ -977,10 +952,6 @@ export const DEEP_T358_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 368 — The Justice Fighter                                                   */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T368_EN: VariantDeep = {
   lede:
     'Your intuition does not forecast the future in general: it forecasts who is going to abuse ' +
@@ -1188,10 +1159,6 @@ export const DEEP_T368_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 378 — The Mover Shaker                                                      */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T378_EN: VariantDeep = {
   lede:
@@ -1401,10 +1368,6 @@ export const DEEP_T378_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 458 — The Scholar                                                           */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T458_EN: VariantDeep = {
   lede:
@@ -1622,10 +1585,6 @@ export const DEEP_T458_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 468 — The Truth Teller                                                      */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T468_EN: VariantDeep = {
   lede:
     'With no 5 and no 3, this tritype has neither the habit of retreating to study nor the ' +
@@ -1839,10 +1798,6 @@ export const DEEP_T468_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 478 — The Messenger                                                         */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T478_EN: VariantDeep = {
   lede:

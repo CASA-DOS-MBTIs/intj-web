@@ -17,8 +17,6 @@ import { CONTATO_PT } from '../../content/pt/contato';
 export class Contato {
   protected readonly page = usePageContent({ pt: CONTATO_PT, en: CONTATO_EN });
 
-  /** The address and the portfolio URL are the same in both languages, so they
-      come from the author module rather than from a copy bundle. */
   protected readonly author = AUTHOR;
   protected readonly community = COMMUNITY;
   protected readonly showCommunity = SHOW_COMMUNITY;

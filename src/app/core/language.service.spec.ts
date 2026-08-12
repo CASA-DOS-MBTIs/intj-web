@@ -2,7 +2,6 @@ import { TestBed } from '@angular/core/testing';
 
 import { LanguageService } from './language.service';
 
-/** jsdom's navigator.languages is read-only, so redefine it per test. */
 function stubLanguages(languages: string[]): void {
   Object.defineProperty(navigator, 'languages', { value: languages, configurable: true });
   Object.defineProperty(navigator, 'language', {
@@ -68,8 +67,6 @@ describe('LanguageService', () => {
     stubLanguages(['pt-BR']);
     const service = TestBed.inject(LanguageService);
 
-    // The document attribute is written from an effect, which Angular schedules
-    // rather than running inline, so each assertion needs a flush.
     TestBed.tick();
     expect(document.documentElement.lang).toBe('pt-BR');
 

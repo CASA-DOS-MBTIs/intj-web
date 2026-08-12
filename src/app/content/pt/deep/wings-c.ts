@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 5w4 — O investigador excêntrico                                             */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_5W4_PT: VariantDeep = {
   lede:
     'Um 5 INTJ acumula conhecimento para não precisar de ninguém. Com asa 4, ele acumula para ' +
@@ -296,10 +292,6 @@ export const DEEP_5W4_PT: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 5w6 — O analista cauteloso                                                  */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_5W6_PT: VariantDeep = {
   lede:
@@ -602,10 +594,6 @@ export const DEEP_5W6_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 6w5 — O cético blindado                                                     */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_6W5_PT: VariantDeep = {
   lede:
     'O 6 quer uma autoridade em que possa confiar. A asa 5 resolve isso da forma mais radical ' +
@@ -890,10 +878,6 @@ export const DEEP_6W5_PT: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 6w7 — O pragmático inquieto                                                 */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_6W7_PT: VariantDeep = {
   lede:

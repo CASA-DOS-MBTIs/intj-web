@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 1w9 — The serene idealist                                                   */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_1W9_EN: VariantDeep = {
   lede:
     'Two angers and no door. The 1 and the 9 are neighbours in what Riso and Hudson call the ' +
@@ -306,10 +302,6 @@ export const DEEP_1W9_EN: VariantDeep = {
     'myers-1980-gifts',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 1w2 — The committed reformer                                                */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_1W2_EN: VariantDeep = {
   lede:
@@ -616,10 +608,6 @@ export const DEEP_1W2_EN: VariantDeep = {
     'myers-1980-gifts',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 2w1 — The principled servant                                                */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_2W1_EN: VariantDeep = {
   lede:
@@ -928,10 +916,6 @@ export const DEEP_2W1_EN: VariantDeep = {
     'myers-1980-gifts',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 2w3 — The visible benefactor                                                */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_2W3_EN: VariantDeep = {
   lede:

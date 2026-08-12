@@ -1,19 +1,5 @@
-/**
- * The long analysis of the first six temperament blends — the melancholic-led
- * and the choleric-led ones — shown in place of the general view once the
- * reader says which one is theirs.
- *
- * LaHaye's pre-scientific vocabulary (1984) laid over a Ni · Te · Fi · Se stack.
- * What changes from one blend to the next is not the engine: it is how fast it
- * decides, what leaves the head afterwards, and what is left for Fi.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* Melancholic–choleric                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_MELANCHOLIC_CHOLERIC_EN: VariantDeep = {
   lede:
@@ -277,10 +263,6 @@ export const DEEP_MELANCHOLIC_CHOLERIC_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* Melancholic–phlegmatic                                                      */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_MELANCHOLIC_PHLEGMATIC_EN: VariantDeep = {
   lede:
     'The decision exists. It was taken, it is good, and it is filed. In this blend Ni works with ' +
@@ -534,10 +516,6 @@ export const DEEP_MELANCHOLIC_PHLEGMATIC_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* Melancholic–sanguine                                                        */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_MELANCHOLIC_SANGUINE_EN: VariantDeep = {
   lede:
     'You are two people running one engine on different diaries, and neither of them is lying. ' +
@@ -783,10 +761,6 @@ export const DEEP_MELANCHOLIC_SANGUINE_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Choleric–melancholic                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_MELANCHOLIC_EN: VariantDeep = {
   lede:
@@ -1050,10 +1024,6 @@ export const DEEP_CHOLERIC_MELANCHOLIC_EN: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Choleric–phlegmatic                                                         */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_PHLEGMATIC_EN: VariantDeep = {
   lede:
@@ -1391,10 +1361,6 @@ export const DEEP_CHOLERIC_PHLEGMATIC_EN: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Choleric–sanguine                                                           */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_SANGUINE_EN: VariantDeep = {
   lede:

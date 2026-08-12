@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 5w4 — The eccentric investigator                                            */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_5W4_EN: VariantDeep = {
   lede:
     'A 5 INTJ hoards knowledge in order to need nobody. With a 4 wing, you hoard it in order to ' +
@@ -307,10 +303,6 @@ export const DEEP_5W4_EN: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 5w6 — The cautious analyst                                                  */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_5W6_EN: VariantDeep = {
   lede:
@@ -621,10 +613,6 @@ export const DEEP_5W6_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 6w5 — The armoured sceptic                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_6W5_EN: VariantDeep = {
   lede:
     'The 6 wants an authority it can trust. The 5 wing solves that in the most radical way ' +
@@ -910,10 +898,6 @@ export const DEEP_6W5_EN: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 6w7 — The restless pragmatist                                               */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_6W7_EN: VariantDeep = {
   lede:

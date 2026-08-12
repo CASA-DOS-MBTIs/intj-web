@@ -2,20 +2,6 @@ import type { Route, Routes } from '@angular/router';
 
 import { LANGS, type Lang } from './content/types';
 
-/**
- * Every page, without a language prefix.
- *
- * Slugs stay in Portuguese in both trees: one canonical slug per page means a
- * link shared across the language boundary still lands on the right article,
- * and the reader's language is decided by the prefix rather than by the noun.
- *
- * The deep pages sit under /alem-do-mbti/ because that overview is what sends
- * readers to them, and the nesting keeps that relationship legible in the URL.
- *
- * Built fresh per call rather than shared between the two trees: the router
- * annotates route objects as it loads them, and handing the same objects to two
- * parents makes one tree's bookkeeping visible to the other.
- */
 function pageRoutes(): Routes {
   return [
     {
@@ -102,7 +88,8 @@ function pageRoutes(): Routes {
       children: [
         {
           path: '',
-          loadComponent: () => import('./pages/alem-do-mbti/alem-do-mbti').then((m) => m.AlemDoMbti),
+          loadComponent: () =>
+            import('./pages/alem-do-mbti/alem-do-mbti').then((m) => m.AlemDoMbti),
         },
         {
           path: 'combinacoes',
@@ -146,20 +133,11 @@ function pageRoutes(): Routes {
   ];
 }
 
-/** One prefixed copy of the site per published language. */
 function languageTree(lang: Lang): Route {
   return { path: lang, data: { lang }, children: pageRoutes() };
 }
 
 export const routes: Routes = [
-  /**
-   * The language-neutral door. It carries the browser-language detection that
-   * used to run on every page, which is the one place that behaviour belongs
-   * now: everywhere else the address already names a language, and a redirect
-   * fired from a page a crawler is trying to index is a good way to lose it.
-   *
-   * `hreflang="x-default"` points here.
-   */
   {
     path: '',
     pathMatch: 'full',
@@ -168,12 +146,6 @@ export const routes: Routes = [
 
   ...LANGS.map(languageTree),
 
-  /**
-   * A real page rather than a redirect home. Pages serves it with a genuine 404
-   * status (see scripts/postbuild-pages.mjs), and answering an unknown URL with
-   * a 200 and the homepage is a soft 404 — it teaches search engines that every
-   * misspelling is a valid page.
-   */
   {
     path: '404',
     loadComponent: () => import('./pages/not-found/not-found').then((m) => m.NotFound),

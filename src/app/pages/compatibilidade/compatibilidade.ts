@@ -15,7 +15,6 @@ import {
   workingFor,
 } from '../../content/compatibility-model';
 
-/** Which column the list is ordered by. */
 type Axis = 'combined' | 'recognition' | 'complement' | 'livability';
 
 @Component({
@@ -36,16 +35,8 @@ export class Compatibilidade {
     width: 'min(700px, 90vw)',
   };
 
-  /**
-   * Every pairing with its three axes and its combined score, best first.
-   *
-   * A plain field rather than a computed: the figures come from the function
-   * stacks, which are the same in Portuguese and in English. Only the prose
-   * beside them changes with the language.
-   */
   protected readonly byCombined = rankedPairings();
 
-  /** Opens on the highest-scoring pairing rather than a hardcoded favourite. */
   private readonly chosen = signal<MbtiType>(this.byCombined[0].code);
 
   protected readonly selected = this.chosen.asReadonly();
@@ -53,13 +44,6 @@ export class Compatibilidade {
   protected readonly selectedAxes = computed(() => axesFor(this.chosen()));
   protected readonly selectedScore = computed(() => combinedScore(this.selectedAxes()));
 
-  /**
-   * The prose for each function pair, married to the figure that pair earned.
-   *
-   * The content carries one row more than the model does — the last one is the
-   * flat bonus for an extroverted dominant, which belongs to no function pair
-   * and so gets no figure of its own.
-   */
   protected readonly breakdownRows = computed(() => {
     const working = workingFor(this.chosen());
     return this.detail().breakdown.map((line, index) => ({
@@ -68,12 +52,6 @@ export class Compatibilidade {
     }));
   });
 
-  /**
-   * The combined column is the default, and the three axes stay available under
-   * it. Sorting by recognition alone still puts the mirror first — kept on
-   * purpose, because watching INTJ × INTJ top that one column and sit mid-table
-   * on the combined one explains the penalty better than the note does.
-   */
   protected readonly sortBy = signal<Axis>('combined');
 
   protected readonly axisOptions: readonly Axis[] = [

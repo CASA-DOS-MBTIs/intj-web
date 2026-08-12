@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 7w6 — INTJ                                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_7W6_PT: VariantDeep = {
   lede:
     'Você é a versão do 7 que tem alguém a quem responder. A asa 6 não reduz o apetite do INTJ 7 ' +
@@ -275,10 +271,6 @@ export const DEEP_7W6_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 7w8 — INTJ                                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_7W8_PT: VariantDeep = {
   lede:
     'A asa 8 arma o apetite. O INTJ 7 já era uma contradição — uma intuição que converge servindo ' +
@@ -538,10 +530,6 @@ export const DEEP_7W8_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 8w7 — INTJ                                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_8W7_PT: VariantDeep = {
   lede:
     'A asa 7 dá ao 8 uma razão para não parar no próprio quintal. O INTJ 8 já usa Ni como radar de ' +
@@ -797,10 +785,6 @@ export const DEEP_8W7_PT: VariantDeep = {
     'jung-1921',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 8w9 — INTJ                                                                  */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_8W9_PT: VariantDeep = {
   lede:

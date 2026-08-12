@@ -40,9 +40,6 @@
   }
 }
 
-// The bar is a label/button pair: side by side it leaves the hint about 120px of
-// line, so below $bp-sm it stacks and the button spans the row as a touch target.
-// Trimming the panel padding buys width back for the profile panel inside it.
 @include below($bp-sm) {
   .lens__bar {
     flex-direction: column;

@@ -4,13 +4,6 @@ import { LanguageService } from '../../core/language.service';
 import { ProfileService, type ProfileFacet } from '../../core/profile.service';
 import { ProfilePanel } from '../profile-panel/profile-panel';
 
-/**
- * The in-page control that narrows a page to the reader's own variant.
- *
- * It lives on the page rather than in the header for the same reason it is only
- * rendered on pages that use it: the offer should appear exactly where it pays
- * off, next to the thing it will change, and nowhere else.
- */
 @Component({
   selector: 'app-profile-lens',
   imports: [ProfilePanel],
@@ -26,7 +19,6 @@ export class ProfileLens {
   protected readonly copy = computed(() => this.language.content().profile);
   protected readonly open = signal(false);
 
-  /** Whether the reader has set anything this page actually reads. */
   protected readonly isSet = computed(() => {
     const profile = this.profiles.profile();
     return this.facets().some((facet) => profile[facet] !== null);

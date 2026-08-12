@@ -1,23 +1,5 @@
-/**
- * Tritypes 125, 126, 127, 135, 136, 137, 145, 146 and 147 — the full analysis
- * of each archetype, shown only once the reader says “this one is me”.
- *
- * All nine share the same gut type: the 1. What changes is which fixation feeds
- * Ni (5, 6 or 7) and which heart fixation is left without language (2, 3 or 4).
- *
- * Tritype® is Katherine Chernick Fauvre’s model and trademark, and it has no
- * peer-reviewed base: the systematic review by Hook and colleagues (2021) swept
- * 104 research samples on the enneagram and found not one study of the
- * three-fixation model. Crossing it with the Ni · Te · Fi · Se stack, in the
- * developmental order proposed by Grant (1983), is a reading — not a finding.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* 125 — The Mentor                                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T125_EN: VariantDeep = {
   lede:
@@ -255,10 +237,6 @@ export const DEEP_T125_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 126 — The Supporter                                                         */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T126_EN: VariantDeep = {
   lede:
     'Three fixations organised around responsibility, sitting on an engine that decides alone. ' +
@@ -491,10 +469,6 @@ export const DEEP_T126_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 127 — The Teacher                                                           */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T127_EN: VariantDeep = {
   lede:
     'This is the INTJ who talks. The 7 stops Ni closing — instead of one inevitable line of ' +
@@ -709,10 +683,6 @@ export const DEEP_T127_EN: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 135 — The Technical Expert                                                  */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T135_EN: VariantDeep = {
   lede:
@@ -953,10 +923,6 @@ export const DEEP_T135_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 136 — The Taskmaster                                                        */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T136_EN: VariantDeep = {
   lede:
     'You become an institution single-handed. The 6 aims Ni at the collapse and hits it with a ' +
@@ -1184,10 +1150,6 @@ export const DEEP_T136_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 137 — The Systems Builder                                                   */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T137_EN: VariantDeep = {
   lede:
     'Probably the most outwardly successful tritype an INTJ can carry, and the hardest to slow ' +
@@ -1411,10 +1373,6 @@ export const DEEP_T137_EN: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 145 — The Researcher                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T145_EN: VariantDeep = {
   lede:
@@ -1646,10 +1604,6 @@ export const DEEP_T145_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 146 — The Philosopher                                                       */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T146_EN: VariantDeep = {
   lede:
     'This is the tritype that sabotages the INTJ’s certainty, and that is half gift, half curse. ' +
@@ -1875,10 +1829,6 @@ export const DEEP_T146_EN: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 147 — The Visionary                                                         */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T147_EN: VariantDeep = {
   lede:

@@ -1,16 +1,5 @@
 @use 'tokens' as *;
 
-/* -- Shared faces -----------------------------------------------------------
-
-   Seven headings on this page take the editorial serif and three labels take
-   the mono face. Written per-rule — which is what `@include serif` and
-   `@include mono-label` do — the full font stack was emitted eight and three
-   times over, and the stacks are the longest values in the file. Extending a
-   placeholder ships each stack exactly once, as a grouped selector, without
-   moving a single declaration off the element that owns it. The per-element
-   size and tracking stay where they were.
-   -------------------------------------------------------------------------- */
-
 %serif-face {
   font-family: $font-serif;
   font-weight: 400;
@@ -20,8 +9,6 @@
   font-family: $font-mono;
 }
 
-/* Both hero overlays are the same centred circle pinned to the middle of the
-   section; only the size, the paint and the motion differ. */
 %hero-overlay {
   position: absolute;
   left: 50%;
@@ -29,8 +16,6 @@
   border-radius: 50%;
   pointer-events: none;
 }
-
-/* -- Hero ------------------------------------------------------------------ */
 
 .hero {
   position: relative;
@@ -73,11 +58,6 @@
     }
   }
 
-  /* `.hero` already carries the gutter, so what this wants from `shell` is the
-     centred 1200px column and nothing else. `@include shell` emitted the 28px
-     padding-inline purely so the next line could reset it to 0; spelling the
-     two surviving declarations out drops both. `width: 100%` is not optional —
-     this is a flex item, so `auto` would size it to its content. */
   &__inner {
     position: relative;
     max-width: $shell-max;
@@ -113,8 +93,6 @@
     animation: rise 1.1s 0.18s both;
   }
 
-  /* Deliberately not %serif-face: the italic subtitle keeps the body's 300
-     weight, and inheriting 400 here would thicken it. */
   &__subtitle {
     font-family: $font-serif;
     font-style: italic;
@@ -149,8 +127,6 @@
     animation: rise 1.1s 0.38s both;
   }
 }
-
-/* -- Stats band ------------------------------------------------------------ */
 
 .stats {
   border-block: var(--hair);
@@ -189,8 +165,6 @@
   }
 }
 
-/* -- Portrait -------------------------------------------------------------- */
-
 .portrait {
   padding-block: 120px;
 
@@ -218,8 +192,6 @@
   }
 }
 
-/* -- Traits ---------------------------------------------------------------- */
-
 .traits {
   padding: 0 $shell-pad 120px;
 
@@ -242,8 +214,6 @@
 .traits .card {
   padding: 34px 28px;
 }
-
-/* -- Site map -------------------------------------------------------------- */
 
 .map {
   padding-block: 110px;
@@ -273,9 +243,6 @@
       border-color 0.25s,
       background 0.25s;
 
-    /* No `color` here: the card is an <a>, and this rule's own `color` already
-       outranks the global `a:hover` — so the text is var(--fg) hovered or not,
-       and restating it changed nothing. */
     &:hover {
       border-color: var(--accent);
       background: var(--panel);
@@ -290,8 +257,6 @@
     margin: 16px 0 10px;
   }
 }
-
-/* -- Quote ----------------------------------------------------------------- */
 
 .quote {
   padding-block: 130px;
@@ -320,8 +285,6 @@
     text-wrap: pretty;
   }
 }
-
-/* -- Disclaimer ------------------------------------------------------------ */
 
 .disclaimer {
   padding: 0 $shell-pad 130px;
@@ -352,19 +315,6 @@
 }
 
 @include below($bp-sm) {
-  /* Two reasons, one declaration — so they share a rule rather than shipping
-     `grid-template-columns: 1fr` twice.
-
-     .stats__grid: auto-fit still fits two 210px cells at ~480px, but the
-     stacked treatment below trades the vertical dividers for horizontal ones —
-     a surviving pair would sit side by side with no rule and no gap between
-     them.
-
-     The rest: `.section` and `.shell` each add a 28px gutter, so a 360px screen
-     leaves roughly 248px of column — under every minimum below. auto-fit drops
-     to one track but still honours that floor, so the track, not the page,
-     wins and the layout overflows sideways. An explicit single track is the
-     only way out of the floor. */
   .stats__grid,
   .portrait__grid,
   .traits__grid,
@@ -383,8 +333,6 @@
     }
   }
 
-  /* A 56px gutter reads as generous between columns and as a gap in the
-     argument once the two halves are stacked. */
   .portrait__grid {
     gap: 28px;
   }

@@ -1,42 +1,20 @@
 @use 'tokens' as *;
 
-/* -- Shared shapes ---------------------------------------------------------
-
-   Three groups of declarations were being written out three and two times
-   over. Placeholders emit each group once as a grouped selector, so the rules
-   below only have to say what is different about them. No design decision
-   lives up here.
-
-   The serif headings take the `font` shorthand instead: @include serif()
-   expands to family + weight + size + line-height, which is exactly what the
-   shorthand carries, and every one of them states weight 400 outright.
-
-   The two runs that inherit the body's 300 — .stack__note in mono and
-   .detail__motto in serif — stay longhand. The shorthand would reset their
-   weight to 400, and only an invented `300`, duplicating the body's, could
-   put it back.
-   -------------------------------------------------------------------------- */
-
-/* A row whose children hang off one shared baseline. */
 %baseline-row {
   display: flex;
   align-items: baseline;
 }
 
-/* The 10px vertical stack used by the picker column and the sign list. */
 %stack-10 {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* A heading demoted to a kicker: no bold, no block margin. */
 %kicker {
   font-weight: inherit;
   margin: 0;
 }
-
-/* -- Interactive stack ----------------------------------------------------- */
 
 .stack {
   padding: 80px $shell-pad 40px;
@@ -53,10 +31,6 @@
     @extend %stack-10;
   }
 
-  /* Explains what the strength bars mean; deliberately quiet.
-     Written out rather than @include mono-label(), because the mixin's
-     `text-transform: uppercase` existed only to be switched off again on the
-     next line — two declarations to reach the value the label inherits. */
   &__note {
     font-family: $font-mono;
     font-size: 10.5px;
@@ -66,8 +40,6 @@
     margin: 10px 0 0;
   }
 }
-
-/* -- One function button --------------------------------------------------- */
 
 .fn {
   display: block;
@@ -83,8 +55,6 @@
     background 0.25s,
     border-color 0.25s;
 
-  /* Hovering and being selected light the same edge; only the selected
-     button also lifts its surface. */
   &:hover,
   &--active {
     border-color: var(--accent);
@@ -120,9 +90,6 @@
     font-weight: 400;
   }
 
-  /* The template also puts .label on this span, and that already supplies the
-     mono family and the uppercasing. Only the tighter size and tracking are
-     particular to the button, so only those are stated here. */
   &__pos {
     font-size: 10px;
     letter-spacing: 0.16em;
@@ -153,8 +120,6 @@
   }
 }
 
-/* -- Detail panel ---------------------------------------------------------- */
-
 .detail {
   @include card(var(--bg2), 38px 34px);
   min-height: 520px;
@@ -179,9 +144,6 @@
     margin: 6px 0 0;
   }
 
-  /* The motto is the one serif run that keeps the body's light weight, so it
-     takes the family on its own instead of joining %serif-400. Its colour is
-     the inherited --fg and is left unsaid. */
   &__motto {
     font-family: $font-serif;
     font-style: italic;
@@ -206,7 +168,6 @@
     border-top: var(--hair);
   }
 
-  /* The panel's kickers are headings, so their weight and margins need resetting. */
   &__label {
     @extend %kicker;
   }
@@ -252,8 +213,6 @@
   }
 }
 
-/* -- Ni–Te axis ------------------------------------------------------------ */
-
 .axis {
   margin-top: 40px;
 
@@ -266,8 +225,6 @@
     margin-top: 40px;
   }
 }
-
-/* -- From the inside ------------------------------------------------------- */
 
 .inside {
   padding-block: 110px;
@@ -310,20 +267,12 @@
     padding: 28px 22px;
   }
 
-  /* Abbreviation, name and position share one `space-between` line. The
-     position is `nowrap` by design, the names are long ("Intuição
-     introvertida"), and the button leaves them ~200px to share — so the row
-     spills instead of balancing. Stacked, each side gets the full width and
-     the `nowrap` stays harmless. */
   .fn__head {
     flex-direction: column;
     align-items: flex-start;
     gap: 6px;
   }
 
-  /* Nested gutters — section, shell, then the card's own padding — leave less
-     room than these auto-fit minimums, and a lone auto-fit track keeps its
-     floor rather than shrinking, pushing the page sideways. */
   .detail__pair,
   .axis__grid,
   .inside__grid {

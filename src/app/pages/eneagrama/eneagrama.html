@@ -16,15 +16,9 @@
 </section>
 
 @if (f) {
-  <!-- Narrowed to the reader's own wing: the other seventeen are gone on purpose. -->
   <section class="section section--tinted section--bordered focused">
     <div class="shell">
-      <app-variant-focus
-        [deep]="f.deep"
-        [labels]="c.focus"
-        [title]="f.title"
-        (widened)="widen()"
-      />
+      <app-variant-focus [deep]="f.deep" [labels]="c.focus" [title]="f.title" (widened)="widen()" />
     </div>
   </section>
 } @else {

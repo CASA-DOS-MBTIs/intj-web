@@ -24,13 +24,6 @@ export class Genero {
     width: 'min(680px, 90vw)',
   };
 
-  /**
-   * Which side is open. Deliberately not tied to the reader's profile: both
-   * sides describe the same type and differ only in how the world responds to
-   * it, so pre-selecting one would hide half the point while changing none of
-   * the text — which is exactly the kind of empty personalisation this site
-   * decided not to offer.
-   */
   private readonly chosen = signal<GenderKey>('man');
 
   protected readonly selected = this.chosen.asReadonly();

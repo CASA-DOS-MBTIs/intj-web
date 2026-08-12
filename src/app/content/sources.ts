@@ -1,47 +1,15 @@
-/**
- * The site's bibliography.
- *
- * Bibliographic data is language-neutral — an author and a year do not get
- * translated — so there is one registry rather than one per locale. Content
- * files cite entries by id; `SourceId` is derived from this object, so a typo in
- * a citation is a compile error and an unused work is visible here.
- *
- * `kind` matters as much as the citation itself. The site draws on several very
- * different kinds of authority, and blurring them is how a page ends up
- * claiming that "MBTI says" something that in fact comes from a commercial
- * questionnaire, a 2nd-century physician, or a self-selected online poll.
- */
-
 export type SourceKind =
-  /** Jung's own work. */
-  | 'jung'
-  /** Official MBTI instruments, manuals, and the publisher's own statements. */
-  | 'mbti'
-  /** Peer-reviewed academic psychology. */
-  | 'academic'
-  /** A named commercial or school-specific model (Keirsey, NERIS, Enneagram schools). */
-  | 'model'
-  /** Published criticism of the instruments. */
-  | 'critique'
-  /** Antiquity and its scholarship — historical context, not evidence. */
-  | 'classical'
-  /** Self-selected online polling. Describes who answered, never a base rate. */
-  | 'survey'
-  /** Health authorities and crisis services. */
-  | 'clinical';
+  'jung' | 'mbti' | 'academic' | 'model' | 'critique' | 'classical' | 'survey' | 'clinical';
 
 export interface Source {
   author: string;
   year: string;
   title: string;
-  /** Publisher, or journal with volume and pages. */
   detail: string;
   kind: SourceKind;
 }
 
 export const SOURCES = {
-  /* -- Jung ---------------------------------------------------------------- */
-
   'jung-1921': {
     author: 'Jung, C. G.',
     year: '1921',
@@ -56,8 +24,6 @@ export const SOURCES = {
     detail: 'Spring Publications',
     kind: 'jung',
   },
-
-  /* -- Official MBTI ------------------------------------------------------- */
 
   'myers-1980-gifts': {
     author: 'Myers, I. B., & Myers, P. B.',
@@ -155,8 +121,6 @@ export const SOURCES = {
     detail: 'Consulting Psychologists Press',
     kind: 'mbti',
   },
-
-  /* -- Peer-reviewed ------------------------------------------------------- */
 
   'mccrae-costa-1989': {
     author: 'McCrae, R. R., & Costa, P. T.',
@@ -424,8 +388,6 @@ export const SOURCES = {
     kind: 'academic',
   },
 
-  /* -- Named models -------------------------------------------------------- */
-
   'marston-1928': {
     author: 'Marston, W. M.',
     year: '1928',
@@ -574,8 +536,6 @@ export const SOURCES = {
     kind: 'model',
   },
 
-  /* -- Classical ----------------------------------------------------------- */
-
   'hippocrates-c400bc': {
     author: 'Hipócrates (atrib. Pólibo de Cós)',
     year: 'c. 400 a.C.',
@@ -601,8 +561,6 @@ export const SOURCES = {
       'G. Leroux, McGill-Queen’s UP, 2019 — não é reimpressão, e a paginação não corresponde',
     kind: 'classical',
   },
-
-  /* -- Criticism ----------------------------------------------------------- */
 
   'pittenger-1993': {
     author: 'Pittenger, D. J.',
@@ -672,8 +630,6 @@ export const SOURCES = {
     kind: 'critique',
   },
 
-  /* -- Surveys ------------------------------------------------------------- */
-
   'enneagram-personality-2026': {
     author: 'Enneagram Personality',
     year: '2026',
@@ -685,8 +641,6 @@ export const SOURCES = {
       'descartadas (tipo principal >6% acima do segundo), o que infla as correlações',
     kind: 'survey',
   },
-
-  /* -- Clinical and institutional ------------------------------------------ */
 
   'who-2019-icd11-burnout': {
     author: 'Organização Mundial da Saúde',
@@ -745,11 +699,6 @@ export type SourceId = keyof typeof SOURCES;
 
 export const SOURCE_IDS = Object.keys(SOURCES) as SourceId[];
 
-/**
- * How much weight each kind of authority carries, heaviest first. Drives the
- * ordering of a references block so peer-reviewed work is not buried under a
- * commercial model that happens to start with an earlier letter.
- */
 const KIND_RANK: Record<SourceKind, number> = {
   academic: 0,
   clinical: 1,
@@ -761,7 +710,6 @@ const KIND_RANK: Record<SourceKind, number> = {
   survey: 7,
 };
 
-/** Resolve, de-duplicate and order a set of citations for a references block. */
 export function resolveSources(ids: readonly SourceId[]): (Source & { id: SourceId })[] {
   return [...new Set(ids)]
     .map((id) => ({ id, ...SOURCES[id] }))

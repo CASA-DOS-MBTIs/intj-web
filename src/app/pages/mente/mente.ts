@@ -18,7 +18,6 @@ import { MENTE_PT } from '../../content/pt/mente';
 export class Mente {
   protected readonly page = usePageContent({ pt: MENTE_PT, en: MENTE_EN });
 
-  /** Index of the function whose detail panel is on screen. */
   protected readonly selected = signal(0);
 
   protected readonly current = computed(() => this.page().functions[this.selected()]);

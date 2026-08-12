@@ -88,8 +88,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
   allLabel: 'Everything',
 
   entries: [
-    /* -- Jung -------------------------------------------------------------- */
-
     {
       term: 'Cognitive function',
       system: 'Jung',
@@ -194,8 +192,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['jung-1921', 'von-franz-1971'],
     },
 
-    /* -- MBTI -------------------------------------------------------------- */
-
     {
       term: 'Type',
       system: 'MBTI',
@@ -247,8 +243,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
         'cut-point, not nature.',
       sources: ['myers-1998-manual', 'mbf-basics', 'bess-harvey-2002'],
     },
-
-    /* -- Type dynamics ----------------------------------------------------- */
 
     {
       term: 'Type dynamics',
@@ -381,8 +375,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['beebe-2017', 'reynierse-2009'],
     },
 
-    /* -- Community --------------------------------------------------------- */
-
     {
       term: 'Loop',
       system: 'Community',
@@ -403,8 +395,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
         'manual says it.',
       sources: ['jung-1921', 'myers-1980-gifts', 'myers-1998-manual', 'mbf-type-dynamics'],
     },
-
-    /* -- Enneagram --------------------------------------------------------- */
 
     {
       term: 'Enneatype',
@@ -541,8 +531,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['naranjo-1994', 'chestnut-2013'],
     },
 
-    /* -- Temperaments ------------------------------------------------------ */
-
     {
       term: 'Temperament',
       system: 'Temperaments',
@@ -634,8 +622,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['galen-c170', 'lahaye-1984', 'littauer-1983', 'klibansky-1964'],
     },
 
-    /* -- Big Five ---------------------------------------------------------- */
-
     {
       term: 'Big Five',
       system: 'Big Five',
@@ -690,8 +676,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['mccrae-costa-1989', 'costa-mccrae-1992', 'myers-1998-manual'],
     },
 
-    /* -- NERIS ------------------------------------------------------------- */
-
     {
       term: 'A/T identity',
       system: 'NERIS',
@@ -711,8 +695,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
         'INTJ one. It is a guess about your position on the ruler your four letters never had.',
       sources: ['neris-our-theory', 'mccrae-costa-1989', 'costa-mccrae-1992', 'myers-1998-manual'],
     },
-
-    /* -- Socionics --------------------------------------------------------- */
 
     {
       term: 'Socionics',
@@ -751,8 +733,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
       sources: ['augustinaviciute-1998', 'wikisocion-ili'],
     },
 
-    /* -- DISC -------------------------------------------------------------- */
-
     {
       term: 'DISC',
       system: 'DISC',
@@ -771,8 +751,6 @@ export const GLOSSARIO_EN: GlossaryContent = {
         'which is where nearly all of your social problem lives.',
       sources: ['marston-1928', 'kim-2025-mbti-disc', 'pittenger-2005'],
     },
-
-    /* -- Criticism --------------------------------------------------------- */
 
     {
       term: 'Test–retest reliability',

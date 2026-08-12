@@ -18,7 +18,6 @@ import { LUZ_E_SOMBRA_PT } from '../../content/pt/luz-e-sombra';
 export class LuzESombra {
   protected readonly page = usePageContent({ pt: LUZ_E_SOMBRA_PT, en: LUZ_E_SOMBRA_EN });
 
-  /** The design drops this page's bloom low and left, behind the headline. */
   protected readonly bloom: BloomPosition = {
     bottom: '-60%',
     left: '20%',

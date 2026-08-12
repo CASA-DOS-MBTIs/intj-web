@@ -1,12 +1,5 @@
 import type { ProfileContent } from '../types';
 
-/**
- * Rótulos da lente de perfil.
- *
- * Os nomes dos 27 tritipos são os arquétipos de Katherine Fauvre, traduzidos; as
- * chaves ficam em ordem crescente de dígito porque é assim que o conteúdo é
- * escrito, não porque seja assim que alguém descreve o próprio tritipo.
- */
 export const PROFILE_PT: ProfileContent = {
   title: 'Qual INTJ é você',
 

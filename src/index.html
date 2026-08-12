@@ -1,98 +1,63 @@
 <!doctype html>
 <html lang="pt-BR">
-<head>
-  <meta charset="utf-8">
-  <!--
-    Placeholders. Every route is prerendered, and the render writes its own
-    title, description, canonical, hreflang set, social tags and structured
-    data over these (see src/app/core/seo.ts) — so what ships in each document
-    is that page's, not this one's. These are what a route would fall back to
-    if it somehow rendered without them.
-  -->
-  <title>INTJ — o retrato completo</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Um retrato honesto do tipo INTJ: pilha cognitiva, forças e sombras, trabalho, vínculos e crescimento.">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#1a1b22">
+  <head>
+    <meta charset="utf-8" />
+    <title>INTJ — o retrato completo</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Um retrato honesto do tipo INTJ: pilha cognitiva, forças e sombras, trabalho, vínculos e crescimento."
+    />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#1a1b22" />
 
-  <!--
-    Stated rather than left to the browser default. Following a link out to the
-    author's portfolio or to the community page hands over the origin and
-    nothing more — never the path, so which page of this site somebody was
-    reading when they left is not something the other end gets told.
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
 
-    The Content-Security-Policy is not here: it is assembled per document by
-    scripts/postbuild-pages.mjs, because it carries the hash of each inline
-    script in that document.
-  -->
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-
-  <!--
-    The mark alone — the four bars, no wordmark. The full lockup is 210×62 and
-    letterboxes into nothing at 16 px; the bars survive the shrink.
-
-    Declared .ico first and .svg second on purpose: browsers that understand SVG
-    icons prefer the later declaration and get the vector, which follows the
-    reader's colour scheme; everything else, Safari included, stops at the .ico.
-    The bitmap carries a plate because it cannot adapt.
-  -->
-  <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48">
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-  <!-- Webfonts are self-hosted and bundled through styles.scss. The page makes
-       no third-party requests, so there is nothing to preconnect to. -->
-</head>
-<body>
-  <!--
-    Shown only when scripts are blocked.
-
-    Every route is prerendered, so the prose is already in the document and a
-    reader with JavaScript off loses navigation affordances, not content. This
-    block says which ones, and points at the footer index, which is plain links
-    and survives.
-
-    Written to read with no CSS at all — plain paragraphs, emphasis carried by
-    `strong` and `em` rather than by any rule. That is the requirement that
-    actually matters: a reader who has blocked stylesheets is exactly the reader
-    who needs this text, and NoScript enforces its CSS restriction with
-    `style-src 'none'`, which takes inline `style` attributes down with the
-    stylesheet. So the attributes below are a nicety for the case where CSS is
-    permitted but the sheet failed to arrive, not a guarantee.
-
-    Literal colours because the custom properties live in that same sheet. The
-    CSP permits inline style (`style-src 'self' 'unsafe-inline'`, assembled in
-    scripts/postbuild-pages.mjs), and no `on*` handler appears here, so the
-    policy's hash set is unaffected.
-  -->
-  <noscript>
-    <div style="max-width:44rem;margin:0 auto;padding:1.5rem 1.25rem;font-family:system-ui,sans-serif;line-height:1.55;color:#e8e6e1;background:#1a1b22;border-bottom:1px solid #3a3b45">
-      <p lang="pt-BR" style="margin:0 0 .5rem">
-        <strong>Este site funciona sem JavaScript.</strong> Todo o texto é pré-renderizado — a
-        página que você abriu já está inteira aqui. Sem scripts ficam de fora os menus
-        <em>Vida</em> e <em>Além do MBTI</em>, o botão de menu no celular, o questionário
-        Espelho e a adaptação das páginas ao seu perfil. O índice completo continua no rodapé,
-        em links comuns.
-      </p>
-      <p lang="pt-BR" style="margin:0 0 1rem">
-        Se você usa NoScript ou equivalente: libere também <strong>CSS</strong> para este
-        domínio, senão a formatação some por completo, e <strong>fontes</strong> se quiser a
-        tipografia como foi desenhada. Ambas são servidas daqui — o site não busca nada de fora,
-        não tem analytics, rastreador nem CDN.
-      </p>
-      <p lang="en" style="margin:0 0 .5rem">
-        <strong>This site works without JavaScript.</strong> Every page is prerendered — the one
-        you opened is already here in full. What scripts do carry: the <em>Vida</em> and
-        <em>Além do MBTI</em> dropdowns, the mobile menu button, the Mirror questionnaire and
-        the per-profile adaptation. The full index is still in the footer, as ordinary links.
-      </p>
-      <p lang="en" style="margin:0">
-        If you run NoScript or similar: allow <strong>CSS</strong> for this domain too, or the
-        formatting disappears entirely, and <strong>fonts</strong> if you want the typography as
-        designed. Both are served from here — the site fetches nothing from anywhere else, and
-        carries no analytics, trackers or CDN.
-      </p>
-    </div>
-  </noscript>
-  <app-root></app-root>
-</body>
+    <link rel="icon" href="favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  </head>
+  <body>
+    <noscript>
+      <div
+        style="
+          max-width: 44rem;
+          margin: 0 auto;
+          padding: 1.5rem 1.25rem;
+          font-family: system-ui, sans-serif;
+          line-height: 1.55;
+          color: #e8e6e1;
+          background: #1a1b22;
+          border-bottom: 1px solid #3a3b45;
+        "
+      >
+        <p lang="pt-BR" style="margin: 0 0 0.5rem">
+          <strong>Este site funciona sem JavaScript.</strong> Todo o texto é pré-renderizado — a
+          página que você abriu já está inteira aqui. Sem scripts ficam de fora os menus
+          <em>Vida</em> e <em>Além do MBTI</em>, o botão de menu no celular, o questionário Espelho
+          e a adaptação das páginas ao seu perfil. O índice completo continua no rodapé, em links
+          comuns.
+        </p>
+        <p lang="pt-BR" style="margin: 0 0 1rem">
+          Se você usa NoScript ou equivalente: libere também <strong>CSS</strong> para este domínio,
+          senão a formatação some por completo, e <strong>fontes</strong> se quiser a tipografia
+          como foi desenhada. Ambas são servidas daqui — o site não busca nada de fora, não tem
+          analytics, rastreador nem CDN.
+        </p>
+        <p lang="en" style="margin: 0 0 0.5rem">
+          <strong>This site works without JavaScript.</strong> Every page is prerendered — the one
+          you opened is already here in full. What scripts do carry: the <em>Vida</em> and
+          <em>Além do MBTI</em> dropdowns, the mobile menu button, the Mirror questionnaire and the
+          per-profile adaptation. The full index is still in the footer, as ordinary links.
+        </p>
+        <p lang="en" style="margin: 0">
+          If you run NoScript or similar: allow <strong>CSS</strong> for this domain too, or the
+          formatting disappears entirely, and <strong>fonts</strong> if you want the typography as
+          designed. Both are served from here — the site fetches nothing from anywhere else, and
+          carries no analytics, trackers or CDN.
+        </p>
+      </div>
+    </noscript>
+    <app-root></app-root>
+  </body>
 </html>

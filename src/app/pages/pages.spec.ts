@@ -102,11 +102,6 @@ import { Trabalho } from './trabalho/trabalho';
 import { Tritipos } from './tritipos/tritipos';
 import { Vinculos } from './vinculos/vinculos';
 
-/**
- * Each page paired with a string per language that only appears if its copy
- * actually reached the DOM. Eyebrows are used rather than titles because titles
- * carry the design's "\n" line break, which survives into textContent.
- */
 const PAGES: { name: string; type: Type<unknown>; markers: Record<Lang, string> }[] = [
   {
     name: 'home',
@@ -281,11 +276,32 @@ describe('pages', () => {
 
   it('gives every page a bibliography', () => {
     const bundles = [
-      HOME_PT, MENTE_PT, LUZ_E_SOMBRA_PT, TRABALHO_PT, VINCULOS_PT, JORNADA_PT,
-      ALEM_DO_MBTI_PT, COMPARACOES_PT, ESPELHO_PT, GENERO_PT, ENEAGRAMA_PT,
-      TRITIPOS_PT, TEMPERAMENTOS_PT, SUBTIPOS_PT, BIG_FIVE_PT, SOCIONICS_PT,
-      DISC_PT, JUNG_PT, COMBINACOES_PT, COMPATIBILIDADE_PT, AMIZADES_PT,
-      FAMILIA_PT, INFANCIA_PT, SAUDE_PT, GLOSSARIO_PT, PARA_QUEM_AMA_PT,
+      HOME_PT,
+      MENTE_PT,
+      LUZ_E_SOMBRA_PT,
+      TRABALHO_PT,
+      VINCULOS_PT,
+      JORNADA_PT,
+      ALEM_DO_MBTI_PT,
+      COMPARACOES_PT,
+      ESPELHO_PT,
+      GENERO_PT,
+      ENEAGRAMA_PT,
+      TRITIPOS_PT,
+      TEMPERAMENTOS_PT,
+      SUBTIPOS_PT,
+      BIG_FIVE_PT,
+      SOCIONICS_PT,
+      DISC_PT,
+      JUNG_PT,
+      COMBINACOES_PT,
+      COMPATIBILIDADE_PT,
+      AMIZADES_PT,
+      FAMILIA_PT,
+      INFANCIA_PT,
+      SAUDE_PT,
+      GLOSSARIO_PT,
+      PARA_QUEM_AMA_PT,
       O_QUE_NINGUEM_DIZ_PT,
     ];
 
@@ -297,8 +313,14 @@ describe('pages', () => {
   it('cites only works that exist in the registry', () => {
     const known = new Set<string>(SOURCE_IDS);
     const bundles = [
-      HOME_PT, MENTE_PT, LUZ_E_SOMBRA_PT, COMPATIBILIDADE_PT, COMBINACOES_PT,
-      SAUDE_PT, GLOSSARIO_PT, GENERO_PT,
+      HOME_PT,
+      MENTE_PT,
+      LUZ_E_SOMBRA_PT,
+      COMPATIBILIDADE_PT,
+      COMBINACOES_PT,
+      SAUDE_PT,
+      GLOSSARIO_PT,
+      GENERO_PT,
     ];
 
     for (const bundle of bundles) {
@@ -310,7 +332,6 @@ describe('pages', () => {
 });
 
 describe('focused analysis', () => {
-  /** Every variant a reader can name must have somewhere to go. */
   const CASES = [
     { name: 'wings', keys: WING_KEYS, get: (k: string) => ENEAGRAMA_PT.wings[k as never] },
     { name: 'tritypes', keys: TRITYPE_KEYS, get: (k: string) => TRITIPOS_PT.tritypes[k as never] },
@@ -319,7 +340,11 @@ describe('focused analysis', () => {
       keys: TEMPERAMENT_PAIR_KEYS,
       get: (k: string) => TEMPERAMENTOS_PT.blends[k as never],
     },
-    { name: 'instincts', keys: INSTINCT_KEYS, get: (k: string) => SUBTIPOS_PT.instincts[k as never] },
+    {
+      name: 'instincts',
+      keys: INSTINCT_KEYS,
+      get: (k: string) => SUBTIPOS_PT.instincts[k as never],
+    },
   ];
 
   for (const group of CASES) {
@@ -335,14 +360,9 @@ describe('focused analysis', () => {
   }
 
   it('goes deeper than the general view it replaces', () => {
-    // The focused view is the payoff for setting a profile; if it were not
-    // substantially longer than the summary it replaces, the feature would be
-    // a navigation change dressed up as an analysis.
     for (const key of WING_KEYS) {
       const wing = ENEAGRAMA_PT.wings[key];
-      const deepLength = wing.deep.sections
-        .flatMap((s) => s.paragraphs)
-        .join(' ').length;
+      const deepLength = wing.deep.sections.flatMap((s) => s.paragraphs).join(' ').length;
       expect(deepLength).toBeGreaterThan(wing.text.length * 3);
     }
   });
@@ -366,14 +386,12 @@ describe('profile scope', () => {
     expect(facetsForUrl(PAGE_PATH['eneagrama'])).toContain('wing');
     expect(facetsForUrl(PAGE_PATH['temperamentos'])).toContain('temperament');
 
-    // The pages the reader would otherwise be invited to configure for nothing.
     expect(facetsForUrl(PAGE_PATH['genero'])).toHaveLength(0);
     expect(facetsForUrl(PAGE_PATH['home'])).toHaveLength(0);
     expect(facetsForUrl(PAGE_PATH['saude'])).toHaveLength(0);
   });
 
   it('does not let the overview path swallow its own children', () => {
-    // /alem-do-mbti is a prefix of /alem-do-mbti/tritipos; matching must be exact.
     expect(facetsForUrl(PAGE_PATH['alem-do-mbti'])).toHaveLength(0);
     expect(facetsForUrl(PAGE_PATH['tritipos'])).toContain('tritype');
   });
@@ -401,9 +419,6 @@ describe('compatibility index', () => {
   });
 
   it('carries no arithmetic in the prose, which is what let it drift', () => {
-    // Every figure on this page is computed. A digit in a breakdown note is a
-    // hardcoded claim that will quietly contradict the formula the next time a
-    // weight moves — which is exactly what happened to the previous version.
     for (const bundle of [COMPATIBILIDADE_PT, COMPATIBILIDADE_EN]) {
       for (const entry of Object.values(bundle.types)) {
         for (const line of entry.breakdown) {
@@ -417,9 +432,6 @@ describe('compatibility index', () => {
     const ranked = rankedPairings();
     const byRecognition = [...ranked].sort((a, b) => b.axes.recognition - a.axes.recognition);
 
-    // An INTJ understands another INTJ effortlessly, is supplied nothing by
-    // them, and shares every preference. Two of those three read as a perfect
-    // match, which is why the third axis and the imbalance penalty exist.
     expect(byRecognition[0].code).toBe('INTJ');
     expect(axesFor('INTJ').complement).toBeLessThan(20);
     expect(axesFor('INTJ').livability).toBe(100);
@@ -427,8 +439,6 @@ describe('compatibility index', () => {
   });
 
   it('no longer scores any type as unrecognisable', () => {
-    // Treating an inverted attitude as absence put INTP, ENTP, ISFJ and ESFJ on
-    // exactly 0, which claimed an INTP is as alien to an INTJ as an ESFJ.
     for (const code of MBTI_TYPES) {
       expect(axesFor(code).recognition).toBeGreaterThan(0);
     }
@@ -438,9 +448,6 @@ describe('compatibility index', () => {
   it('does not put the reader’s opposite on all four letters near the top', () => {
     const ranked = rankedPairings();
 
-    // ESFP shares every function with the INTJ in reversed order, which the
-    // two-axis model read as near-perfect complement and ranked second. It is
-    // also the opposite preference on all four letters.
     expect(axesFor('ESFP').livability).toBe(0);
     expect(ranked.findIndex((row) => row.code === 'ESFP')).toBeGreaterThan(9);
   });
@@ -483,7 +490,6 @@ describe('Espelho', () => {
 
     const text = await render(Espelho);
 
-    // All 5s is the top of the scale, so the reading is 100 and the quiz closes.
     expect(text).toContain('100%');
     expect(text).toContain(ESPELHO_PT.result.bands[0].band);
     expect(text).toContain(ESPELHO_PT.quiz.lockedNote);
@@ -496,8 +502,6 @@ describe('Espelho', () => {
 
     const text = await render(Espelho);
 
-    // Every Se statement describes something missed, so agreeing hard means a
-    // bigger blind spot. The ordinary "very strong" wording would invert it.
     expect(text).toContain(ESPELHO_PT.result.inverseLevels.veryStrong);
     expect(ESPELHO_PT.result.inverseLevels.veryStrong).not.toBe(
       ESPELHO_PT.result.levels.veryStrong,
@@ -562,7 +566,6 @@ describe('ProfileService', () => {
 describe('Compatibility ranking', () => {
   beforeEach(() => localStorage.clear());
 
-  /** The list, top to bottom, as the page renders it. */
   async function rankedCodes(): Promise<string[]> {
     setup();
     const fixture = TestBed.createComponent(Compatibilidade);
@@ -577,10 +580,6 @@ describe('Compatibility ranking', () => {
   it('keeps the mirror out of the top of the combined ranking', async () => {
     const codes = await rankedCodes();
 
-    // INTJ x INTJ scores 100 on recognition and 5 on complement. A plain
-    // average of the two axes puts it joint second, which is the exact result
-    // the two-axis model exists to avoid: nobody should be told their best
-    // match is themselves.
     expect(codes.slice(0, 5)).not.toContain('INTJ');
     expect(codes.indexOf('INTJ')).toBeGreaterThan(4);
   });
@@ -599,8 +598,6 @@ describe('Compatibility ranking', () => {
   });
 
   it('scores every pairing above zero', () => {
-    // A zero would read as "impossible", which is the claim the page spends
-    // two thousand words refusing to make.
     for (const { combined } of rankedPairings()) {
       expect(combined).toBeGreaterThan(0);
     }
@@ -625,8 +622,6 @@ describe('Espelho, restarting', () => {
     element.querySelector<HTMLButtonElement>('.quiz__closed .btn')?.click();
     await fixture.whenStable();
 
-    // Reopening with all thirty-two answers still selected would let a reader
-    // edit single statements until the bars flattered them.
     expect(element.textContent).not.toContain(ESPELHO_PT.quiz.lockedNote);
     expect(element.textContent).toContain(ESPELHO_PT.result.emptyLabel);
     expect(JSON.parse(localStorage.getItem('intj-espelho-v2') ?? '[]')).toEqual(

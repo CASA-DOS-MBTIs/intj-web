@@ -60,7 +60,6 @@
   }
 }
 
-// `code` inside the prose: the storage keys are named in running text too.
 .prose code {
   font-family: $font-mono;
   font-size: 0.88em;
@@ -76,7 +75,6 @@
     margin-top: 40px;
   }
 
-  // Three columns inside a card inside a shell is under 100px a column at 360px.
   .store__row {
     grid-template-columns: 1fr;
     gap: 6px;

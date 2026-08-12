@@ -5,11 +5,6 @@ import { References } from '../references/references';
 import { PageMasthead, type BloomPosition } from '../page-header/page-header';
 import type { ArticlePageContent } from '../../content/types';
 
-/**
- * Presentation for the site's long-form prose pages — friendship, family,
- * childhood, health, the combinations argument, and the two written for people
- * who are not the reader. They differ in copy, not in shape.
- */
 @Component({
   selector: 'app-article-page',
   imports: [PageMasthead, References, Reveal],

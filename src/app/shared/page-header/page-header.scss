@@ -27,7 +27,6 @@
     @include serif(clamp(44px, 7vw, 104px), 1);
     letter-spacing: -0.01em;
     margin: 20px 0 0;
-    // Content stores the design's line break as "\n".
     white-space: pre-line;
     animation: rise 0.9s 0.06s both;
   }
@@ -50,9 +49,6 @@
     padding-bottom: 44px;
   }
 
-  // 7vw has bottomed out at the 44px floor by this width, so the title stops
-  // scaling exactly where the room runs out. Long compound words in the titles
-  // ("desmoronamentos") are then wider than the ~300px the gutters leave.
   .masthead__title {
     font-size: clamp(32px, 9vw, 44px);
   }

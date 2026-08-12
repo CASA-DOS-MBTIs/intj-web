@@ -1,27 +1,10 @@
 @use 'sass:list';
 @use 'tokens' as *;
 
-/* Kickers and eyebrows are paragraphs and headings here, so the UA margin has
-   to go before the design's own spacing can show through. */
 .flush {
   margin: 0;
 }
 
-/* -- Shared shapes ----------------------------------------------------------
-
-   Three kinds of repetition were being written out rule by rule: eight serif
-   headings that differ only in size and leading, three surfaces that draw the
-   identical hairline and radius, and five auto-fit grids that differ only in
-   where a column stops shrinking. Collapsed below. Nothing here is a new
-   value — every rule that uses these already declared them verbatim.
-   -------------------------------------------------------------------------- */
-
-/// Same call signature as tokens' `serif()`, collapsed into the `font`
-/// shorthand so family, weight, size and leading cost one declaration instead
-/// of four. Exactly equivalent on these elements: the longhands left style,
-/// stretch and variant at their initial values, which is what `font` resets
-/// them to. `.detail__motto` and `.deeper__name` stay out of it — both inherit
-/// the body's 300 weight, and `font` would reset that to 400.
 @mixin serif-font($size, $line: 1.15) {
   font: 400 list.slash($size, $line) $font-serif;
 }
@@ -31,16 +14,10 @@
   border-radius: $radius;
 }
 
-/// The five auto-fit grids differ only in the width at which a column stops
-/// shrinking, so the track expression is written once and each grid passes its
-/// own floor in `--col`. It substitutes to exactly the value the per-grid
-/// `repeat(auto-fit, minmax(Npx, 1fr))` produced before.
 %auto-fit {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(var(--col), 1fr));
 }
-
-/* -- Enneagram ------------------------------------------------------------- */
 
 .enneagram {
   padding: 88px $shell-pad 40px;
@@ -76,8 +53,6 @@
   }
 }
 
-/* Doubled class so the selected state outranks .tag whatever order the
-   global and component sheets land in. */
 .chip.chip--on {
   color: var(--on-accent);
   background: var(--accent);
@@ -98,8 +73,6 @@
   }
 
   &__num {
-    /* Reaches its full 56px from ~620px up, so desktop is untouched; below that
-       it steps down rather than eating the head row's whole first line. */
     @include serif-font(clamp(38px, 9vw, 56px), 0.9);
     color: var(--accent);
   }
@@ -139,8 +112,6 @@
   }
 }
 
-/* -- Instinctual subtypes -------------------------------------------------- */
-
 .instincts {
   padding: 70px $shell-pad 100px;
 
@@ -167,8 +138,6 @@
     margin: 12px 0 10px;
   }
 }
-
-/* -- Classical temperaments ------------------------------------------------ */
 
 .temperaments {
   &__title {
@@ -199,13 +168,10 @@
   }
 }
 
-/* Both sections dress the shared .card at the same size, so they say it once. */
 .instincts .card,
 .temperaments .card {
   padding: 30px 26px;
 }
-
-/* -- Big Five -------------------------------------------------------------- */
 
 .big-five {
   &__title {
@@ -220,8 +186,6 @@
   }
 }
 
-/* The hairline gaps between rows are the container's own background showing
-   through, which keeps every divider exactly 1px on any zoom level. */
 .rows {
   @extend %bordered;
   display: flex;
@@ -266,13 +230,10 @@
   padding: 26px;
 }
 
-/* Same lift under the label in both card shapes. */
 .detail__text,
 .extras__text {
   margin-top: 12px;
 }
-
-/* -- Pointers to the unabridged pages -------------------------------------- */
 
 .deeper {
   padding: 90px 28px 40px;
@@ -298,8 +259,6 @@
       border-color 0.25s,
       background 0.25s;
 
-    /* No colour here: the rule above already pins this anchor to --fg, and it
-       outranks the global a:hover, which resolves to --fg anyway. */
     &:hover {
       border-color: var(--accent);
       background: var(--panel);
@@ -319,15 +278,7 @@
   }
 }
 
-/* -- Narrow screens --------------------------------------------------------
-
-   Kept last in the file: a media query adds no specificity, so these overrides
-   only win if they are declared after the rules they relax.
-   -------------------------------------------------------------------------- */
-
 @include below($bp-md) {
-  /* The three tracks need 660px before gaps and padding; the shell hands the
-     page ~750px at this breakpoint, so this is the last width that still fits. */
   .row {
     grid-template-columns: 1fr;
     gap: 14px;
@@ -335,11 +286,6 @@
 }
 
 @include below($bp-sm) {
-  /* An auto-fit track never shrinks below its minmax() floor — it overflows
-     instead. A 260-280px floor is wider than the ~248px that the section and
-     shell gutters leave at 360px, and body { overflow-x: hidden } was hiding
-     the result. Each of these grids is already one column by this width, so
-     pinning the track to 1fr changes nothing except removing the floor. */
   .detail__grid,
   .instincts__grid,
   .temperaments__grid,
@@ -352,13 +298,10 @@
     padding: 30px 22px;
   }
 
-  /* These cards sit inside .detail, so their padding stacks on top of its own. */
   .detail__cell {
     padding: 20px;
   }
 
-  /* The global .card drops to 24px 20px here on its own, but the section rules
-     above outrank it, so the small-screen size has to be restated. */
   .instincts .card,
   .temperaments .card,
   .extras .card {
@@ -373,10 +316,6 @@
     padding: 20px;
   }
 }
-
-/* -- Hand-off ---------------------------------------------------------------
-   Each summary section closes with the page that carries it in full. This page
-   is a map: it shows the shape of a system and then gets out of the way. */
 
 .more {
   margin-top: 32px;

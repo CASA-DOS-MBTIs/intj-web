@@ -103,11 +103,7 @@
   }
 }
 
-/* -- Narrow screens -------------------------------------------------------- */
-
 @include below($bp-md) {
-  // The filters are the page's only control. At the desktop size a 10.5px
-  // label inside 10px of padding lands under 36px tall — too small to tap.
   .terms__chip {
     padding: 13px 14px;
   }
@@ -117,10 +113,6 @@
   .term {
     padding: 22px 20px;
 
-    // Term and system sit at opposite ends of the line on desktop. At 360px
-    // the widest pairing ("Confiabilidade teste-reteste" beside "Dinâmica de
-    // tipo") cannot share a line, so stack the two rather than leaving it to
-    // flex-wrap and a nowrap tag to resolve.
     &__head {
       flex-direction: column;
       align-items: flex-start;
@@ -128,14 +120,10 @@
     }
 
     &__system {
-      // Nothing sits beside it any more, and the longest system name is close
-      // to the full width of the column.
       white-space: normal;
     }
 
     &__name {
-      // Reaches the 24px base exactly at $bp-sm. Terms are single long words
-      // ("desenvolvimento") that cannot break, so the serif has to come down.
       font-size: clamp(19px, 4.3vw, 24px);
     }
   }

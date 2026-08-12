@@ -1,12 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/**
- * The unabridged analysis of each dominant instinct, shown only once the reader
- * has named theirs. The three instincts are Ichazo’s, crossed with the
- * enneatypes by Naranjo; Chestnut’s naming is used where it helps. None of it
- * has been validated empirically.
- */
 const REFS: SourceId[] = [
   'naranjo-1994',
   'chestnut-2013',

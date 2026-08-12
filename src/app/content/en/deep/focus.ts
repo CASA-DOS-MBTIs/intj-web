@@ -1,14 +1,5 @@
 import type { FocusLabels } from '../../types';
 
-/**
- * The chrome around a focused analysis.
- *
- * Once the reader names their own variant, the page throws the others away and
- * renders only theirs. These labels are what is left of the navigation: they
- * say what has happened to the page and how to widen it again. They are
- * headings — short by obligation.
- */
-
 export const FOCUS_ENEAGRAMA_EN: FocusLabels = {
   title: 'Your wing, in full',
   note:

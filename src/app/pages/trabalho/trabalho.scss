@@ -1,7 +1,5 @@
 @use 'tokens' as *;
 
-/* Section kickers and card labels sit tight against what follows them; the
-   global type roles keep their browser margins so they can also stand alone. */
 .conditions__heading,
 .fields__eyebrow,
 .leadership__eyebrow,
@@ -9,8 +7,6 @@
 .practice__eyebrow {
   margin: 0;
 }
-
-/* -- Conditions ------------------------------------------------------------ */
 
 .conditions {
   padding-block: 100px 80px;
@@ -47,8 +43,6 @@
   padding: 36px 32px;
 }
 
-/* -- Fields ---------------------------------------------------------------- */
-
 .fields {
   padding: 0 $shell-pad 100px;
 
@@ -68,8 +62,6 @@
     list-style: none;
   }
 }
-
-/* -- Leadership ------------------------------------------------------------ */
 
 .leadership {
   &__title {
@@ -95,8 +87,6 @@
   padding: 30px 26px;
 }
 
-/* -- Practice -------------------------------------------------------------- */
-
 .practice {
   padding-block: 100px 110px;
 
@@ -105,7 +95,6 @@
     margin: 20px 0 36px;
   }
 
-  /* Hairline gaps between rows: the shared background shows through as rules. */
   &__list {
     display: flex;
     flex-direction: column;
@@ -148,11 +137,6 @@
   }
 }
 
-/* `.section` and `.shell` each add a 28px gutter, so a 360px screen leaves
-   roughly 248px of content — under every minmax() floor used above. Past that
-   point auto-grid can no longer collapse: the floor wins and the track pushes
-   out of the viewport, so the tracks are pinned to one column by hand. Each
-   grid is already single-column by 560px, so nothing above here moves. */
 @include below($bp-sm) {
   .conditions__grid,
   .leadership__body,

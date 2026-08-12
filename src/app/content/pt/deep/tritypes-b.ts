@@ -1,18 +1,5 @@
-/**
- * Análise completa dos nove tritipos com 8 no centro instintivo, lida sobre a
- * pilha Ni · Te · Fi · Se.
- *
- * Cada bloco só aparece depois que o leitor declarou aquele tritipo como o seu:
- * a página descarta os outros vinte e seis e renderiza este texto no lugar. Por
- * isso nada aqui repete a descrição geral — é o material que ela resume.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* 258 — O Estrategista                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T258_PT: VariantDeep = {
   lede:
@@ -232,10 +219,6 @@ export const DEEP_T258_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 268 — O Socorrista                                                          */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T268_PT: VariantDeep = {
   lede:
     'Não há 5 aqui, e a ausência muda tudo: sua intuição não é alimentada por arquivo, é ' +
@@ -445,10 +428,6 @@ export const DEEP_T268_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 278 — O Espírito Livre                                                      */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T278_PT: VariantDeep = {
   lede:
     'Três fixações que não toleram limite, montadas sobre a única pilha cognitiva que precisa de ' +
@@ -657,10 +636,6 @@ export const DEEP_T278_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 358 — O Mestre das Soluções                                                 */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T358_PT: VariantDeep = {
   lede:
@@ -955,10 +930,6 @@ export const DEEP_T358_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 368 — O Lutador pela Justiça                                                */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T368_PT: VariantDeep = {
   lede:
     'A sua intuição não prevê o futuro em geral: prevê quem vai abusar de quê, e prevê cedo. O 6 ' +
@@ -1163,10 +1134,6 @@ export const DEEP_T368_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 378 — O Agitador                                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T378_PT: VariantDeep = {
   lede:
@@ -1378,10 +1345,6 @@ export const DEEP_T378_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 458 — O Erudito                                                             */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T458_PT: VariantDeep = {
   lede:
@@ -1598,10 +1561,6 @@ export const DEEP_T458_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 468 — O Arauto da Verdade                                                   */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T468_PT: VariantDeep = {
   lede:
     'Sem 5 e sem 3, este tritipo não tem o hábito de recuar para estudar nem o instinto de cuidar ' +
@@ -1810,10 +1769,6 @@ export const DEEP_T468_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 478 — O Mensageiro                                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T478_PT: VariantDeep = {
   lede:

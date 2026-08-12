@@ -1,21 +1,10 @@
 @use 'tokens' as *;
 
-/* -- Shared fragments -------------------------------------------------------
-
-   Three headings and two bordered surfaces on this page repeat the same
-   handful of declarations verbatim. Declaring each set once and @extend-ing it
-   emits one grouped rule instead of the same bytes two or three times over;
-   every computed value stays exactly what it was.
-   -------------------------------------------------------------------------- */
-
-/* Headings and numerals: the editorial serif at the regular weight rather than
-   the 300 the body inherits. Sizes still differ, so they stay local. */
 %serif-head {
   font-family: $font-serif;
   font-weight: 400;
 }
 
-/* A bordered box on the page background: the tab chips and the side panel. */
 %boxed {
   background: var(--bg);
   border: var(--hair);
@@ -23,11 +12,6 @@
 
 .intro {
   padding-block: 80px 50px;
-
-  /* &__text and &__caveat used to live here. They are now part of the shared
-     page vocabulary in src/styles.scss at identical values, and a component
-     stylesheet is scoped tighter than a global, so restating them locally only
-     re-shipped the same two rules. */
 }
 
 .stats {
@@ -35,9 +19,6 @@
   background: var(--bg2);
 
   &__grid {
-    /* auto-grid() would also emit `gap: 0`, but a grid container's initial
-       `normal` gap already computes to zero — so the track rules are written
-       out here rather than shipping a declaration that changes nothing. */
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
   }
@@ -61,10 +42,6 @@
     line-height: 1;
   }
 
-  /* The element carries `.label` too, which already sets the mono family,
-     10.5px and the uppercasing to the same values this block used to repeat.
-     What is genuinely local is the tighter tracking — the stat captions run
-     wider than a normal label and 0.18em pushed them onto two lines. */
   &__label {
     letter-spacing: 0.16em;
     margin-top: 10px;
@@ -115,8 +92,6 @@
   }
 }
 
-/* Pointing at a tab and having chosen it light the same edge, so the accent
-   border is stated once for both states. */
 .sides__tab:hover,
 .sides__tab.is-on {
   border-color: var(--accent);
@@ -174,8 +149,6 @@
   }
 }
 
-/* The three prose columns on this page stack identically; only the measure
-   differs, and only for the panel body. */
 .premise__body,
 .shared__body,
 .side__body {
@@ -190,15 +163,6 @@
 }
 
 @include below($bp-sm) {
-  /* The cell rules below redraw the band as a stack — dividers move from the
-     right edge to the bottom. But auto-fit still packs two 210px tracks into
-     the ~500px available here, so without pinning the track count the borders
-     describe a single column while the band is still rendering two.
-
-     The frictions grid needs the same pinning for a different reason: an
-     auto-fit track holds its minmax() floor rather than shrinking, and the
-     panel's own 36px of side padding sits inside the doubled .section and
-     .shell gutters, leaving barely 170px for a 260px floor to sit in. */
   .stats__grid,
   .side__grid {
     grid-template-columns: 1fr;
@@ -208,8 +172,6 @@
     padding-left: 0;
     border-right: none;
 
-    /* Stated as "every cell but the last" rather than as a rule plus an
-       exception for the last one — same dividers, one rule fewer. */
     &:not(:last-child) {
       border-bottom: var(--hair);
     }

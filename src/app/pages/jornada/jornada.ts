@@ -24,7 +24,6 @@ export class Jornada {
     width: 'min(700px, 90vw)',
   };
 
-  /** The design opens on the third phase — "A construção", the 20–30 decade. */
   protected readonly selected = signal(2);
 
   protected readonly phase = computed(() => this.page().phases[this.selected()]);

@@ -1,6 +1,5 @@
 @use 'tokens' as *;
 
-// The host is the full-bleed sticky bar; .nav inside it is the centred column.
 :host {
   display: block;
   position: sticky;
@@ -11,10 +10,6 @@
   border-bottom: var(--hair);
 }
 
-// Four labels in the bar are the same uppercase mono at the same tracking;
-// only the size differs. The shared half is stated once here rather than
-// expanded four times — .nav__drop-link is the one that wants tighter
-// tracking and re-declares it below.
 .skip,
 .nav__links,
 .nav__drop-link,
@@ -24,8 +19,6 @@
   text-transform: uppercase;
 }
 
-// Every control in the bar is a bare anchor or button: no UA chrome, pointer
-// cursor. The two that do wear a box share the same box.
 .nav__link,
 .nav__lang-btn,
 .nav__burger {
@@ -62,8 +55,6 @@
   gap: 20px;
   min-height: $nav-height;
 
-  // On a wide screen the bar is one row, so its wrapper steps out of the way
-  // and lets brand, links and tools order themselves as siblings.
   &__bar {
     display: contents;
   }
@@ -141,8 +132,6 @@
     top: calc(100% + 10px);
     inset-inline-start: 0;
     min-width: 232px;
-    // Twenty-odd destinations behind two triggers: cap the popover and let it
-    // scroll rather than run off the bottom of a short window.
     max-height: min(70vh, 520px);
     overflow-y: auto;
     background: var(--bg2);
@@ -199,7 +188,6 @@
     }
   }
 
-  // Hidden until the bar collapses.
   &__burger {
     display: none;
     padding: 0;
@@ -221,7 +209,6 @@
     height: 12px;
   }
 
-  // top: 0 is the first line's resting place; the other two step down from it.
   &__burger-line {
     position: absolute;
     left: 0;
@@ -241,7 +228,6 @@
     }
   }
 
-  // Three lines fold into a cross, so the control reads as "close" once open.
   &__burger.is-open &__burger-line {
     &:nth-child(1) {
       transform: translateY(5.25px) rotate(45deg);
@@ -254,16 +240,6 @@
     }
   }
 }
-
-/* --------------------------------------------------------------------------
-   Below $bp-md the bar stops trying to hold everything.
-
-   The old layout wrapped the links onto a full-width third row, which at 360px
-   became two or three rows of tiny uppercase text and left a sticky header
-   roughly 140px tall — a quarter of the screen, permanently. Now the bar keeps
-   a fixed height (--nav-h) with only the brand, language and a toggle, and the
-   destinations move into a drawer that scrolls on its own.
-   -------------------------------------------------------------------------- */
 
 @include below($bp-md) {
   .nav {
@@ -301,8 +277,6 @@
     gap: 0;
     padding-bottom: 10px;
     border-top: var(--hair);
-    // Long enough to hold every destination, short enough to never run past the
-    // window; dvh rather than vh so mobile browser chrome does not clip it.
     max-height: calc(100vh - var(--nav-h) - 12px);
     max-height: calc(100dvh - var(--nav-h) - 12px);
     overflow-y: auto;
@@ -310,9 +284,6 @@
     animation: rise 0.2s both;
   }
 
-  // Roomier hit targets: these are the only way to move around on a phone.
-  // The transparent border also outranks .nav__link.is-active, so the drawer
-  // drops the underline the desktop bar uses.
   .nav__links.is-open .nav__link {
     padding: 14px 0;
     border-bottom: 1px solid transparent;
@@ -331,7 +302,6 @@
     transform: rotate(180deg);
   }
 
-  // Inside the drawer a group is an inline accordion, not a floating popover.
   .nav__links.is-open .nav__dropdown {
     position: static;
     max-height: none;

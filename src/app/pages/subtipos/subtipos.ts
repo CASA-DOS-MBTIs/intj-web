@@ -57,7 +57,6 @@ export class Subtipos {
     this.widenedFor.set(this.myInstinct());
   }
 
-  /** The reader's own enneatype, so their row in the 27-subtype grid stands out. */
   protected readonly myType = this.profiles.enneatype;
 
   constructor() {

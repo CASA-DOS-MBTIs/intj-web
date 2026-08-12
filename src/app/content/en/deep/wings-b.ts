@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 3w2 — The relational achiever                                              */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_3W2_EN: VariantDeep = {
   lede:
     'There is a version of the INTJ who walks into a room and the room improves — and this is it. ' +
@@ -271,10 +267,6 @@ export const DEEP_3W2_EN: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 3w4 — The exacting achiever                                                */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_3W4_EN: VariantDeep = {
   lede:
     'This is the INTJ who produces more than any of the other seventeen variations and believes ' +
@@ -537,10 +529,6 @@ export const DEEP_3W4_EN: VariantDeep = {
     'jung-1921',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 4w3 — The achieving individualist                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_4W3_EN: VariantDeep = {
   lede:
@@ -807,10 +795,6 @@ export const DEEP_4W3_EN: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 4w5 — The melancholic visionary                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_4W5_EN: VariantDeep = {
   lede:

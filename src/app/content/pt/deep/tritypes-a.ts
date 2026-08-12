@@ -1,23 +1,5 @@
-/**
- * Tritipos 125, 126, 127, 135, 136, 137, 145, 146 e 147 — a análise completa de
- * cada arquétipo, mostrada só depois que o leitor diz “é este”.
- *
- * Os nove compartilham o mesmo tipo instintivo: o 1. O que muda é quem alimenta
- * Ni (5, 6 ou 7) e qual fixação emocional fica sem linguagem (2, 3 ou 4).
- *
- * Tritype® é modelo e marca de Katherine Chernick Fauvre, sem literatura
- * revisada por pares: a revisão sistemática de Hook e colegas (2021) varreu 104
- * amostras de pesquisa sobre eneagrama e não encontrou um único estudo do
- * modelo de três fixações. O cruzamento com a pilha Ni · Te · Fi · Se, na ordem
- * de desenvolvimento proposta por Grant (1983), é leitura — não achado.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* 125 — O Mentor                                                              */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T125_PT: VariantDeep = {
   lede:
@@ -249,10 +231,6 @@ export const DEEP_T125_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 126 — O Apoiador                                                            */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T126_PT: VariantDeep = {
   lede:
     'Três fixações organizadas em torno de responsabilidade, e um motor que decide sozinho. O 6 ' +
@@ -483,10 +461,6 @@ export const DEEP_T126_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 127 — O Professor                                                           */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T127_PT: VariantDeep = {
   lede:
     'Este é o INTJ que fala. O 7 impede Ni de fechar — em vez de uma linha inevitável de futuro, ' +
@@ -699,10 +673,6 @@ export const DEEP_T127_PT: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 135 — O Perito Técnico                                                      */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T135_PT: VariantDeep = {
   lede:
@@ -937,10 +907,6 @@ export const DEEP_T135_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 136 — O Capataz                                                             */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T136_PT: VariantDeep = {
   lede:
     'Você vira instituição sozinho. O 6 aponta Ni para o colapso e acerta com uma antecedência ' +
@@ -1166,10 +1132,6 @@ export const DEEP_T136_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 137 — O Construtor de Sistemas                                              */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T137_PT: VariantDeep = {
   lede:
     'Provavelmente o tritipo mais bem-sucedido por fora que um INTJ pode carregar, e o mais ' +
@@ -1389,10 +1351,6 @@ export const DEEP_T137_PT: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 145 — O Pesquisador                                                         */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T145_PT: VariantDeep = {
   lede:
@@ -1618,10 +1576,6 @@ export const DEEP_T145_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 146 — O Filósofo                                                            */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T146_PT: VariantDeep = {
   lede:
     'Este é o tritipo que sabota a certeza do INTJ, e isso é meio dom, meio maldição. Ni entrega a ' +
@@ -1841,10 +1795,6 @@ export const DEEP_T146_PT: VariantDeep = {
     'hook-2021',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 147 — O Visionário                                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T147_PT: VariantDeep = {
   lede:

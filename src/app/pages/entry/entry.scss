@@ -4,8 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  // The door is briefly visible before the redirect lands, so it fills the
-  // viewport rather than sitting as a short strip under the header.
   min-height: calc(100dvh - var(--nav-h) - 120px);
   padding: 70px $shell-pad 90px;
 
@@ -80,7 +78,6 @@
     padding: 48px 20px 64px;
   }
 
-  // Two doors side by side leave about 130px of card each at 360px.
   .entry__doors {
     grid-template-columns: 1fr;
     margin-top: 34px;

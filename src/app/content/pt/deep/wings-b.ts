@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 3w2 — O realizador relacional                                              */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_3W2_PT: VariantDeep = {
   lede:
     'Existe uma versão do INTJ que entra numa sala e a sala melhora — e é esta. A asa 2 não ' +
@@ -267,10 +263,6 @@ export const DEEP_3W2_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 3w4 — O realizador exigente                                                */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_3W4_PT: VariantDeep = {
   lede:
     'Este é o INTJ que produz mais do que qualquer outra das dezoito variações e é o que menos ' +
@@ -529,10 +521,6 @@ export const DEEP_3W4_PT: VariantDeep = {
     'jung-1921',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 4w3 — O individualista realizador                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_4W3_PT: VariantDeep = {
   lede:
@@ -793,10 +781,6 @@ export const DEEP_4W3_PT: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 4w5 — O visionário melancólico                                             */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_4W5_PT: VariantDeep = {
   lede:

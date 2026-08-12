@@ -10,19 +10,6 @@ import {
   WING_KEYS,
 } from '../../content/profile-keys';
 
-/**
- * Lets the reader say which INTJ they are, so pages can show copy applied to
- * that variant rather than to the average of everyone.
- *
- * Only the facets the current page actually reads are shown — offering to set a
- * tritype on a page that ignores it teaches the reader that the control does
- * nothing.
- *
- * Small facets render as chips because seeing all the options at once is the
- * point; the three large ones (18 wings, 27 tritypes, 12 blends) render as
- * native selects, which stay keyboard- and screen-reader-friendly at that size
- * without any of the listbox machinery a custom control would need.
- */
 @Component({
   selector: 'app-profile-panel',
   templateUrl: './profile-panel.html',
@@ -38,7 +25,6 @@ export class ProfilePanel {
   protected readonly copy = computed(() => this.language.content().profile);
   protected readonly profile = this.profiles.profile;
 
-  /** Whether anything the *current page* uses has been filled in. */
   protected readonly hasRelevant = computed(() => {
     const current = this.profiles.profile();
     return this.facets().some((facet) => current[facet] !== null);
@@ -58,10 +44,8 @@ export class ProfilePanel {
     this.profiles.set(facet, value);
   }
 
-  /** Native selects hand back a string; '' is the "not set" option. */
   protected choose<K extends keyof Profile>(facet: K, event: Event): void {
     const raw = (event.target as HTMLSelectElement).value;
-    // set() toggles when handed the current value, which a select must not do.
     this.profiles.set(facet, null);
     if (raw !== '') {
       this.profiles.set(facet, raw as Profile[K]);

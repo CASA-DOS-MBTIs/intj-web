@@ -1,16 +1,5 @@
 @use 'tokens' as *;
 
-/* -- Shared declarations ---------------------------------------------------
-
-   Three things on this page are said by more than one rule: the mono family,
-   which five separate labels want; the bordered-and-clipped frame chrome,
-   worn by both the table shell and the myths list; and the card grid, which
-   the identity and culture sections run at the same track and the same gap.
-   Hoisted here so each is emitted once. Everything that differs between the
-   users of these rules still lives with its own component below. */
-
-/* The two dimension cells take the family from their own shared rule further
-   down, which they need anyway for the rest of the label treatment. */
 .comparator__tab,
 .cmp__stack,
 .identity__note {
@@ -28,8 +17,6 @@
 .culture__grid {
   @include auto-grid(300px, 20px);
 }
-
-/* -- Comparator ------------------------------------------------------------ */
 
 .comparator {
   padding: 88px $shell-pad 60px;
@@ -59,7 +46,6 @@
       border-color: var(--accent);
     }
 
-    // The pressed state is the selection, so it carries the accent fill.
     &[aria-pressed='true'] {
       color: var(--on-accent);
       background: var(--accent);
@@ -67,13 +53,10 @@
     }
   }
 
-  // Border, radius and clipping come from the shared frame rule above.
   &__frame {
     margin-top: 26px;
   }
 
-  // Narrow screens scroll the table sideways rather than crushing three
-  // columns; tabindex on this element keeps that reachable from a keyboard.
   &__scroll {
     overflow-x: auto;
   }
@@ -115,8 +98,6 @@
     background: var(--panel);
   }
 
-  // Both dimension cells are the same uppercase mono label — only the size
-  // and the tracking separate the column head from the row headings.
   &__dimension-head,
   &__dimension {
     width: 22%;
@@ -168,8 +149,6 @@
   }
 }
 
-/* -- Identity variants ----------------------------------------------------- */
-
 .identity {
   padding-block: 90px;
 
@@ -209,16 +188,12 @@
   }
 }
 
-/* -- Myths ----------------------------------------------------------------- */
-
 .myths {
   &__title {
     margin: 18px 0 40px;
     max-width: 24ch;
   }
 
-  // A 1px gap over a line-coloured backdrop draws the dividers between rows.
-  // The border and the radius clipping come from the shared frame rule above.
   &__list {
     display: flex;
     flex-direction: column;
@@ -241,8 +216,6 @@
     margin-top: 10px;
   }
 }
-
-/* -- Cultural references --------------------------------------------------- */
 
 .culture {
   padding: 0 $shell-pad 110px;
@@ -284,15 +257,6 @@
   }
 }
 
-/* `.section` and `.shell` each add a 28px gutter, so a 360px screen leaves
-   roughly 248px of content — and the panels below sit inside their own padding
-   again, which takes the myths rows and the comparator footer under 200px.
-   Every minmax() floor above is wider than that, and a floor that no longer
-   fits stops collapsing and overflows instead, so the tracks are pinned to one
-   column by hand. All of them are already single-column by 560px.
-
-   The comparison table is deliberately untouched: it keeps its 640px min-width
-   and scrolls inside .comparator__scroll rather than collapsing. */
 @include below($bp-sm) {
   .comparator__foot,
   .identity__grid,

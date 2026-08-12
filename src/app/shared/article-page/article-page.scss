@@ -51,8 +51,6 @@
   }
 }
 
-// `.section` and `.shell` each contribute a 28px gutter, so a card at 34–38px of
-// its own inline padding is reading against ~180px of line at 360px.
 @include below($bp-sm) {
   .intro {
     padding-block: 52px 40px;

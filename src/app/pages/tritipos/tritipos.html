@@ -19,66 +19,62 @@
 @if (f) {
   <section class="section section--tinted section--bordered">
     <div class="shell">
-      <app-variant-focus
-        [deep]="f.deep"
-        [labels]="c.focus"
-        [title]="f.title"
-        (widened)="widen()"
-      />
+      <app-variant-focus [deep]="f.deep" [labels]="c.focus" [title]="f.title" (widened)="widen()" />
     </div>
   </section>
-} @else { @let d = detail();
+} @else {
+  @let d = detail();
 
-<section class="section section--tinted section--bordered picker">
-  <div class="shell">
-    @if (canFilter()) {
-      <button type="button" class="picker__filter" (click)="toggleFilter()">
-        {{ onlyMine() ? c.labels.filterAll : c.labels.filterMine }}
-      </button>
-    }
-
-    <div class="picker__grid" role="group">
-      @for (key of visible(); track key) {
-        <button
-          type="button"
-          class="picker__chip"
-          [class.is-on]="selected() === key"
-          [class.is-mine]="isMine(key)"
-          [attr.aria-pressed]="selected() === key"
-          (click)="choose(key)"
-        >
-          {{ key }}
+  <section class="section section--tinted section--bordered picker">
+    <div class="shell">
+      @if (canFilter()) {
+        <button type="button" class="picker__filter" (click)="toggleFilter()">
+          {{ onlyMine() ? c.labels.filterAll : c.labels.filterMine }}
         </button>
       }
-    </div>
 
-    <article class="detail">
-      <header class="detail__head">
-        <span class="detail__code">{{ selected() }}</span>
-        <div>
-          <h2 class="detail__name">{{ d.name }}</h2>
-          <p class="label detail__archetype">{{ c.labels.archetype }}</p>
-        </div>
-      </header>
-
-      <div class="centres">
-        @for (part of breakdown(); track part.digit) {
-          <div class="centres__item">
-            <span class="centres__digit">{{ part.digit }}</span>
-            <span class="label">{{ part.centre }}</span>
-          </div>
+      <div class="picker__grid" role="group">
+        @for (key of visible(); track key) {
+          <button
+            type="button"
+            class="picker__chip"
+            [class.is-on]="selected() === key"
+            [class.is-mine]="isMine(key)"
+            [attr.aria-pressed]="selected() === key"
+            (click)="choose(key)"
+          >
+            {{ key }}
+          </button>
         }
       </div>
 
-      <p class="prose detail__text">{{ d.text }}</p>
+      <article class="detail">
+        <header class="detail__head">
+          <span class="detail__code">{{ selected() }}</span>
+          <div>
+            <h2 class="detail__name">{{ d.name }}</h2>
+            <p class="label detail__archetype">{{ c.labels.archetype }}</p>
+          </div>
+        </header>
 
-      <div class="detail__applied">
-        <p class="label label--accent">{{ c.labels.asIntj }}</p>
-        <p class="prose">{{ d.asIntj }}</p>
-      </div>
-    </article>
-  </div>
-</section>
+        <div class="centres">
+          @for (part of breakdown(); track part.digit) {
+            <div class="centres__item">
+              <span class="centres__digit">{{ part.digit }}</span>
+              <span class="label">{{ part.centre }}</span>
+            </div>
+          }
+        </div>
+
+        <p class="prose detail__text">{{ d.text }}</p>
+
+        <div class="detail__applied">
+          <p class="label label--accent">{{ c.labels.asIntj }}</p>
+          <p class="prose">{{ d.asIntj }}</p>
+        </div>
+      </article>
+    </div>
+  </section>
 }
 
 <app-references [sources]="c.sources" />

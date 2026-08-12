@@ -6,15 +6,10 @@
   <div class="shell">
     <div class="card mail" appReveal>
       <p class="kicker">{{ c.emailKicker }}</p>
-      <!-- Plain mailto rather than an obfuscated one: an address a reader
-           cannot copy is worse than an address a scraper can read. -->
       <a class="mail__address" [href]="'mailto:' + author.email">{{ author.email }}</a>
       <p class="mail__note">{{ c.emailNote }}</p>
     </div>
 
-    <!-- Second on the page, not last: the community is where a reader who came
-         here wanting people rather than an inbox actually wants to go. Held back
-         until its administrator has agreed — see SHOW_COMMUNITY in author.ts. -->
     @if (showCommunity) {
       <aside class="card card--accent community" appReveal>
         <div class="community__head">
@@ -33,11 +28,7 @@
           </div>
         </div>
         <p class="card-text" [innerHTML]="c.community.text"></p>
-        <a
-          class="btn btn--solid author__link"
-          [href]="community.url"
-          rel="noopener"
-          target="_blank"
+        <a class="btn btn--solid author__link" [href]="community.url" rel="noopener" target="_blank"
           >{{ c.community.linkLabel }}<span aria-hidden="true"> ↗</span></a
         >
       </aside>
@@ -57,8 +48,6 @@
       <p class="kicker">{{ c.author.kicker }}</p>
       <h2 class="reason__title">{{ c.author.title }}</h2>
       <p class="card-text" [innerHTML]="c.author.text"></p>
-      <!-- rel="me" says this is the same person, which is the link a search
-           engine follows to attach the writing to an identity. -->
       <a
         class="btn btn--solid author__link"
         [href]="author.portfolio"

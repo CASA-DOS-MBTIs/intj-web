@@ -1,14 +1,9 @@
 @use 'tokens' as *;
 
-/* `.intro__text` and `.intro__caveat` are part of the shared page vocabulary
-   in src/styles.scss. This page wants them exactly as written there, so it
-   says nothing about them — only the section's own rhythm. */
 .intro {
   padding-block: 80px 60px;
 }
 
-/* The subtype card, the matrix and the instinct chips are the same bordered
-   surface; the chip alone rounds tighter, and says so where it is defined. */
 .detail,
 .matrix,
 .picker__chip {
@@ -16,25 +11,17 @@
   border-radius: $radius;
 }
 
-/* Surfaces that have to paint the page ground: two of them sit on a tinted
-   section, and a cell sits on the line colour its row uses to draw the grid. */
 .detail,
 .picker__chip,
 .matrix__cell {
   background: var(--bg);
 }
 
-/* Both are set in the heading serif at the same weight; the matrix numeral
-   resets the size and sets it solid below. */
 .detail__name,
 .matrix__type {
   @include serif(29px, 1.15);
 }
 
-/* The mono caption on a matrix cell only exists below $bp-md — but a ::before
-   with no `content` generates no box, so the family and the casing can be
-   stated up here beside the chip code at no visual cost, leaving the media
-   query below with just the two values that actually differ. */
 .picker__code,
 .matrix__cell::before {
   font-family: $font-mono;
@@ -64,7 +51,6 @@
       border-color 0.2s,
       color 0.2s;
 
-    /* Pointed at and chosen draw the same border; only the fill differs. */
     &:hover,
     &.is-on {
       border-color: var(--accent);
@@ -90,8 +76,6 @@
     margin: 0;
   }
 
-  /* Every label in the card sits flush; the two in the grid below buy
-     themselves a gap. */
   .label {
     margin: 0;
   }
@@ -119,8 +103,6 @@
   }
 }
 
-/* -- The 27 subtypes -------------------------------------------------------- */
-
 .grid-section {
   padding-block: 90px 110px;
 }
@@ -129,9 +111,6 @@
   margin-top: 26px;
   overflow: hidden;
 
-  /* The 1px gaps are the table's rules: whatever the strip paints shows
-     through them. The head paints panel, so that is the shared value and the
-     body rows repaint it as the line colour. */
   &__head,
   &__row {
     display: grid;
@@ -193,9 +172,6 @@
     padding-inline: 16px;
   }
 
-  // Stacking the row drops the head that captioned the three columns, so a
-  // cell no longer says which instinct it describes. Each one names its own.
-  // Family and casing are already set above; this is the rest of the label.
   .matrix__cell::before {
     content: attr(data-instinct);
     display: block;
@@ -211,8 +187,6 @@
     padding: 28px 20px;
   }
 
-  // auto-fit still floors a track at its minmax minimum: one 280px column in
-  // a ~230px card pushes the pair of panels past the card's right edge.
   .detail__grid {
     grid-template-columns: 1fr;
   }

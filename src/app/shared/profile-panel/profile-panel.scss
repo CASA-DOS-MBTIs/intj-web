@@ -16,10 +16,6 @@
     gap: 18px;
   }
 
-  // Spelled as the `font` shorthand rather than `@include serif(25px, 1.2)`:
-  // identical computed style — weight, size, line-height and family are all
-  // stated, and every sub-property the shorthand resets is already at its
-  // initial value here — but it costs a third of the bytes.
   &__title {
     font: 400 25px/1.2 $font-serif;
     margin: 0;
@@ -44,17 +40,12 @@
   }
 }
 
-// The panel's two blocks of muted supporting prose.
 .panel__intro,
 .facet__hint {
   color: var(--mut);
   text-wrap: pretty;
 }
 
-// Every control in this panel — the close ×, the clear button, the facet
-// selects and the chips — is the same bare bordered box. The four of them used
-// to restate the border and the radius privately; the shared shape is written
-// once here and each rule below only carries what makes it different.
 .panel__close,
 .panel__clear,
 .facet__select,
@@ -63,16 +54,12 @@
   border-radius: 2px;
 }
 
-// $font-mono expands to a five-name stack, so repeating it per control was the
-// single most expensive duplication in the file.
 .panel__clear,
 .facet__select,
 .chip {
   font-family: $font-mono;
 }
 
-// The two buttons that sit *on* the panel surface rather than inside a field:
-// transparent, muted, and brightening to a full accent border on hover.
 .panel__close,
 .panel__clear {
   cursor: pointer;
@@ -129,17 +116,12 @@
   }
 }
 
-// The two controls that read as recessed fields — they sit on the page ground
-// rather than the panel's, and carry full-strength text.
 .facet__select,
 .chip {
   background: var(--bg);
   color: var(--fg);
 }
 
-// A selected chip and a hovered control land on the same accent border, so the
-// three states share one rule. `.is-on` still outranks `:hover` on the two
-// properties where they genuinely differ, below.
 .facet__select:hover,
 .chip:hover,
 .chip.is-on {
@@ -162,10 +144,6 @@
   }
 }
 
-// The panel is nested three surfaces deep — page gutter, lens panel, then the
-// panel's own padding — so its usable width is far narrower than the viewport
-// suggests. At 360px that left the 260px auto-fit floor wider than the space it
-// had to sit in, and a `minmax()` floor is honoured even when it overflows.
 @include below($bp-sm) {
   .panel {
     padding: 22px 18px 20px;
@@ -177,8 +155,6 @@
   }
 }
 
-// Chips, the close button and the clear button are all finger targets on touch
-// widths, and each sat around 32–37px tall on its text padding alone.
 @include below($bp-md) {
   .chip,
   .panel__clear,

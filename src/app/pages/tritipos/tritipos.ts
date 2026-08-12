@@ -36,7 +36,6 @@ export class Tritipos {
 
   private readonly myTritype = computed(() => this.profiles.profile().tritype);
 
-  /** Which tritype the reader widened out of — see the enneagram page for why. */
   private readonly widenedFor = signal<TritypeKey | null>(null);
 
   protected readonly focus = computed(() => {
@@ -51,7 +50,6 @@ export class Tritipos {
 
   private readonly chosen = signal<TritypeKey | null>(null);
 
-  /** Narrows the 27 down to the ones containing the reader's own core type. */
   protected readonly onlyMine = signal(false);
 
   protected readonly canFilter = computed(() => this.profiles.enneatype() !== null);
@@ -70,7 +68,6 @@ export class Tritipos {
 
   protected readonly detail = computed(() => this.page().tritypes[this.selected()]);
 
-  /** The three digits with the centre each one belongs to. */
   protected readonly breakdown = computed(() => {
     const labels = this.page().centreLabels;
     return tritypeDigits(this.selected()).map((digit) => ({

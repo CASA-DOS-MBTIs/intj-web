@@ -5,18 +5,14 @@ import { provideRouter } from '@angular/router';
 import { LanguageService } from '../../core/language.service';
 import { SiteNav } from './site-nav';
 
-/**
- * Somewhere for the nav's links to actually go. With an empty route table the
- * clicks below fail to match, and RouterLink reports the failure after the
- * TestBed has been torn down — an unhandled NG0205 that passes the suite while
- * poisoning the run.
- */
 @Component({ template: '' })
 class Blank {}
 
 function mount(): { fixture: ComponentFixture<SiteNav>; el: HTMLElement } {
   TestBed.resetTestingModule();
-  TestBed.configureTestingModule({ providers: [provideRouter([{ path: '**', component: Blank }])] });
+  TestBed.configureTestingModule({
+    providers: [provideRouter([{ path: '**', component: Blank }])],
+  });
   TestBed.inject(LanguageService);
   const fixture = TestBed.createComponent(SiteNav);
   fixture.detectChanges();
@@ -55,8 +51,6 @@ describe('SiteNav', () => {
   it('drives both presentations of a group from one piece of state', () => {
     const { el, fixture } = mount();
 
-    // The same trigger that opens a popover on a wide screen opens the inline
-    // accordion inside the drawer — only the CSS differs between the two.
     click(triggers(el)[0], fixture);
 
     expect(el.querySelector('.nav__dropdown')).not.toBeNull();
@@ -80,10 +74,8 @@ describe('SiteNav', () => {
     click(burger(el), fixture);
     click(triggers(el)[0], fixture);
     click(el.querySelector('.nav__drop-link'), fixture);
-    // Let the navigation settle before the fixture is torn down.
     await fixture.whenStable();
 
-    // Otherwise the drawer would sit on top of the page the reader just asked for.
     expect(drawer(el)?.classList.contains('is-open')).toBe(false);
     expect(el.querySelector('.nav__dropdown')).toBeNull();
   });
@@ -128,7 +120,6 @@ describe('SiteNav', () => {
     click(triggers(el)[1], fixture);
     const secondGroup = el.querySelectorAll('.nav__drop-link').length;
 
-    // Four inline links plus two grouped menus cover the whole site.
     expect(inline).toBe(4);
     expect(firstGroup + secondGroup).toBeGreaterThanOrEqual(20);
   });

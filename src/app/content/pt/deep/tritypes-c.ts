@@ -1,12 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/**
- * Os nove arquétipos de Fauvre que contêm o 9 — a família em que o centro
- * instintivo não empurra. É o que os une e é o que muda tudo num INTJ: Te
- * continua competente e perde o motivo.
- */
-
 const SRC: SourceId[] = [
   'fauvre-tritype',
   'riso-hudson-1999',
@@ -14,10 +8,6 @@ const SRC: SourceId[] = [
   'hook-2021',
   'grant-1983',
 ];
-
-/* -------------------------------------------------------------------------- */
-/* 259 — O Solucionador de Problemas                                           */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T259_PT: VariantDeep = {
   lede:
@@ -240,10 +230,6 @@ export const DEEP_T259_PT: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 269 — O Bom Samaritano                                                      */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T269_PT: VariantDeep = {
   lede:
     'Três fixações organizadas em torno de outras pessoas, montadas sobre o motor que menos ' +
@@ -464,10 +450,6 @@ export const DEEP_T269_PT: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 279 — O Pacificador                                                         */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T279_PT: VariantDeep = {
   lede:
     'É a única das nove combinações com 9 em que nenhuma das outras duas fixações fornece ' +
@@ -681,10 +663,6 @@ export const DEEP_T279_PT: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 359 — O Pensador                                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T359_PT: VariantDeep = {
   lede:
@@ -903,10 +881,6 @@ export const DEEP_T359_PT: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 369 — O Mediador                                                            */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T369_PT: VariantDeep = {
   lede:
     'Nenhuma das três fixações gosta de conflito aberto — e você é um INTJ, ou seja, alguém que ' +
@@ -1117,10 +1091,6 @@ export const DEEP_T369_PT: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 379 — O Embaixador                                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T379_PT: VariantDeep = {
   lede:
@@ -1334,10 +1304,6 @@ export const DEEP_T379_PT: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 459 — O Contemplativo                                                       */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T459_PT: VariantDeep = {
   lede:
@@ -1556,10 +1522,6 @@ export const DEEP_T459_PT: VariantDeep = {
   sources: SRC,
 };
 
-/* -------------------------------------------------------------------------- */
-/* 469 — O Buscador                                                            */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_T469_PT: VariantDeep = {
   lede:
     'A visão vem do 6 e do 4 juntos, e é uma dupla inquieta: um pergunta se é seguro, o outro ' +
@@ -1775,10 +1737,6 @@ export const DEEP_T469_PT: VariantDeep = {
 
   sources: SRC,
 };
-
-/* -------------------------------------------------------------------------- */
-/* 479 — O Espírito Gentil                                                     */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_T479_PT: VariantDeep = {
   lede:

@@ -104,8 +104,6 @@
 }
 
 @include below($bp-sm) {
-  // The two tracks need 354px between them; the row runs out of room around
-  // 474px, well inside this breakpoint.
   .trait__head {
     grid-template-columns: 1fr;
     gap: 12px;

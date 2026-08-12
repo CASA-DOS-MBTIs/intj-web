@@ -87,8 +87,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
   allLabel: 'Tudo',
 
   entries: [
-    /* -- Jung -------------------------------------------------------------- */
-
     {
       term: 'Função cognitiva',
       system: 'Jung',
@@ -190,8 +188,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['jung-1921', 'von-franz-1971'],
     },
 
-    /* -- MBTI -------------------------------------------------------------- */
-
     {
       term: 'Tipo',
       system: 'MBTI',
@@ -243,8 +239,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
         'centrada, de modo que quem separa as pessoas é o ponto de corte, não a natureza.',
       sources: ['myers-1998-manual', 'mbf-basics', 'bess-harvey-2002'],
     },
-
-    /* -- Dinâmica de tipo -------------------------------------------------- */
 
     {
       term: 'Dinâmica de tipo',
@@ -373,8 +367,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['beebe-2017', 'reynierse-2009'],
     },
 
-    /* -- Comunidade -------------------------------------------------------- */
-
     {
       term: 'Loop',
       system: 'Comunidade',
@@ -394,8 +386,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
         'presumiu. Use a palavra, se ela ajuda. Só nunca diga que o manual diz isso.',
       sources: ['jung-1921', 'myers-1980-gifts', 'myers-1998-manual', 'mbf-type-dynamics'],
     },
-
-    /* -- Eneagrama --------------------------------------------------------- */
 
     {
       term: 'Eneatipo',
@@ -530,8 +520,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['naranjo-1994', 'chestnut-2013'],
     },
 
-    /* -- Temperamentos ----------------------------------------------------- */
-
     {
       term: 'Temperamento',
       system: 'Temperamentos',
@@ -620,8 +608,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['galen-c170', 'lahaye-1984', 'littauer-1983', 'klibansky-1964'],
     },
 
-    /* -- Big Five ---------------------------------------------------------- */
-
     {
       term: 'Big Five',
       system: 'Big Five',
@@ -674,8 +660,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['mccrae-costa-1989', 'costa-mccrae-1992', 'myers-1998-manual'],
     },
 
-    /* -- NERIS ------------------------------------------------------------- */
-
     {
       term: 'Identidade A/T',
       system: 'NERIS',
@@ -695,8 +679,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
         'INTJ. É um palpite sobre a sua posição na régua que a sua sigla nunca teve.',
       sources: ['neris-our-theory', 'mccrae-costa-1989', 'costa-mccrae-1992', 'myers-1998-manual'],
     },
-
-    /* -- Socionics --------------------------------------------------------- */
 
     {
       term: 'Socionics',
@@ -735,8 +717,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
       sources: ['augustinaviciute-1998', 'wikisocion-ili'],
     },
 
-    /* -- DISC -------------------------------------------------------------- */
-
     {
       term: 'DISC',
       system: 'DISC',
@@ -755,8 +735,6 @@ export const GLOSSARIO_PT: GlossaryContent = {
         'que é onde mora quase todo o seu problema social.',
       sources: ['marston-1928', 'kim-2025-mbti-disc', 'pittenger-2005'],
     },
-
-    /* -- Crítica ----------------------------------------------------------- */
 
     {
       term: 'Confiabilidade teste-reteste',

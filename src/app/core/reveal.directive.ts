@@ -1,17 +1,8 @@
 import { Directive, ElementRef, type OnDestroy, type OnInit, inject } from '@angular/core';
 
-/** Give the browser a moment to settle before treating an element as "in view". */
 const ROOT_MARGIN = '0px 0px -6% 0px';
 const THRESHOLD = 0.05;
 
-/**
- * Fades an element in the first time it scrolls into view.
- *
- * The `data-rv` attribute carries the hidden state from global CSS, and
- * `.rv-in` releases it. Because hiding happens in CSS, a failsafe timer
- * reveals everything regardless — an observer that never fires (an element
- * inside a scroll container, a browser quirk) must not leave copy invisible.
- */
 @Directive({
   selector: '[appReveal]',
   host: { '[attr.data-rv]': '""' },

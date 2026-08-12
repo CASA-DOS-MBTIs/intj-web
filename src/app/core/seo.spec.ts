@@ -19,12 +19,9 @@ function headSeo(selector: string): Element[] {
 }
 
 function hrefFor(hreflang: string): string | null {
-  return (
-    headSeo(`link[rel="alternate"][hreflang="${hreflang}"]`)[0]?.getAttribute('href') ?? null
-  );
+  return headSeo(`link[rel="alternate"][hreflang="${hreflang}"]`)[0]?.getAttribute('href') ?? null;
 }
 
-/** Puts the app on a URL and writes the tags for it, as a navigation would. */
 function applyAt(url: string, options: { index?: boolean } = {}): void {
   TestBed.inject(CurrentUrl).set(url);
   TestBed.inject(SeoService).apply(META, options);
@@ -161,7 +158,6 @@ describe('SeoService', () => {
     );
     expect(headSeo('link[rel="alternate"]')).toHaveLength(0);
     expect(jsonLd()).toBeNull();
-    // The canonical stays: it still says which address this page is.
     expect(headSeo('link[rel="canonical"]')).toHaveLength(1);
   });
 

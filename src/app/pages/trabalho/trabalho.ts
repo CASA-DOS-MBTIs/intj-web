@@ -18,7 +18,6 @@ import { TRABALHO_PT } from '../../content/pt/trabalho';
 export class Trabalho {
   protected readonly page = usePageContent({ pt: TRABALHO_PT, en: TRABALHO_EN });
 
-  /** The design pushes this page's bloom to the right of the title. */
   protected readonly bloom: BloomPosition = {
     top: '-50%',
     left: '45%',

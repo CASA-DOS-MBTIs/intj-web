@@ -1,14 +1,5 @@
 import type { FocusLabels } from '../../types';
 
-/**
- * A moldura em volta de uma análise focada.
- *
- * Quando o leitor declara qual é a sua variação, a página descarta as outras e
- * renderiza só a dela. Estes rótulos são o que sobra de navegação: dizem o que
- * aconteceu com a página e como voltar à visão geral. São títulos — curtos por
- * obrigação.
- */
-
 export const FOCUS_ENEAGRAMA_PT: FocusLabels = {
   title: 'A sua asa, por inteiro',
   note:

@@ -22,29 +22,14 @@ export class AlemDoMbti {
 
   protected readonly page = usePageContent({ pt: ALEM_DO_MBTI_PT, en: ALEM_DO_MBTI_EN });
 
-  /** Index of the enneatype whose detail card is showing. */
   protected readonly selected = signal(0);
 
-  /**
-   * Derived from the language signal as well as the selection, so switching
-   * language swaps the open card's copy without losing the reader's place.
-   */
   protected readonly current = computed(() => this.page().enneagram.types[this.selected()]);
 
   protected readonly bloom = { top: '-46%', right: '22%', width: 'min(700px, 90vw)' };
 
   protected readonly path = this.language.path;
 
-  /**
-   * This page summarises; the deep pages carry the unabridged material. The
-   * links come from the nav bundle so the two never drift apart — minus the
-   * first entry, which points back here.
-   */
-  /**
-   * This page summarises; the deep pages carry the unabridged material. The
-   * links come from the nav bundle so the two never drift apart — minus the
-   * entry that points back here.
-   */
   private readonly deepMenu = computed(() =>
     this.language.content().shell.nav.menus.find((menu) => menu.key === 'alem'),
   );

@@ -1,19 +1,5 @@
-/**
- * Análise longa das seis primeiras combinações de temperamento — as de base
- * melancólica e as de base colérica —, exibida no lugar da visão geral quando
- * o leitor diz qual delas é a sua.
- *
- * Vocabulário pré-científico de LaHaye (1984) sobre uma pilha Ni · Te · Fi · Se.
- * O que muda de uma combinação para outra não é o motor: é a velocidade com que
- * ele decide, o que sai da cabeça depois de decidido e o que sobra para Fi.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
-
-/* -------------------------------------------------------------------------- */
-/* Melancólico–colérico                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_MELANCHOLIC_CHOLERIC_PT: VariantDeep = {
   lede:
@@ -274,10 +260,6 @@ export const DEEP_MELANCHOLIC_CHOLERIC_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* Melancólico–fleumático                                                      */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_MELANCHOLIC_PHLEGMATIC_PT: VariantDeep = {
   lede:
     'A decisão existe. Ela foi tomada, é boa, e está guardada. Nesta combinação Ni trabalha com ' +
@@ -527,10 +509,6 @@ export const DEEP_MELANCHOLIC_PHLEGMATIC_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* Melancólico–sanguíneo                                                       */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_MELANCHOLIC_SANGUINE_PT: VariantDeep = {
   lede:
     'Você tem duas pessoas com o mesmo motor e agendas diferentes, e nenhuma delas mente. A base ' +
@@ -776,10 +754,6 @@ export const DEEP_MELANCHOLIC_SANGUINE_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Colérico–melancólico                                                        */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_MELANCHOLIC_PT: VariantDeep = {
   lede:
@@ -1042,10 +1016,6 @@ export const DEEP_CHOLERIC_MELANCHOLIC_PT: VariantDeep = {
     'grant-1983',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Colérico–fleumático                                                         */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_PHLEGMATIC_PT: VariantDeep = {
   lede:
@@ -1380,10 +1350,6 @@ export const DEEP_CHOLERIC_PHLEGMATIC_PT: VariantDeep = {
     'quenk-2002-grip',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* Colérico–sanguíneo                                                          */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_CHOLERIC_SANGUINE_PT: VariantDeep = {
   lede:

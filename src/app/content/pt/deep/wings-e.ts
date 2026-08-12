@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 9w8 — O pacificador armado                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_9W8_PT: VariantDeep = {
   lede:
     'Você não tem agenda — tem perímetro. O 9 apaga a própria prioridade antes de ela ficar ' +
@@ -327,10 +323,6 @@ export const DEEP_9W8_PT: VariantDeep = {
     'jung-1921',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 9w1 — O pacificador de princípio                                            */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_9W1_PT: VariantDeep = {
   lede:

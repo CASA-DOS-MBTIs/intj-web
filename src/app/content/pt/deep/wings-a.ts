@@ -1,10 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/* -------------------------------------------------------------------------- */
-/* 1w9 — O idealista sereno                                                    */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_1W9_PT: VariantDeep = {
   lede:
     'Duas iras e nenhuma porta. O 1 e o 9 são vizinhos no que Riso e Hudson chamam de centro ' +
@@ -300,10 +296,6 @@ export const DEEP_1W9_PT: VariantDeep = {
     'myers-1980-gifts',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 1w2 — O reformador engajado                                                 */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_1W2_PT: VariantDeep = {
   lede:
@@ -604,10 +596,6 @@ export const DEEP_1W2_PT: VariantDeep = {
   ] satisfies SourceId[],
 };
 
-/* -------------------------------------------------------------------------- */
-/* 2w1 — O servo de princípio                                                  */
-/* -------------------------------------------------------------------------- */
-
 export const DEEP_2W1_PT: VariantDeep = {
   lede:
     'O 2 é a motivação que menos combina com esta pilha, e a asa 1 é o que a torna habitável. ' +
@@ -905,10 +893,6 @@ export const DEEP_2W1_PT: VariantDeep = {
     'myers-1980-gifts',
   ] satisfies SourceId[],
 };
-
-/* -------------------------------------------------------------------------- */
-/* 2w3 — O benfeitor visível                                                   */
-/* -------------------------------------------------------------------------- */
 
 export const DEEP_2W3_PT: VariantDeep = {
   lede:

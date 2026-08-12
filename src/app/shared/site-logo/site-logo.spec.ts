@@ -15,12 +15,6 @@ function render(type: Parameters<typeof TestBed.createComponent>[0]): HTMLElemen
   return fixture.nativeElement as HTMLElement;
 }
 
-/**
- * The bar geometry of public/assets/logos/p1-barras-decrescentes.svg, which is
- * the logo of record. The inline component must stay a faithful copy of it, so
- * these numbers are duplicated here on purpose: if someone nudges the mark in
- * the component, this fails rather than letting the two quietly diverge.
- */
 const BARS = [
   { y: '17', width: '26' },
   { y: '24', width: '19' },
@@ -54,9 +48,8 @@ describe('SiteLogo', () => {
   it('is presentational unless given its own label', () => {
     const el = render(SiteLogo);
 
-    // The brand link already carries the accessible name, so labelling the mark
-    // as well would announce the destination twice.
     expect(el.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
+    expect(el.querySelector('svg')?.getAttribute('role')).toBe('presentation');
   });
 });
 
@@ -66,9 +59,17 @@ describe('the shell wears the mark', () => {
     const brand = el.querySelector('.nav__brand');
 
     expect(brand?.querySelector('.logo__word')).not.toBeNull();
-    // The header renders the logo smaller; it does not render a different logo.
     expect(brand?.querySelector('.logo__stack')?.textContent).toBe('NI · TE · FI · SE');
-    expect(brand?.getAttribute('aria-label')).toBeTruthy();
+  });
+
+  it('names the mark rather than the link wrapped around it', () => {
+    const brand = render(SiteNav).querySelector('.nav__brand');
+    const svg = brand?.querySelector('svg');
+
+    expect(brand?.getAttribute('aria-label')).toBeNull();
+    expect(svg?.getAttribute('role')).toBe('img');
+    expect(svg?.getAttribute('aria-label')).toBeTruthy();
+    expect(svg?.getAttribute('aria-hidden')).toBeNull();
   });
 
   it('puts the same lockup in the footer', () => {

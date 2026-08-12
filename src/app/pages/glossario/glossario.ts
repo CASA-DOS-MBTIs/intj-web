@@ -7,7 +7,6 @@ import { PageMasthead, type BloomPosition } from '../../shared/page-header/page-
 import { GLOSSARIO_EN } from '../../content/en/glossario';
 import { GLOSSARIO_PT } from '../../content/pt/glossario';
 
-/** Sentinel for the "no filter" chip; no real system uses an empty string. */
 const ALL = '';
 
 @Component({

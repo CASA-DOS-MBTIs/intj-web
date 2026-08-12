@@ -1,12 +1,6 @@
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 
-/**
- * Análise completa de cada instinto dominante, mostrada só depois que o leitor
- * declara qual é o seu. Os três instintos são de Ichazo, cruzados com os
- * eneatipos por Naranjo; a nomenclatura de Chestnut é usada onde ajuda. Nada
- * disto foi validado empiricamente.
- */
 const FONTES: SourceId[] = [
   'naranjo-1994',
   'chestnut-2013',

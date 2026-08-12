@@ -18,12 +18,7 @@
 @if (f) {
   <section class="section section--tinted section--bordered">
     <div class="shell">
-      <app-variant-focus
-        [deep]="f.deep"
-        [labels]="c.focus"
-        [title]="f.title"
-        (widened)="widen()"
-      />
+      <app-variant-focus [deep]="f.deep" [labels]="c.focus" [title]="f.title" (widened)="widen()" />
     </div>
   </section>
 }
@@ -61,51 +56,52 @@
   </div>
 </section>
 
-@if (!f) { @let d = detail();
+@if (!f) {
+  @let d = detail();
 
-<section class="section section--tinted section--bordered blends">
-  <div class="shell">
-    <p class="eyebrow">{{ c.labels.blends }}</p>
+  <section class="section section--tinted section--bordered blends">
+    <div class="shell">
+      <p class="eyebrow">{{ c.labels.blends }}</p>
 
-    <div class="blends__chips" role="group">
-      @for (key of blendKeys; track key) {
-        <button
-          type="button"
-          class="blends__chip"
-          [class.is-on]="selected() === key"
-          [class.is-mine]="isMine(key)"
-          [attr.aria-pressed]="selected() === key"
-          (click)="choose(key)"
-        >
-          {{ c.blends[key].name }}
-        </button>
-      }
-    </div>
-
-    <article class="detail">
-      <h2 class="detail__name">{{ d.name }}</h2>
-      <p class="detail__summary">{{ d.summary }}</p>
-
-      <div class="detail__applied">
-        <p class="label label--accent">{{ c.labels.asIntj }}</p>
-        @for (paragraph of d.asIntj; track $index) {
-          <p class="prose" [innerHTML]="paragraph"></p>
+      <div class="blends__chips" role="group">
+        @for (key of blendKeys; track key) {
+          <button
+            type="button"
+            class="blends__chip"
+            [class.is-on]="selected() === key"
+            [class.is-mine]="isMine(key)"
+            [attr.aria-pressed]="selected() === key"
+            (click)="choose(key)"
+          >
+            {{ c.blends[key].name }}
+          </button>
         }
       </div>
 
-      <div class="detail__grid">
-        <div class="card card--plain">
-          <p class="label">{{ c.labels.atWork }}</p>
-          <p class="card-text">{{ d.atWork }}</p>
+      <article class="detail">
+        <h2 class="detail__name">{{ d.name }}</h2>
+        <p class="detail__summary">{{ d.summary }}</p>
+
+        <div class="detail__applied">
+          <p class="label label--accent">{{ c.labels.asIntj }}</p>
+          @for (paragraph of d.asIntj; track $index) {
+            <p class="prose" [innerHTML]="paragraph"></p>
+          }
         </div>
-        <div class="card card--plain card--accent">
-          <p class="label label--accent">{{ c.labels.risk }}</p>
-          <p class="card-text">{{ d.risk }}</p>
+
+        <div class="detail__grid">
+          <div class="card card--plain">
+            <p class="label">{{ c.labels.atWork }}</p>
+            <p class="card-text">{{ d.atWork }}</p>
+          </div>
+          <div class="card card--plain card--accent">
+            <p class="label label--accent">{{ c.labels.risk }}</p>
+            <p class="card-text">{{ d.risk }}</p>
+          </div>
         </div>
-      </div>
-    </article>
-  </div>
-</section>
+      </article>
+    </div>
+  </section>
 }
 
 <app-references [sources]="c.sources" />

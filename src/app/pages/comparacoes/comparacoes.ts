@@ -24,13 +24,8 @@ export class Comparacoes {
     width: 'min(680px, 90vw)',
   };
 
-  /** Index of the type currently held up against the INTJ. */
   protected readonly selected = signal(0);
 
-  /**
-   * Clamped so a shorter list in another locale could never leave the table
-   * pointing past its end.
-   */
   protected readonly comparison = computed(() => {
     const items = this.page().comparator.items;
     return items[Math.min(this.selected(), items.length - 1)];

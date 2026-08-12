@@ -12,8 +12,6 @@
   </div>
 </section>
 
-<!-- The evidence comes before the table on purpose: a reader who only scrolls
-     past the numbers should still have met the finding that undermines them. -->
 <section class="section section--tinted section--bordered evidence">
   <div class="shell">
     <p class="eyebrow eyebrow--accent" appReveal>{{ c.evidence.eyebrow }}</p>
@@ -77,8 +75,6 @@
           </span>
           <span class="rank__score">
             <span class="rank__combined">{{ row.combined }}</span>
-            <!-- The three figures the score was built from stay on the row, so
-                 the arithmetic is checkable without opening the pairing. -->
             <span class="rank__parts">
               {{ row.axes.recognition }} · {{ row.axes.complement }} · {{ row.axes.livability }}
             </span>
@@ -120,9 +116,6 @@
             <span class="breakdown__pair">{{ line.pair }}</span>
             <span class="breakdown__sign" [attr.data-sign]="line.sign">{{ line.sign }}</span>
             <span class="breakdown__note">
-              <!-- Computed, never written into the copy: the figure and the
-                   sentence beside it cannot drift apart if only one of them is
-                   ever typed by hand. -->
               @if (line.working; as w) {
                 <span class="breakdown__earned" [class.is-inverted]="w.inverted">
                   +{{ w.recognition }}

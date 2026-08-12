@@ -1,12 +1,5 @@
 import type { ProfileContent } from '../types';
 
-/**
- * Labels for the profile lens.
- *
- * The 27 tritype names are Katherine Fauvre's archetypes; the keys stay in
- * ascending digit order because that is how the content is written, not because
- * that is how anyone describes their own tritype.
- */
 export const PROFILE_EN: ProfileContent = {
   title: 'Which INTJ you are',
 

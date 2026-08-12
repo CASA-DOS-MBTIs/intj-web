@@ -1,14 +1,7 @@
-/**
- * The unabridged analysis of six of the twelve temperament blends, in an INTJ:
- * the three remaining phlegmatic-led pairings and the three sanguine-led ones.
- * Rendered only once the reader has named theirs.
- */
-
 import type { VariantDeep } from '../../types';
 import type { SourceId } from '../../sources';
 import type { TemperamentPairKey } from '../../profile-keys';
 
-/** The six blends in this file. `Extract` makes a typo a compile error. */
 type BlendKeyB = Extract<
   TemperamentPairKey,
   | 'phlegmatic-melancholic'
@@ -22,10 +15,6 @@ type BlendKeyB = Extract<
 const COMMON: SourceId[] = ['lahaye-1984', 'littauer-1983', 'kagan-1994', 'rothbart-2011'];
 
 export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
-  /* ------------------------------------------------------------------ */
-  /* Phlegmatic–melancholic — the motionless archivist                   */
-  /* ------------------------------------------------------------------ */
-
   'phlegmatic-melancholic': {
     lede:
       'You are the INTJ who knows more than anyone around you suspects, and the reason nobody ' +
@@ -279,10 +268,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
 
     sources: [...COMMON, 'galen-c170', 'hippocrates-c400bc', 'grant-1983'],
   },
-
-  /* ------------------------------------------------------------------ */
-  /* Phlegmatic–choleric — the serene absolutist                         */
-  /* ------------------------------------------------------------------ */
 
   'phlegmatic-choleric': {
     lede:
@@ -539,10 +524,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
     sources: [...COMMON, 'eysenck-eysenck-1985', 'grant-1983'],
   },
 
-  /* ------------------------------------------------------------------ */
-  /* Phlegmatic–sanguine — the quiet host                                */
-  /* ------------------------------------------------------------------ */
-
   'phlegmatic-sanguine': {
     lede:
       'You are the INTJ people like without reservation, and it is not a performance: the warmth ' +
@@ -774,10 +755,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
 
     sources: [...COMMON, 'grant-1983'],
   },
-
-  /* ------------------------------------------------------------------ */
-  /* Sanguine–melancholic — the enthusiast who collapses                 */
-  /* ------------------------------------------------------------------ */
 
   'sanguine-melancholic': {
     lede:
@@ -1013,10 +990,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
 
     sources: [...COMMON, 'grant-1983'],
   },
-
-  /* ------------------------------------------------------------------ */
-  /* Sanguine–choleric — the project agitator                            */
-  /* ------------------------------------------------------------------ */
 
   'sanguine-choleric': {
     lede:
@@ -1256,10 +1229,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
 
     sources: [...COMMON, 'eysenck-eysenck-1985', 'grant-1983'],
   },
-
-  /* ------------------------------------------------------------------ */
-  /* Sanguine–phlegmatic — the lightest INTJ                             */
-  /* ------------------------------------------------------------------ */
 
   'sanguine-phlegmatic': {
     lede:
@@ -1510,7 +1479,6 @@ export const TEMPERAMENTS_DEEP_B_EN: Record<BlendKeyB, VariantDeep> = {
   },
 };
 
-/* Named exports, one per blend, so each page entry can reference its own. */
 export const DEEP_PHLEGMATIC_MELANCHOLIC_EN = TEMPERAMENTS_DEEP_B_EN['phlegmatic-melancholic'];
 export const DEEP_PHLEGMATIC_CHOLERIC_EN = TEMPERAMENTS_DEEP_B_EN['phlegmatic-choleric'];
 export const DEEP_PHLEGMATIC_SANGUINE_EN = TEMPERAMENTS_DEEP_B_EN['phlegmatic-sanguine'];

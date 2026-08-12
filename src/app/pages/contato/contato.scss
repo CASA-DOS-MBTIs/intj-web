@@ -13,8 +13,6 @@
   &__address {
     @include serif(clamp(23px, 4.4vw, 34px), 1.2);
     color: var(--fg);
-    // The address is the point of the page, so it gets an underline that says
-    // "this is a link" without waiting for a hover.
     text-decoration: underline;
     text-underline-offset: 6px;
     text-decoration-color: color-mix(in oklab, var(--accent) 55%, transparent);
@@ -65,8 +63,6 @@
     flex: none;
   }
 
-  // The kicker above it already spaces the pair; the heading's own top margin
-  // would push the title off the badge's centre line.
   &__title {
     margin: 0;
   }
@@ -93,8 +89,6 @@
     padding: 24px 20px;
   }
 
-  // auto-fit still honours the 290px floor, and three nested gutters leave less
-  // than that at 360px — so the column count is set outright.
   .reasons {
     grid-template-columns: 1fr;
   }

@@ -1,8 +1,5 @@
 @use 'tokens' as *;
 
-// `.intro__text` and `.intro__caveat` are the shared deep-page opening shape and
-// now live in the global stylesheet at exactly these values; only the section's
-// own padding is particular to this page.
 .intro {
   padding-block: 80px 60px;
 }
@@ -134,8 +131,6 @@
 }
 
 @include below($bp-md) {
-  // Twelve chips are the only way through this page, and 11px of block padding
-  // leaves them ~37px tall — under a comfortable thumb on a touch screen.
   .blends__chip {
     padding: 13px 14px;
   }
@@ -146,8 +141,6 @@
     padding: 28px 20px;
   }
 
-  // auto-fit still floors a track at its minmax minimum: one 280px column in
-  // a ~230px card pushes the pair of panels past the card's right edge.
   .detail__grid {
     grid-template-columns: 1fr;
   }

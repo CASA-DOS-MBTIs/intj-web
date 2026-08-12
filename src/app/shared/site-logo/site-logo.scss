@@ -3,7 +3,6 @@
 :host {
   display: inline-flex;
   align-items: center;
-  // Consumers set the width; the viewBox keeps the proportions.
   width: 210px;
   max-width: 100%;
 }
@@ -13,8 +12,6 @@
   width: 100%;
   height: auto;
 
-  // The dominant function carries the accent and the rest fade down the stack,
-  // which is the whole idea of the mark.
   &__bar {
     fill: var(--fg);
 
@@ -53,7 +50,6 @@
   }
 }
 
-// The brand link tints the whole mark on hover, wordmark included.
 :host-context(a:hover) .logo__word {
   fill: var(--accent);
 }
