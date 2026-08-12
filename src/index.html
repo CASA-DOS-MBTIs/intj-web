@@ -2,6 +2,36 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
+    <script>
+      (function () {
+        var path = location.pathname;
+        if (path !== '/' && path !== '/index.html') return;
+        var supported = function (value) {
+          return value === 'pt' || value === 'en';
+        };
+        var lang = null;
+        try {
+          lang = localStorage.getItem('intj-lang');
+        } catch (error) {
+          lang = null;
+        }
+        if (!supported(lang)) {
+          var tags =
+            navigator.languages && navigator.languages.length
+              ? navigator.languages
+              : [navigator.language || ''];
+          lang = 'en';
+          for (var i = 0; i < tags.length; i++) {
+            var base = String(tags[i]).toLowerCase().split('-')[0];
+            if (supported(base)) {
+              lang = base;
+              break;
+            }
+          }
+        }
+        location.replace('/' + lang + location.search + location.hash);
+      })();
+    </script>
     <title>INTJ — o retrato completo</title>
     <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />

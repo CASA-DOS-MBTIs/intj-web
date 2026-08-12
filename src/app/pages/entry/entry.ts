@@ -1,5 +1,5 @@
-import { Component, afterNextRender, computed, inject } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { HTML_LANG, LanguageService } from '../../core/language.service';
 import { usePageMeta } from '../../core/page-meta';
@@ -15,7 +15,6 @@ import { LANGS, LANG_NAME, type Lang } from '../../content/types';
 })
 export class Entry {
   private readonly language = inject(LanguageService);
-  private readonly router = inject(Router);
 
   protected readonly htmlLang = HTML_LANG;
 
@@ -30,13 +29,6 @@ export class Entry {
 
   constructor() {
     usePageMeta(() => this.meta());
-
-    afterNextRender(() => {
-      const chosen = this.language.chosen();
-      if (chosen !== null) {
-        void this.router.navigateByUrl(`/${chosen}`, { replaceUrl: true });
-      }
-    });
   }
 
   protected remember(lang: Lang): void {

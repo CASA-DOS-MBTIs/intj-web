@@ -102,8 +102,4 @@ export class LanguageService {
   preferred(): Lang {
     return this.isBrowser ? (readStoredLang() ?? detectLang()) : PRIMARY_LANG;
   }
-
-  chosen(): Lang | null {
-    return this.isBrowser ? readStoredLang() : null;
-  }
 }
